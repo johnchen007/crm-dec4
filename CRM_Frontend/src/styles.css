@@ -1,1 +1,6 @@
-/* You can add global styles to this file, and also import other style files */
+.cardBackGround
+{
+  background: gray;
+  opacity: 0.9;
+  color:black;
+}
