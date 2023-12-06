@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -7,4 +7,16 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
 
+  fullName!:String;
+
+  constructor(){}
+
+  ngOnInit() {
+    sessionStorage.getItem("");//full name will come form here
+    this.fullName="The Fullname of the user goes here"}
+
+  logout(){
+    sessionStorage.setItem('isLoggedIn', 'false');
+    sessionStorage.removeItem('token');
+  }
 }
