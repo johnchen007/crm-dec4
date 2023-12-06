@@ -1,5 +1,13 @@
+<!-- Background -->
+<ng-particles
+  id="tsparticles"
+  [options]="particlesOptions"
+  [particlesInit]="particlesInit"
+  (particlesLoaded)="particlesLoaded($event)"
+></ng-particles>
+
 <!-- after login -->
-<div>
+<div *ngIf="isLogin==true">
   <app-header></app-header>
   <div style="min-height: 600px">
     <router-outlet></router-outlet>
@@ -8,6 +16,10 @@
 </div>
 
 <!-- before login -->
-<div>
+<div *ngIf="isLogin==false">
   <app-log-in></app-log-in>
+</div>
+<!-- Homepage-->
+<div>
+  <app-home-page></app-home-page>
 </div>

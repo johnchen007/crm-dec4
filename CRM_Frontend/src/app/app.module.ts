@@ -1,5 +1,9 @@
 import { NgModule } from '@angular/core';
+
 import { BrowserModule } from '@angular/platform-browser';
+import { NgParticlesModule } from 'ng-particles';
+import { NgConfettiModule } from 'ng-confetti';
+import { NgFireworksModule } from 'ng-fireworks';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -38,7 +42,10 @@ import { FormsModule } from '@angular/forms';
     AppRoutingModule,
     HttpClientModule,
     RouterOutlet,
-    FormsModule
+    FormsModule,
+    NgParticlesModule,
+    NgConfettiModule,
+    NgFireworksModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
