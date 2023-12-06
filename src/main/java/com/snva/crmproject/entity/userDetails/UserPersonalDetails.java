@@ -50,6 +50,7 @@ public class UserPersonalDetails {
 			String address_Line2, String address_City, String address_State, String address_Country,
 			String address_ZipCode,User user) {
 		super();
+		this.userId=user.getUserId();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.phone = phone;
