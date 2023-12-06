@@ -6,5 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./logInView.css']
 })
 export class LogInView {
-
+  resetPassword()
+  {
+    
+  }
 }
