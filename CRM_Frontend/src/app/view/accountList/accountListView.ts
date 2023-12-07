@@ -5,6 +5,7 @@ import { Component } from '@angular/core';
   templateUrl: './accountListView.html',
   styleUrls: ['./accountListView.css']
 })
-export class AccountListView {
+export class AccountListView
+{
 
 }
