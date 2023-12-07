@@ -24,6 +24,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterOutlet } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import {StringCutOffPipe} from "./tools/string-cut-off-pipe";
+import { AddNewUser } from './view/popView/addNewUser/addNewUser';
 
 @NgModule({
     declarations: [
@@ -39,7 +40,9 @@ import {StringCutOffPipe} from "./tools/string-cut-off-pipe";
         FooterComponent,
         MessageViewComponent,
         ConfirmViewComponent,
-        StringCutOffPipe
+        AddNewUser,
+        StringCutOffPipe,
+        AddNewUser
     ],
   imports: [
     BrowserModule,

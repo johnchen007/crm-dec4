@@ -5,6 +5,13 @@ import { Component } from '@angular/core';
   templateUrl: './candidateListView.html',
   styleUrls: ['./candidateListView.css']
 })
-export class CandidateListView {
+export class CandidateListView
+{
+  userRole:string = 'admin';
+
+  showCandidateDetail(candidateId:string)
+  {
+    window.location.href = this.userRole + "/check/candidate/detail/" + candidateId;
+  }
 
 }
