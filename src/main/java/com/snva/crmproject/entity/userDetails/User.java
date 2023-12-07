@@ -56,13 +56,14 @@ public class User implements UserDetails {
 		// TODO Auto-generated constructor stub
 	}
 
-	public User(long userId, String username, String role, String firstName, String lastName, String phone,
+	public User(long userId, String username, String role, boolean accountNonLocked, String firstName, String lastName, String phone,
 			String addressLine1, String addressLine2, String addressCity, String addressState, String addressCountry,
 			String addressZipCode) {
 		super();
 		this.userId = userId;
 		this.username = username;
 		this.role = role;
+		this.accountNonLocked = accountNonLocked;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.phone = phone;
@@ -232,5 +233,5 @@ public class User implements UserDetails {
 				+ addressCountry + ", address_ZipCode=" + addressZipCode + "]";
 	}
 	
-
+	
 }

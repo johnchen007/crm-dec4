@@ -39,8 +39,10 @@ public class AddUserServiceTest {
 	
 	@BeforeAll
 	public static void setUpVars () {
-		userTestBefore = new User(0,"username","Role","FirstName","LastName","1234567890","AddL1","AddrL2","AddrCity","AddrState","AddresCountry","AddZip");
-		userTestAfter = new User(100,"username","Role","FirstName","LastName","1234567890","AddL1","AddrL2","AddrCity","AddrState","AddresCountry","AddZip");
+
+		userTestBefore = new User(0,"username","Role",true,"FirstName","LastName","1234567890","AddL1","AddrL2","AddrCity","AddrState","AddresCountry","AddZip");
+		userTestAfter = new User(100,"username","Role",true,"FirstName","LastName","1234567890","AddL1","AddrL2","AddrCity","AddrState","AddresCountry","AddZip");
+
 		userTestAfter.setAccountNonLocked(true);
 		userOptional= Optional.of(userTestAfter);
 		userPersonalDetailsTest = new UserPersonalDetails("FirstName","LastName","1234567890","AddL1","AddrL2","AddrCity","AddrState","AddresCountry","AddZip",userTestBefore);

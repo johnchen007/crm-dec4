@@ -1,6 +1,7 @@
 package com.snva.crmproject.controller;
 
 import java.security.Principal;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -8,12 +9,14 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.snva.crmproject.entity.userDetails.User;
+import com.snva.crmproject.entity.userDetails.UserPersonalDetails;
 import com.snva.crmproject.service.AuthenticationService;
 
 import lombok.Data;
@@ -137,5 +140,27 @@ public class AuthenticationController {
 		System.out.println(user.getName().isEmpty());
 		return authenticationService.getUserDetailsbyUserName(user.getName());
 	  }
+	
+	@RequestMapping("/getUserById/{userId}")
+	  public User user(@PathVariable long userId) {
+		System.out.println(userId);
+		return authenticationService.getUserDetailsbyUserId(userId);
+	  }
+	@RequestMapping("/getAllUsers")
+	  public List<User> getAllUsers() {
+		return authenticationService.getAllUsers();
+	  }
+	
+	@PostMapping("/changePassword")
+	User updatePassword (@RequestBody User user){
+		System.out.println(user.getUsername());
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
+		return authenticationService.updatePassword(user);
+	}
+	@PostMapping("/updateUser")
+	User updateUser (@RequestBody User user){
+		System.out.println(user.getUsername());
+		return authenticationService.updateUser(user);
+	}
 
 }

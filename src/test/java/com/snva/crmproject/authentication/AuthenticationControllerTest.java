@@ -54,7 +54,9 @@ public class AuthenticationControllerTest {
 			String address_Line2, String address_City, String address_State, String address_Country,
 			String address_ZipCode,User user
 		 */
-		userTest = new User(100,"username","Role","FirstName","LastName","1234567890","AddL1","AddrL2","AddrCity","AddrState","AddresCountry","AddZip");
+
+		userTest = new User(100,"username","Role",true,"FirstName","LastName","1234567890","AddL1","AddrL2","AddrCity","AddrState","AddresCountry","AddZip");
+
 		userPersonalDetailsTest = new UserPersonalDetails("FirstName","LastName","1234567890","AddL1","AddrL2","AddrCity","AddrState","AddresCountry","AddZip",userTest);
 	}
 //	 @WithMockUser(value = "SU14",roles={"ADMIN"})
