@@ -10,4 +10,5 @@ public interface CandidateService {
     List<Candidate> getAllCandidates();
     Candidate getCandidateById(Long candidateId);
     String updateCandidate(Candidate updatedCandidate, String recruiterName, String recruitAdmin);
+    
 }
