@@ -14,7 +14,7 @@ import {TestComponent} from "./view/test/test.component";
 const routes: Routes = [
 
   // For Log In, without Login
-  {path:"login"                            , component:LogInView               }, // TODO
+  {path:"login"                            , component:LogInView               },
 
   // HomePage Dashboard
   {path:":role/homepage"                   , component:HomePageView            }, // TODO

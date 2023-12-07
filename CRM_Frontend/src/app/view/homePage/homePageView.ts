@@ -62,8 +62,18 @@ export class HomePageView implements OnInit{
         },
         options: {
           scales: {
+            x: {
+              ticks:{
+                font: {size:20, family:"'courier new', 'courier', 'monospace'"},
+                color: '#fff',
+              }
+            },
             y: {
               beginAtZero: true,
+              ticks:{
+                font: {size:20, family:"'courier new', 'courier', 'monospace'"},
+                color: '#fff',
+              }
             },
           },
         },

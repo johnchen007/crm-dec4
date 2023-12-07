@@ -4,12 +4,13 @@
   [options]="particlesOptions"
   [particlesInit]="particlesInit"
   (particlesLoaded)="particlesLoaded($event)"
-></ng-particles>
+>
+</ng-particles>
 
 <!-- after login -->
 <div *ngIf="isLogin==true">
   <app-header></app-header>
-  <div style="min-height: 600px">
+  <div style="min-height: 800px">
     <router-outlet></router-outlet>
   </div>
   <app-footer></app-footer>
@@ -18,8 +19,4 @@
 <!-- before login -->
 <div *ngIf="isLogin==false">
   <app-log-in></app-log-in>
-</div>
-<!-- Homepage-->
-<div>
-  <app-home-page></app-home-page>
 </div>
