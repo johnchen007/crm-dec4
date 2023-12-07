@@ -4,7 +4,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.snva.crmproject.entity.User;
+import com.snva.crmproject.entity.userDetails.User;
 import com.snva.crmproject.repository.AccountRepository;
 
 @Service
@@ -17,23 +17,15 @@ public class AccountService {
         this.accountRepository = accountRepository;
     }
     
-    public Optional<User> getAccountByEmail(String email) {
-        return AccountRepository.findByEmail(email);
-    }
 
-    public Optional<User> getAccountByUsername(String username) {
-        return AccountRepository.findByUsername(username);
-    }
-
-
-    public void deleteUserById(Long userId) {
+      public void deleteUserById(Long userId) {
         accountRepository.deleteById(userId);
     }
     
-    public Optional<User> getAccountByUsernameAndEmail(String username, String email) {
-        if (username != null && email != null) {
+    public Optional<User> getAccountByUsername(String username) {
+        if (username != null) {
             // logic 
-            return accountRepository.findByUsernameAndEmail(username, email);
+            return AccountRepository.findByUsername(username);
         } else {
             return Optional.empty(); 
         }
