@@ -1,1 +1,34 @@
-<p>candidate-list works!</p>
+<div class="container mt-4 mb-4 pt-4" style="min-height: 800px;">
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <div class="card cardBackGround border border-success ">
+        <label class="text-white">This is just a search bar</label>
+      </div>
+    </div>
+    <div class="col-12 mt-2">
+      <div class="card cardBackGround border border-success ">
+        <div class="row text-white text_font text_middle text-center m-2 border-bottom border-success">
+          <div class="col-3">Candidate</div>
+          <div class="col-2">Recruiter</div>
+          <div class="col-2">email</div>
+          <div class="col-2">phone</div>
+          <div class="col-2">Experience</div>
+          <div class="col-1">Visa</div>
+        </div>
+        <div class="text-white text_font text_table text-center m-2" style="height: 400px; overflow: auto">
+          <div class="row py-0 border-bottom border-secondary" (click)="showCandidateDetail('sdp001')">
+            <div class="col-3">{{'Cristiano Ronaldo dos Santos Aveiro aaaaa'|stringCutOff:12}}</div>
+            <div class="col-2">{{'Cristiano Ronaldo dos Santos Aveiro aaaaa'|stringCutOff:9}}</div>
+            <div class="col-2">1598395257@qq.com</div>
+            <div class="col-2">+86 18618455705</div>
+            <div class="col-2">5 year, 4 mouth</div>
+            <div class="col-1">F1 OPT</div>
+          </div>
+        </div>
+        <div class="row m-2 text-white text_font justify-content-end border-top border-success">
+          Page:1
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

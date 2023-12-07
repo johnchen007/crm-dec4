@@ -1,25 +1,33 @@
 package com.snva.crmproject.controller;
+
+
+import java.sql.Date;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
+import com.snva.crmproject.entity.Candidate;
 import com.snva.crmproject.entity.CandidateDetails;
 import com.snva.crmproject.service.CandidateAttachmentsService;
 import com.snva.crmproject.service.CandidateBasicDetailsService;
 import com.snva.crmproject.service.CandidateDetailsService;
-
-import java.sql.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-
-import java.util.Map;
-import java.util.Optional;
-
+import com.snva.crmproject.service.CandidateService;
 @RestController
 @RequestMapping("/candidates")
-@CrossOrigin(origins="http://localhost:4200/")
 public class CandidateController {
+    @Autowired
+    private CandidateService candidateService;
+    
 
     private final CandidateDetailsService candidateDetailsService;
     private final CandidateBasicDetailsService candidateBasicDetailsService;
@@ -34,8 +42,27 @@ public class CandidateController {
         this.candidateAttachmentsService = candidateAttachmentsService;
     }
 
+    @PostMapping("/add")
+    public String addCandidate(@RequestBody Candidate candidate) {
+        return candidateService.addNewCandidate(candidate);
+    }
 
+    @GetMapping("/all")
+    public List<Candidate> getAllCandidates() {
+        return candidateService.getAllCandidates();
+    }
 
+    @GetMapping("/{candidateId}")
+    public Candidate getCandidateById(@PathVariable Long candidateId) {
+        return candidateService.getCandidateById(candidateId);
+    }
+
+    @PutMapping("/update")
+    public String updateCandidate(@RequestBody Candidate updatedCandidate,
+                                  @RequestParam String recruiterName,
+                                  @RequestParam String recruitAdmin) {
+        return candidateService.updateCandidate(updatedCandidate, recruiterName, recruitAdmin);
+    }
     @PutMapping("/updateTechCandidate/{candidateId}")
     public ResponseEntity<?> updateTechCandidate(@PathVariable String candidateId,
                                                         @RequestParam String techInterviewDate,
@@ -66,5 +93,4 @@ public class CandidateController {
             return new ResponseEntity<>("BD Candidate not found", HttpStatus.NOT_FOUND);
         }
     }
-    
 }
