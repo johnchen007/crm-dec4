@@ -13,6 +13,7 @@ import com.snva.crmproject.service.AccountService;
 
 @RestController
 @RequestMapping("/users")
+@CrossOrigin(origins="http://localhost:4200/")
 public class AccountController {
 
     private final AccountService accountService;
@@ -33,7 +34,7 @@ public class AccountController {
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
     
-    @DeleteMapping("/{userId}")
+    @DeleteMapping("/account/{userId}")
     public ResponseEntity<String> deleteUser(@PathVariable Long userId) {
         accountService.deleteUserById(userId);
         return new ResponseEntity<>("User deleted successfully", HttpStatus.OK);
