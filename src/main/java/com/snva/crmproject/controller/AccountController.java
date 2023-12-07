@@ -7,7 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.snva.crmproject.entity.User;
+import com.snva.crmproject.entity.userDetails.User;
 import com.snva.crmproject.service.AccountService;
 
 
@@ -24,11 +24,10 @@ public class AccountController {
     }
 
     @GetMapping("/searchAccount")
-    public ResponseEntity<User> getUserByUsernameAndEmail(
-            @RequestParam(required = true) String username,
-            @RequestParam(required = true) String email
+    public ResponseEntity<User> getUserByUsername(
+            @RequestParam(required = true) String username
     ) {
-        Optional<User> user = accountService.getAccountByUsernameAndEmail(username, email);
+        Optional<User> user = accountService.getAccountByUsername(username);
 
         return user.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
