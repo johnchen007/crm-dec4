@@ -11,7 +11,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-
+@AllArgsConstructor
 
 @Entity
 public class UserPersonalDetails {
@@ -77,7 +77,108 @@ public class UserPersonalDetails {
 			String addressLine1, String addressLine2, String addressCity, String addressState, String addressCountry,
 			String addressZipCode
 		 */
-		return new User(userId,user.getUsername(),this.user.getRole(),firstName, lastName,phone,addressLine1,addressLine2,addressCity,addressState,addressCountry,addressZipCode);
+		return new User(userId,user.getUsername(),this.user.getRole(),this.user.isAccountNonLocked(), firstName, lastName,phone,addressLine1,addressLine2,addressCity,addressState,addressCountry,addressZipCode);
+	}
+
+	public long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(long userId) {
+		this.userId = userId;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getAddressLine1() {
+		return addressLine1;
+	}
+
+	public void setAddressLine1(String addressLine1) {
+		this.addressLine1 = addressLine1;
+	}
+
+	public String getAddressLine2() {
+		return addressLine2;
+	}
+
+	public void setAddressLine2(String addressLine2) {
+		this.addressLine2 = addressLine2;
+	}
+
+	public String getAddressCity() {
+		return addressCity;
+	}
+
+	public void setAddressCity(String addressCity) {
+		this.addressCity = addressCity;
+	}
+
+	public String getAddressState() {
+		return addressState;
+	}
+
+	public void setAddressState(String addressState) {
+		this.addressState = addressState;
+	}
+
+	public String getAddressCountry() {
+		return addressCountry;
+	}
+
+	public void setAddressCountry(String addressCountry) {
+		this.addressCountry = addressCountry;
+	}
+
+	public String getAddressZipCode() {
+		return addressZipCode;
+	}
+
+	public void setAddressZipCode(String addressZipCode) {
+		this.addressZipCode = addressZipCode;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+	
+	public void update(User user) {
+		this.firstName = user.getFirstName();
+		this.lastName = user.getLastName();
+		this.phone = user.getPhone();
+		this.addressLine1 = user.getAddressLine1();
+		this.addressLine2 = user.getAddressLine2();
+		this.addressCity = user.getAddressCity();
+		this.addressState = user.getAddressState();
+		this.addressCountry = user.getAddressCountry();
+		this.addressZipCode = user.getAddressZipCode();
+		
 	}
 	
 	
