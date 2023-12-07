@@ -9,7 +9,6 @@ import {ConfirmViewComponent} from "../popView/confirm-view/confirm-view.compone
 })
 export class TestComponent
 {
-
   //bsModalRef: BsModalRef;
 
   constructor(private modalService: BsModalService)
@@ -18,7 +17,7 @@ export class TestComponent
 
   openPopWindow()
   {
-    this.modalService.show(ConfirmViewComponent, {class: 'modal-lg popBox opacity-75'});
+    this.modalService.show(ConfirmViewComponent, {class: 'modal-lg popBox'});
   }
 
 }

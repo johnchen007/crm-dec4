@@ -1,5 +1,11 @@
 @import "~bootstrap-icons/font/bootstrap-icons.css";
 
+.dropdown-item:hover
+{
+  background: grey;
+  color: #FFFFFF;
+}
+
 footer{
   background: #000;
   padding:30px 0;
@@ -88,6 +94,14 @@ footer{
 {
   margin-top: 16em;
   text-align: center;
+  align-items: center;
+}
+
+.popBox-h
+{
+  margin-top: 10em;
+  text-align: center;
+  background-color:transparent;
 }
 
 .progress

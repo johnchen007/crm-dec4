@@ -16,6 +16,8 @@ export class AppComponent
 {
   title = 'SNVA CRM';
   isLogin:boolean = true;
+  userName:string = 'xxxxxxx';
+  userRole:string = 'superAdmin';
 
   //particlesOptions: ISourceOptions = configs.basic;
   // configs.backgroundMask // good
