@@ -25,6 +25,7 @@ import { RouterOutlet } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import {StringCutOffPipe} from "./tools/string-cut-off-pipe";
 import { AddNewUser } from './view/popView/addNewUser/addNewUser';
+import { CandidateFormComponent } from './view/candidate-form/candidate-form.component';
 
 @NgModule({
     declarations: [
@@ -42,7 +43,8 @@ import { AddNewUser } from './view/popView/addNewUser/addNewUser';
         ConfirmViewComponent,
         AddNewUser,
         StringCutOffPipe,
-        AddNewUser
+        AddNewUser,
+        CandidateFormComponent
     ],
   imports: [
     BrowserModule,

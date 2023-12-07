@@ -1,0 +1,122 @@
+<form #candidateForm="ngForm" (ngSubmit)="onSubmit()">
+    <!-- Personal Information -->
+    <div class="form-group">
+      <label for="firstName">First Name:</label>
+      <input type="text" id="firstName" name="firstName" [(ngModel)]="candidate.firstName" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="middleName">Middle Name:</label>
+      <input type="text" id="middleName" name="middleName" [(ngModel)]="candidate.middleName" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="lastName">Last Name:</label>
+      <input type="text" id="lastName" name="lastName" [(ngModel)]="candidate.lastName" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="recruiterName">Recruiter Name:</label>
+      <input type="text" id="recruiterName" name="recruiterName" [(ngModel)]="candidate.recruiterName" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="skillSet">Skill Set:</label>
+      <input type="text" id="skillSet" name="skillSet" [(ngModel)]="candidate.skillSet" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="emailId">Email ID:</label>
+      <input type="email" id="emailId" name="emailId" [(ngModel)]="candidate.emailId" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="phoneNumber">Phone Number:</label>
+      <input type="tel" id="phoneNumber" name="phoneNumber" [(ngModel)]="candidate.phoneNumber" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="workExperience">Work Experience:</label>
+      <input type="text" id="workExperience" name="workExperience" [(ngModel)]="candidate.workExperience" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="communicationSkills">Communication Skills:</label>
+      <input type="text" id="communicationSkills" name="communicationSkills" [(ngModel)]="candidate.communicationSkills" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="addressLine1">Address Line 1:</label>
+      <input type="text" id="addressLine1" name="addressLine1" [(ngModel)]="candidate.addressLine1" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="addressLine2">Address Line 2:</label>
+      <input type="text" id="addressLine2" name="addressLine2" [(ngModel)]="candidate.addressLine2" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="addressCity">City:</label>
+      <input type="text" id="addressCity" name="addressCity" [(ngModel)]="candidate.addressCity" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="addressState">State:</label>
+      <input type="text" id="addressState" name="addressState" [(ngModel)]="candidate.addressState" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="addressCountry">Country:</label>
+      <input type="text" id="addressCountry" name="addressCountry" [(ngModel)]="candidate.addressCountry" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="addressZipCode">Zip Code:</label>
+      <input type="text" id="addressZipCode" name="addressZipCode" [(ngModel)]="candidate.addressZipCode" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="visaStatus">Visa Status:</label>
+      <input type="text" id="visaStatus" name="visaStatus" [(ngModel)]="candidate.visaStatus" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="ssn">SSN:</label>
+      <input type="text" id="ssn" name="ssn" [(ngModel)]="candidate.ssn" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="source">Source:</label>
+      <input type="text" id="source" name="source" [(ngModel)]="candidate.source" class="form-control">
+    </div>
+    <!-- Add more fields here for other attributes -->
+  
+    <!-- File Uploads -->
+    <div class="form-group">
+      <label for="resume">Resume:</label>
+      <input type="file" id="resume" name="resume" (change)="onFileSelected($event, 'resume')" class="form-control-file">
+    </div>
+    <div class="form-group">
+      <label for="otherFile">Other File:</label>
+      <input type="file" id="otherFile" name="otherFile" (change)="onFileSelected($event, 'otherFile')" class="form-control-file">
+    </div>
+  
+    <!-- Technical Interview -->
+    <div class="form-group">
+      <label for="techInterviewDate">Tech Interview Date:</label>
+      <input type="text" id="techInterviewDate" name="techInterviewDate" [(ngModel)]="candidate.techInterviewDate" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="interviewFeedback">Interview Feedback:</label>
+      <textarea id="interviewFeedback" name="interviewFeedback" [(ngModel)]="candidate.interviewFeedback" class="form-control"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="candidateInterviewStatus">Candidate Interview Status:</label>
+      <input type="text" id="candidateInterviewStatus" name="candidateInterviewStatus" [(ngModel)]="candidate.candidateInterviewStatus" class="form-control">
+    </div>
+  
+    <!-- Business Development -->
+    <div class="form-group">
+      <label for="LOIsent">LOI Sent:</label>
+      <input type="text" id="LOIsent" name="LOIsent" [(ngModel)]="candidate.LOIsent" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="LOIaccepted">LOI Accepted:</label>
+      <input type="text" id="LOIaccepted" name="LOIaccepted" [(ngModel)]="candidate.LOIaccepted" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="joinedBatch">Joined Batch:</label>
+      <input type="text" id="joinedBatch" name="joinedBatch" [(ngModel)]="candidate.joinedBatch" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="batchStartDate">Batch Start Date:</label>
+      <input type="text" id="batchStartDate" name="batchStartDate" [(ngModel)]="candidate.batchStartDate" class="form-control">
+    </div>
+  
+    <!-- Submit Button -->
+    <button type="submit">Submit</button>
+  </form>
+  
