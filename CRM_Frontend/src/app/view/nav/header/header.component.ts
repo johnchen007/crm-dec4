@@ -8,12 +8,14 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent {
 
   fullName!:String;
-
+  itemImageUrl!:String;
   constructor(){}
 
   ngOnInit() {
-    sessionStorage.getItem("");//full name will come form here
-    this.fullName="The Fullname of the user goes here"}
+    sessionStorage.getItem(""); //full name will come form here
+    this.fullName="The Fullname of the user goes here";
+    this.itemImageUrl = '../assets/logo.jpg';
+  }
 
   logout(){
     sessionStorage.setItem('isLoggedIn', 'false');
