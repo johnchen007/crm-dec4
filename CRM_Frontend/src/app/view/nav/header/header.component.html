@@ -1,30 +1,40 @@
-
-<nav class="navbar navbar-expand-lg navbar-light text-white bg-success">
-    <div class="container-fluid justify-content-between">
-      <h2><a class="navbar-brand" routerLink="/home">Interview App</a></h2>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse " id="navbar">
-        <p class="fw-bold my-0" style="color: white; ">{{fullName}}</p>
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-          <li class="nav-item mt-2">
-            <a class="nav-link fw-bold" style="color: white;" routerLink="">My Account</a>
-          </li>
-          <li class="nav-item dropdown " style="caret-color: black;" >
-            <a class="nav-link dropdown-toggle mt-2 fw-bold" style="color: white;"   href="#" id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Manage Users
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" routerLink="">List Of Admins</a>
-              <a class="dropdown-item" routerLink="">Add New Admin</a>
-            </div>
-          </li>
-          <li class="nav-item mt-2">
-            <a class="nav-link fw-bold" style="color: white;" (click)="logout()" routerLink="">Logout</a>
-          </li>
-        </ul>
+<nav class="navbar navbar-expand-lg navbar-light text-white cardBackGround border-bottom border-success">
+<div class="container-fluid justify-content-between">
+  <div class="collapse navbar-collapse " id="navbar">
+    <label class=" title" routerLink="">
+      {{title}}
+    </label>
+    <ul class="navbar-nav mb-2 mb-lg-0">
+      <li class="nav-item dropdown " style="caret-color: black;" >
+        <a class="nav-link dropdown-toggle ms-4 text-white text_middle text_font" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          ManageTools
+        </a>
+        <div class="dropdown-menu ps-2 pe-2 bg-dark text-white border-success" aria-labelledby="navbarSuperDropdownMenuLink">
+          <a class="dropdown-item text_font text-white">Add New User</a>
+          <a class="dropdown-item text_font text-white">Manage Users</a>
+          <a class="dropdown-item text_font text-white">Manage Candidate</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown " style="caret-color: black;" >
+        <a class="nav-link dropdown-toggle ms-4 text-white text_middle text_font" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          QuickLink
+        </a>
+        <div class="dropdown-menu ps-2 pe-2 bg-dark text-white border-success" aria-labelledby="navbarSuperDropdownMenuLink">
+          <a class="dropdown-item text_font text-white">MyDashboard</a>
+          <a class="dropdown-item text_font text-white">MyAccount</a>
+        </div>
+      </li>
+    </ul>
+    <span class="nav-item dropdown ms-auto me-4" style="caret-color: black;" >
+      <a class="nav-link dropdown-toggle ms-4 text-white text_middle text_font" style="color: white;"   href="#" id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="bi bi-person-circle"></i> {{userName}}
+      </a>
+      <div class="dropdown-menu ps-2 pe-2 bg-dark text-white border-success" aria-labelledby="navbarDropdownMenuLink">
+        <a class="dropdown-item text_font text-white" routerLink="">My Account</a>
+        <a class="dropdown-item text_font text-white" routerLink="">Message</a>
+        <a class="dropdown-item text_font text-white" routerLink="">Log Out</a>
       </div>
-    </div>
-  </nav>
-
+    </span>
+  </div>
+</div>
+</nav>

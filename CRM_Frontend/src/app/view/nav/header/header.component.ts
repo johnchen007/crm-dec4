@@ -1,22 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent {
+export class HeaderComponent
+{
 
-  fullName!:String;
+  @Input() title:any;
+  @Input() userName: any;
+  @Input() userRole: any;
 
-  constructor(){}
+  fullName:string = "User Name";
+  logout()
+  {
 
-  ngOnInit() {
-    sessionStorage.getItem("");//full name will come form here
-    this.fullName="The Fullname of the user goes here"}
-
-  logout(){
-    sessionStorage.setItem('isLoggedIn', 'false');
-    sessionStorage.removeItem('token');
   }
 }

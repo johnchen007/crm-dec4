@@ -3,22 +3,22 @@
     <div class="col-sm-3 p-2">
       <div class="card border border-success cardBackGround" style="min-height: 600px;">
         <div class="card-body text-center">
-          <h3 class="card-title text-center border-bottom pb-4">UserName</h3>
+          <h3 class="card-title text-center pt-3 pb-4 text_font text-white">UserName</h3>
           <div class="row g-3">
             <div class="col-sm-12 border-bottom">
-              <a class="col-form-label h3">Account Info</a>
+              <label class="text_font text-white" (click)="changeStatus('accountInfo')"  >Account Info</label>
             </div>
             <div class="col-sm-12 border-bottom">
-              <a class="col-form-label h3">Phone</a>
+              <label class="text_font text-white" (click)="changeStatus('phoneNumber')"  >Phone Number</label>
             </div>
             <div class="col-sm-12 border-bottom">
-              <a class="col-form-label h3">E-mail</a>
+              <label class="text_font text-white" (click)="changeStatus('emailId')"      >E-mail ID</label>
             </div>
             <div class="col-sm-12 border-bottom">
-              <a class="col-form-label h3">Password</a>
+              <label class="text_font text-white" (click)="changeStatus('resetPassword')">Reset Password</label>
             </div>
             <div class="col-sm-12 border-bottom">
-              <a class="col-form-label h3">Address</a>
+              <label class="text_font text-white" (click)="changeStatus('mailAddress')"  >Mail Address</label>
             </div>
           </div>
         </div>
@@ -28,15 +28,186 @@
       <div class="card border border-success p-2 cardBackGround" style="height: 600px;">
         <div class="card-body text-center">
           <div class="row g-0">
-            <div class="card-body">
-              <h3 class="card-title text-center border-bottom  pb-4">Info</h3>
-              <div id="errorMessage">
+            <div class="card-body" *ngIf="currentStatus == 'accountInfo'">
+              <h3 class="card-title text-center border-bottom pb-4 text-white text_font">Account Info</h3>
+              <div style="min-height: 260px">
+                <div class="row m-4 mt-4">
+                  <div class="col-4 pe-4 justify-content-end">
+                    <img class="img_lg img_radius" src="https://media.istockphoto.com/id/522855255/vector/male-profile-flat-blue-simple-icon-with-long-shadow.jpg?s=612x612&w=0&k=20&c=EQa9pV1fZEGfGCW_aEK5X_Gyob8YuRcOYCYZeuBzztM=">
+                  </div>
+                  <div class="col-8 text-start">
+                    <div class="row mt-5">
+                      <div class="col-4 text-end">
+                        <label class="text_font text-white">User Name:</label>
+                      </div>
+                      <div class="col-8">
+                        <label class="text_font text-white">User Name</label>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-4 text-end">
+                        <label class="text_font text-white">Role:</label>
+                      </div>
+                      <div class="col-8">
+                        <label class="text_font text-white">Super Admin</label>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-4 text-end">
+                        <label class="text_font text-white">Status:</label>
+                      </div>
+                      <div class="col-8">
+                        <label class="text_font text-white">Active</label>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+                <div id="errorMessage"></div>
               </div>
-              <div class="col-sm-12 border-top text-end mt-2 pt-t">
-                <button class="btn btn-primary mb-3 btn-lg py-1 px-5 ms-4">Update</button>
-                <button class="btn btn-primary mb-3 btn-lg py-1 px-5 ms-4">Delete</button>
+              <div class="col-sm-12 text-end mt-4 pt-2">
+                <button class="btn btn-success mb-3 btn-lg py-1 px-5 ms-4">Update</button>
+                <button class="btn btn-danger mb-3 btn-lg py-1 px-5 ms-4" >Delete</button>
               </div>
             </div>
+
+            <div class="card-body" *ngIf="currentStatus == 'phoneNumber'">
+              <h3 class="card-title text-center border-bottom pb-4 text-white text_font">Phone Number</h3>
+              <div style="min-height: 260px">
+                <div class="row m-3 mt-5">
+                  <div class="col-3 text-end">
+                    <label class="text_font text-white">Original</label>
+                  </div>
+                  <div class="col-7 text-end">
+                    <input class="form-control text_bold text_font" type="text" value="" readonly>
+                  </div>
+                </div>
+                <div class="row m-3 mt-5">
+                  <div class="col-3 text-end">
+                    <label class="text_font text-white">New</label>
+                  </div>
+                  <div class="col-7 text-end">
+                    <input class="form-control text_bold text_font" type="text" value="">
+                  </div>
+                </div>
+                <div id="errorMessage"></div>
+              </div>
+              <div class="col-sm-12 text-end mt-4 pt-2">
+                <button class="btn btn-primary mb-3 btn-lg py-1 px-5 ms-4">Update</button>
+              </div>
+            </div>
+
+            <div class="card-body" *ngIf="currentStatus == 'emailId'">
+              <h3 class="card-title text-center border-bottom pb-4 text-white text_font">Email ID</h3>
+              <div style="min-height: 260px">
+                <div class="row m-3 mt-5">
+                  <div class="col-3 text-end">
+                    <label class="text_font text-white">Original</label>
+                  </div>
+                  <div class="col-7 text-end">
+                    <input class="form-control text_bold text_font" type="email" value="" readonly>
+                  </div>
+                </div>
+                <div class="row m-3 mt-5">
+                  <div class="col-3 text-end">
+                    <label class="text_font text-white">New</label>
+                  </div>
+                  <div class="col-7 text-end">
+                    <input class="form-control text_bold text_font" type="email" value="">
+                  </div>
+                </div>
+                <div id="errorMessage"></div>
+              </div>
+              <div class="col-sm-12 text-end mt-4 pt-2">
+                <button class="btn btn-primary mb-3 btn-lg py-1 px-5 ms-4">Update</button>
+              </div>
+            </div>
+
+
+            <div class="card-body" *ngIf="currentStatus == 'resetPassword'">
+              <h3 class="card-title text-center border-bottom pb-4 text-white text_font">Reset Password</h3>
+              <div style="min-height: 260px">
+                <div class="row m-3 mt-5">
+                  <div class="col-3 text-end">
+                    <label class="text_font text-white">Original</label>
+                  </div>
+                  <div class="col-7 text-end">
+                    <input class="form-control text_bold text_font" type="password" value="">
+                  </div>
+                </div>
+                <div class="row m-3 mt-5">
+                  <div class="col-3 text-end">
+                    <label class="text_font text-white">New</label>
+                  </div>
+                  <div class="col-7 text-end">
+                    <input class="form-control text_bold text_font" type="password" value="">
+                  </div>
+                </div>
+                <div class="row m-3">
+                  <div class="col-3 text-end">
+                    <label class="text_font text-white">Confirm</label>
+                  </div>
+                  <div class="col-7 text-end">
+                    <input class="form-control text_bold text_font" type="password" value="">
+                  </div>
+                </div>
+                <div id="errorMessage"></div>
+              </div>
+
+              <div class="col-sm-12 text-end mt-4 pt-2">
+                <button class="btn btn-primary mb-3 btn-lg py-1 px-5 ms-4">Update</button>
+              </div>
+            </div>
+
+            <div class="card-body" *ngIf="currentStatus == 'mailAddress'">
+              <h3 class="card-title text-center border-bottom pb-4 text_title text_font">Mail Address</h3>
+              <div style="min-height: 260px">
+                <div class="row m-3 mt-5">
+                  <div class="col-3 text-end">
+                    <label class="text_font text-white">Line 1</label>
+                  </div>
+                  <div class="col-6 text-end">
+                    <input class="form-control text_bold text_font" type="text" value="">
+                  </div>
+                </div>
+                <div class="row m-3">
+                  <div class="col-3 text-end">
+                    <label class="text_font text-white">Line 2</label>
+                  </div>
+                  <div class="col-6 text-end">
+                    <input class="form-control text_bold text_font" type="text" value="">
+                  </div>
+                </div>
+                <div class="row m-3">
+                  <div class="col-3 text-end">
+                    <label class="text_font text-white">City</label>
+                  </div>
+                  <div class="col-2 text-end">
+                    <input class="form-control text_bold text_font" type="text" value="">
+                  </div>
+                  <div class="col-1 text-end">
+                    <label class="text_font text-white">State</label>
+                  </div>
+                  <div class="col-2 text-end">
+                    <input class="form-control text_bold text_font" type="text" value="">
+                  </div>
+                </div>
+                <div class="row m-3 mb-5">
+                  <div class="col-3 text-end">
+                    <label class="text_font text-white">ZipCode</label>
+                  </div>
+                  <div class="col-4 text-end">
+                    <input class="form-control text_bold text_font" type="text" value="">
+                  </div>
+                </div>
+                <div id="errorMessage">
+                </div>
+              </div>
+              <div class="col-sm-12 text-end mt-4 pt-2">
+                <button class="btn btn-primary mb-3 btn-lg py-1 px-5 ms-4">Update</button>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>

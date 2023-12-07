@@ -1,30 +1,31 @@
-<div class="container box">
-    <div class="mb-4">
-        <h1 class="fw-bold text-center title">SNVA CRM</h1>
+<div class="container" id="box">
+    <div class="mb-5">
+        <h1 class="fw-bold text-center" id="title">SNVA CRM</h1>
     </div>
     <div class="row justify-content-center">
-        <div class="card col-12 col-md-6 col-lg-4 border border-success-subtle cardBackGround">
+        <div class="col-12 col-md-6 col-lg-4 border border-dark">
             <!-- Your login form or content here -->
-            <h2 class="mt-4 text-center">Welcome</h2>
-            <p class="mb-3 text-center sub-text">Log in to continue</p>
-            <form > <!--need to add submit action ngSubmit and ngModel for username and password-->
-                <div class="mb-3 text-start">
+            <h2 class="mt-5 text-center">Welcome</h2>
+            <p class="mb-3 text-center" id="sub-text">Log in to continue</p>
+            <form (submit)="logIn()"> <!--need to add submit action ngSubmit and ngModel for username and password-->
+                <div class="mb-3">
                     <label for="username" class="form-label fw-bold">Email / Username</label> <input
-                        type="text" class="form-control" name="username" id="username" required>
+                        type="text" class="form-control" name="username" id="username" [(ngModel)]="user.username" required>
                 </div>
-                <div class="mb-3 text-start" >
-                    <label for="password" class="form-label fw-bold">Password</label> <input
-                        type="password" class="form-control" name="password" id="password" required>
+                <div class="mb-3">
+                    <label for="password" class="form-label fw-bold" >Password</label> <input
+                        type="password" class="form-control" name="password" id="password" [(ngModel)]="user.password" required>
                 </div>
                 <div class="container d-flex justify-content-center align-items-center">
                     <button type="submit" class="btn btn-success btn-long-bar mb-4 ">Login</button>
                 </div>
+                <div class="alert alert-danger" *ngIf="loginError">
+                    Login failed. Please check your credentials.
+                </div>
                 <div>
-                    <p class="text-center text-secondary-emphasis" (click)="resetPassword()">Forgot Your Password?</p>
+                    <p class="text-center" (click)="resetPassword()">Forgot Your Password?</p>
                 </div>
             </form>
         </div>
     </div>
 </div>
-
-

@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 
+
 @Entity
 public class UserPersonalDetails {
 	
