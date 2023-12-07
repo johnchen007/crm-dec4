@@ -51,7 +51,7 @@ public class AuthenticationController {
 	   private PasswordEncoder passwordEncoder;
 	
 	@PostMapping("/register")
-	ResponseEntity<ResponseObject> register(@RequestBody User user){
+	public ResponseEntity<ResponseObject> register(@RequestBody User user){
 		System.out.println(user.getUsername());
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		if(authenticationService.createUser(user)==null) {

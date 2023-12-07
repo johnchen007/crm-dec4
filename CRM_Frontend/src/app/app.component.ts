@@ -17,7 +17,6 @@ export class AppComponent
   title = 'SNVA CRM';
   isLogin:boolean = true;
 
-
   //particlesOptions: ISourceOptions = configs.basic;
   // configs.backgroundMask // good
   // configs.collisionsAbsorb // good

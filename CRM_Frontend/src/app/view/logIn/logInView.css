@@ -1,21 +1,5 @@
 .box{
-    margin-top: 150px;
-    margin-bottom: 150px;
-}
-
-.title{
-    color: rgb(241, 159, 5);
-    font-size: 50px;
-}
-
-.sub-text{
-  font-size: small;
-}
-
-.btn-long-bar {
-  display: block;
-  width: 35%;
-  padding: 10px 20px; /* Adjust padding as needed */
-  text-align: center;
+  margin-top: 150px;
+  margin-bottom: 150px;
 }
 
