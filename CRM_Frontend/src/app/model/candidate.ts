@@ -13,11 +13,13 @@ export class Candidate
   ssn:string = '';*/
 
 candidate_id:number = -1;
+candidateId:string="";
 firstName:string = "";
 middleName:string = "";
 lastName:string = "";
 recruiterName:string = "";
 skillSet:string = "";
+email:string = "";
 emailId:string = "";
 phoneNumber:string = "";
 workExperience:string = "";

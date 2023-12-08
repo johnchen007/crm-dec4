@@ -8,6 +8,7 @@ import {
   HttpHeaders,
 } from "@angular/common/http";
 import { Observable } from "rxjs";
+import {User} from "../model/user";
 @Injectable({
   providedIn: "root",
 })
@@ -16,17 +17,25 @@ export class HttpInterceptorService {
   intercept(
     req: HttpRequest<any>,
     next: HttpHandler
-  ): Observable<HttpEvent<any>> {
+  ): Observable<HttpEvent<any>>
+  {
     console.log("intercepted");
-    if (this.auth.authenticated && req.url.indexOf("basicauth") === -1) {
+    // @ts-ignore
+    let user:User = JSON.parse( window.sessionStorage.getItem('SNVA_CRM_USER') );
+    if ((this.auth.authenticated && req.url.indexOf("basicauth") === -1 )|| user != null)
+    {
       console.log("authenticated");
-      const authReq = req.clone({
-        headers: new HttpHeaders({
+      const authReq = req.clone(
+        {
+        headers: new HttpHeaders(
+          {
           Authorization: `${this.auth.getAuthenticatedUser()}`,
         }),
       });
       return next.handle(authReq);
-    } else {
+    }
+    else
+    {
       return next.handle(req);
     }
   }

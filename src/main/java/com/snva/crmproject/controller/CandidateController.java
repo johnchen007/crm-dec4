@@ -52,7 +52,7 @@ public class CandidateController {
     @PostMapping("/add")
     public String addCandidate(@RequestBody CandidateBasicDetails candidateBasicDetails) {
         System.out.println(candidateBasicDetails.toString());
-        System.out.println(candidateBasicDetails.getAttachments().get(0).toString());
+//        System.out.println(candidateBasicDetails.getAttachments().get(0).toString());
     	return candidateService.addNewCandidate(candidateBasicDetails);
     }
 

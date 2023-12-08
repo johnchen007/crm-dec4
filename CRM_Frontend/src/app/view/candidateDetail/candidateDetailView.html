@@ -5,20 +5,20 @@
         <div class="card cardBackGround border-success text-white text_font">
           <div class="row m-2 text-start">
             <div class="col-6"><h5>Candidate Information</h5></div>
-            <div class="col-6 text-end">RecruiterName:</div>
+            <div class="col-6 text-end">RecruiterName: {{candidate.recruiterName}}</div>
             <hr>
             <div class="row">
               <div class="col-4">
                 <label for="firstName">First Name:</label>
-                <input type="text" id="firstName" name="firstName" class="form-control">
+                <input type="text" id="firstName" name="firstName" class="form-control" [(ngModel)]="candidate.firstName">
               </div>
               <div class="col-3">
                 <label for="middleName">Middle Name:</label>
-                <input type="text" id="middleName" name="middleName" class="form-control">
+                <input type="text" id="middleName" name="middleName" class="form-control" [(ngModel)]="candidate.middleName">
               </div>
               <div class="col-4">
                 <label for="lastName">Last Name:</label>
-                <input type="text" id="lastName" name="lastName"  class="form-control">
+                <input type="text" id="lastName" name="lastName"  class="form-control" [(ngModel)]="candidate.lastName">
               </div>
             </div>
             <div class="row">
@@ -26,19 +26,19 @@
                 <div class="row">
                   <div class="col-10">
                     <label for="ssn">SSN:</label>
-                    <input type="text" id="ssn" name="ssn" class="form-control">
+                    <input type="text" id="ssn" name="ssn" class="form-control" [(ngModel)]="candidate.ssn">
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-6">
                     <label for="visaStatus">Visa Status:</label>
-                    <input type="text" id="visaStatus" name="visaStatus"  class="form-control">
+                    <input type="text" id="visaStatus" name="visaStatus"  class="form-control" [(ngModel)]="candidate.visaStatus">
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-10">
                     <label for="source">Source:</label>
-                    <input type="text" id="source" name="source" class="form-control">
+                    <input type="text" id="source" name="source" class="form-control" [(ngModel)]="candidate.details.source">
                   </div>
                 </div>
               </div>
@@ -48,7 +48,7 @@
                     <label for="resume">Resume:</label>
                   </div>
                   <div class="col-6">
-                    <input type="file" id="resume" name="resume" (change)="onFileSelected($event, 'resume')" class="form-control-file">
+                    <input type="file" id="resume" name="resume" (change)="onFileSelected($event, 'resume')" class="form-control-file" >
                   </div>
                 </div>
                 <div class="row mt-4">
@@ -65,13 +65,13 @@
               <div class="row mt-2">
                 <div class="col-10">
                   <label for="emailId">Email ID:</label>
-                  <input type="email" id="emailId" name="emailId" class="form-control">
+                  <input type="email" id="emailId" name="emailId" class="form-control" [(ngModel)]="candidate.email">
                 </div>
               </div>
               <div class="row mt-2">
                 <div class="col-10">
                   <label for="phoneNumber">Phone Number:</label>
-                  <input type="tel" id="phoneNumber" name="phoneNumber" class="form-control">
+                  <input type="tel" id="phoneNumber" name="phoneNumber" class="form-control" [(ngModel)]="candidate.phoneNumber">
                 </div>
               </div>
               <div class="row mt-2">
@@ -79,25 +79,25 @@
                   <label>Address:</label>
                   <div class="row mt-2">
                     <div class="col-11 text-end">
-                      <input class="form-control text_bold text_font" type="text" value="" placeholder="Line 1">
+                      <input class="form-control text_bold text_font" type="text" value="" placeholder="Line 1" [(ngModel)]="candidate.details.addressLine1">
                     </div>
                   </div>
                   <div class="row mt-2">
                     <div class="col-11 text-end">
-                      <input class="form-control text_bold text_font" type="text" value=""  placeholder="Line 2">
+                      <input class="form-control text_bold text_font" type="text" value=""  placeholder="Line 2" [(ngModel)]="candidate.details.addressLine2">
                     </div>
                   </div>
                   <div class="row mt-2">
                     <div class="col-4 me-2">
-                      <input class="form-control text_bold text_font" type="text" value="" placeholder="City">
+                      <input class="form-control text_bold text_font" type="text" value="" placeholder="City" [(ngModel)]="candidate.details.addressCity">
                     </div>
                     <div class="col-4">
-                      <input class="form-control text_bold text_font" type="text" value="" placeholder="State">
+                      <input class="form-control text_bold text_font" type="text" value="" placeholder="State" [(ngModel)]="candidate.details.addressState">
                     </div>
                   </div>
                   <div class="row mt-2">
                     <div class="col-6 text-end">
-                      <input class="form-control text_bold text_font" type="text" value="" placeholder="ZipCode">
+                      <input class="form-control text_bold text_font" type="text" value="" placeholder="ZipCode" [(ngModel)]="candidate.details.addressZipCode">
                     </div>
                   </div>
                 </div>
@@ -109,19 +109,19 @@
               <div class="row mt-2">
                 <div class="col-10">
                   <label>Skill:</label>
-                  <input type="text" class="form-control">
+                  <input type="text" class="form-control" [(ngModel)]="candidate.details.skillSet">
                 </div>
               </div>
               <div class="rowmt-2">
                 <div class="col-10">
                   <label>Work Experience:</label>
-                  <input type="text" id="emailId" name="emailId"class="form-control">
+                  <input type="text" id="emailId" name="emailId"class="form-control" [(ngModel)]="candidate.workExperience">
                 </div>
               </div>
               <div class="row mt-2">
                 <div class="col-10">
                   <label>Communication Skill:</label>
-                  <input type="text" id="emailId" name="emailId"class="form-control">
+                  <input type="text" id="emailId" name="emailId"class="form-control" [(ngModel)]="candidate.details.communicationSkill">
                 </div>
               </div>
             </div>
