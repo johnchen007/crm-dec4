@@ -30,10 +30,11 @@ createBasicAuthToken(username: String, password: String) {
   return 'Basic ' + window.btoa(username + ":" + password)
 }
 
-/*
+
 registerSuccessfulLogin(user:User) {
   this.authenticatedUser= this.createBasicAuthToken(user.username,user.password)
   //this.userdetails = principal
+  console.log("register Success Called");
   this.authenticated=true;
   if(user.role==='USER') this.isUser=true
   if(user.role==='ADMIN') this.isAdmin=true
@@ -42,7 +43,7 @@ registerSuccessfulLogin(user:User) {
     console.log(this.isSU);
   }
 }
-*/
+
 getAuthenticatedUser():string{
   return this.authenticatedUser;
 }

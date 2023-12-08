@@ -18,12 +18,13 @@ export class UserService
   // TODO Not Working
   getUserById(userId:number, requestUser:User):Observable<User>
   {
+    /*
     const headers = new HttpHeaders(requestUser ?
       {
         authorization : this.createBasicAuthToken(requestUser.username,requestUser.password)
       } : {});
-
-    return this.httpClient.get<User>('http://localhost:8080/getUserById/'+ userId, {headers: headers})
+    */
+    return this.httpClient.get<User>('http://localhost:8080/getUserById/'+ userId)
   }
 
   createBasicAuthToken(username: String, password: String)

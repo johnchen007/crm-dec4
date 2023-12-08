@@ -20,11 +20,12 @@ import { HeaderComponent } from './view/nav/header/header.component';
 import { FooterComponent } from './view/nav/footer/footer.component';
 import { MessageViewComponent } from './view/popView/message-view/message-view.component';
 import { ConfirmViewComponent } from './view/popView/confirm-view/confirm-view.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { RouterOutlet } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import {StringCutOffPipe} from "./tools/string-cut-off-pipe";
 import { AddNewUser } from './view/popView/addNewUser/addNewUser';
+import { HttpInterceptorService } from './service/http-interceptor.service';
 
 @NgModule({
     declarations: [
@@ -56,7 +57,10 @@ import { AddNewUser } from './view/popView/addNewUser/addNewUser';
     NgConfettiModule,
     NgFireworksModule,
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: HttpInterceptorService,
+    multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

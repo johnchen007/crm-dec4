@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -44,6 +45,7 @@ class ResponseObject {
 	}
 	
 }
+@CrossOrigin(origins="http://localhost:4200/")
 @RestController
 public class AuthenticationController {
 	
@@ -129,7 +131,7 @@ public class AuthenticationController {
 		return new ResponseEntity<ResponseObject>(new ResponseObject(true, "Successfully Created User"), HttpStatus.OK);
 	}
 	
-	@RequestMapping("/loginEndpoint")
+	@RequestMapping("/loginEndpoints")
 	  public User login(Principal user) {
 //		System.out.println(user.toString());
 		System.out.println(user.getName().isEmpty());

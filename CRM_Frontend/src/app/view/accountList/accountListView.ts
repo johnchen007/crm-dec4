@@ -3,7 +3,8 @@ import {MenuData} from "../../data/menuData";
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import {ConfirmViewComponent} from "../popView/confirm-view/confirm-view.component";
 import {AddNewUser} from "../popView/addNewUser/addNewUser";
-
+import { User } from 'src/app/model/user';
+import { AccountService } from 'src/app/service/account.service';
 @Component({
   selector: 'app-account-list',
   templateUrl: './accountListView.html',
@@ -14,13 +15,22 @@ export class AccountListView
   menuData:MenuData = new MenuData();
   currentRole:string = 'Role';
   currentStatus:string = 'Status';
-
+  accountList:User[] = [];
   userRole:string = 'admin';
 
-  constructor(private modalService: BsModalService)
+  constructor(private modalService: BsModalService, private accountService:AccountService )
   {
   }
-
+  ngOnInit()
+  {
+    this.getAllAccount();
+  }
+  getAllAccount(){
+    this.accountService.getAllUser().subscribe(data => {
+      this.accountList = data;
+      console.log(this.accountList);
+    })
+  }
   filterSetRole(role:string)
   {
     if(role == 'All Accounts')

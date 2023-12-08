@@ -10,10 +10,9 @@ import org.springframework.web.bind.annotation.*;
 import com.snva.crmproject.entity.userDetails.User;
 import com.snva.crmproject.service.AccountService;
 
-
+@CrossOrigin(origins="http://localhost:4200/")
 @RestController
 @RequestMapping("/users")
-@CrossOrigin(origins="http://localhost:4200/")
 public class AccountController {
 
     private final AccountService accountService;

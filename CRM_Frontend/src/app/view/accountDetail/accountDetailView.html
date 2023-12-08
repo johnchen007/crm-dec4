@@ -41,7 +41,7 @@
                         <label class="text_font text-white">User Name:</label>
                       </div>
                       <div class="col-8">
-                        <label class="text_font text-white">User Name</label>
+                        <label class="text_font text-white">{{this.currentUser.username}}</label>
                       </div>
                     </div>
                     <div class="row">
@@ -49,7 +49,7 @@
                         <label class="text_font text-white">Role:</label>
                       </div>
                       <div class="col-8">
-                        <label class="text_font text-white">Super Admin</label>
+                        <label class="text_font text-white">{{this.currentUser.role}}</label>
                       </div>
                     </div>
                     <div class="row">
@@ -79,7 +79,7 @@
                     <label class="text_font text-white">Original</label>
                   </div>
                   <div class="col-7 text-end">
-                    <input class="form-control text_bold text_font" type="text" value="" readonly>
+                    <input class="form-control text_bold text_font" type="text" value="{{this.currentUser.phone}}" readonly>
                   </div>
                 </div>
                 <div class="row m-3 mt-5">
@@ -105,7 +105,7 @@
                     <label class="text_font text-white">Original</label>
                   </div>
                   <div class="col-7 text-end">
-                    <input class="form-control text_bold text_font" type="email" value="" readonly>
+                    <input class="form-control text_bold text_font" type="email" value="{{this.currentUser.username}}" readonly>
                   </div>
                 </div>
                 <div class="row m-3 mt-5">
@@ -132,7 +132,7 @@
                     <label class="text_font text-white">Original</label>
                   </div>
                   <div class="col-7 text-end">
-                    <input class="form-control text_bold text_font" type="password" value="">
+                    <input class="form-control text_bold text_font" type="password" value="{{this.currentUser.password}}">
                   </div>
                 </div>
                 <div class="row m-3 mt-5">
@@ -167,7 +167,7 @@
                     <label class="text_font text-white">Line 1</label>
                   </div>
                   <div class="col-6 text-end">
-                    <input class="form-control text_bold text_font" type="text" value="">
+                    <input class="form-control text_bold text_font" type="text" value="{{this.currentUser.addressLine1}}">
                   </div>
                 </div>
                 <div class="row m-3">
@@ -175,7 +175,7 @@
                     <label class="text_font text-white">Line 2</label>
                   </div>
                   <div class="col-6 text-end">
-                    <input class="form-control text_bold text_font" type="text" value="">
+                    <input class="form-control text_bold text_font" type="text" value="{{this.currentUser.addressLine2}}">
                   </div>
                 </div>
                 <div class="row m-3">
@@ -183,13 +183,13 @@
                     <label class="text_font text-white">City</label>
                   </div>
                   <div class="col-2 text-end">
-                    <input class="form-control text_bold text_font" type="text" value="">
+                    <input class="form-control text_bold text_font" type="text" value="{{this.currentUser.addressCity}}">
                   </div>
                   <div class="col-1 text-end">
                     <label class="text_font text-white">State</label>
                   </div>
                   <div class="col-2 text-end">
-                    <input class="form-control text_bold text_font" type="text" value="">
+                    <input class="form-control text_bold text_font" type="text" value="{{this.currentUser.addressState}}">
                   </div>
                 </div>
                 <div class="row m-3 mb-5">
@@ -197,7 +197,7 @@
                     <label class="text_font text-white">ZipCode</label>
                   </div>
                   <div class="col-4 text-end">
-                    <input class="form-control text_bold text_font" type="text" value="">
+                    <input class="form-control text_bold text_font" type="text" value="{{this.currentUser.addressZipCode}}">
                   </div>
                 </div>
                 <div id="errorMessage">
