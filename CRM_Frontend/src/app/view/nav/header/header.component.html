@@ -30,9 +30,9 @@
             <i class="bi bi-person-circle"></i> {{userName}}
       </a>
       <div class="dropdown-menu ps-2 pe-2 bg-dark text-white border-success" aria-labelledby="navbarDropdownMenuLink">
-        <a class="dropdown-item text_font text-white" routerLink="">My Account</a>
+        <a class="dropdown-item text_font text-white" (click)="myAccount()">My Account</a>
         <a class="dropdown-item text_font text-white" routerLink="">Message</a>
-        <a class="dropdown-item text_font text-white" routerLink="">Log Out</a>
+        <a class="dropdown-item text_font text-white" (click)="logout()">Log Out</a>
       </div>
     </span>
   </div>

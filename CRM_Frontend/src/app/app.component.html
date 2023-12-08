@@ -9,7 +9,7 @@
 
 <!-- after login -->
 <div *ngIf="isLogin==true">
-  <app-header [title] = 'title' [userName] = 'userName' [userRole] = 'userRole'></app-header>
+  <app-header [title] = 'title' [userID] = 'userID' [userName] = 'userName' [userRole] = 'userRole'></app-header>
   <div style="min-height: 800px">
     <router-outlet></router-outlet>
   </div>
