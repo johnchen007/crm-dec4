@@ -114,7 +114,7 @@ public class CandidateBasicDetails {
     
     private CandidateDetails details;
 
-	    @OneToMany(mappedBy = "candidateId", cascade = CascadeType.ALL, orphanRemoval = true)
+	    @OneToMany(mappedBy = "candidateId")
 	    private List<CandidateAttachments> attachments;
 	    
 	    
