@@ -10,7 +10,6 @@ export class CandidateDetailView {
 
   pageStatus:string = "recruiter";
 
-
   candidate:Candidate = new Candidate();
   // Method to handle file selection for resume and otherFile inputs
   onFileSelected(event: any, field: string) {

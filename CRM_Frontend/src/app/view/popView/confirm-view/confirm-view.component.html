@@ -1,6 +1,6 @@
 <div class="card text_font border-success bg-dark">
   <label class="text_middle text-white m-2">{{message}}</label>
-  <label class="text_error m-2">{{error}}</label>
+  <label class="text_error m-2" *ngIf = "error != ''">{{error}}</label>
   <div class="row m-2 justify-content-center">
     <div class="col-12">
       <div class="progress">
