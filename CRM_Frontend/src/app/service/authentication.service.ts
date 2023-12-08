@@ -22,7 +22,7 @@ export class AuthenticationService {
     const headers = new HttpHeaders(user ? {
       authorization : this.createBasicAuthToken(user.username,user.password)
   } : {});
- 
+
   return this.http.get<User>('http://localhost:8080/loginEndpoints', {headers: headers})
 }
 
@@ -44,8 +44,27 @@ registerSuccessfulLogin(user:User) {
   }
 }
 
-getAuthenticatedUser():string{
-  return this.authenticatedUser;
+getAuthenticatedUser():string
+{
+  if(this.authenticatedUser != '')
+  {
+    return this.authenticatedUser;
+  }
+  else
+  {
+    // @ts-ignore
+    let user:User = JSON.parse( window.sessionStorage.getItem('SNVA_CRM_USER') );
+    if(user != null)
+    {
+      this.authenticated=true;
+      this.authenticatedUser= this.createBasicAuthToken(user.username,user.password)
+      return this.authenticatedUser;
+    }
+    else
+    {
+      return '';
+    }
+  }
 }
 
 setCurrentUser(user:User)
@@ -56,10 +75,10 @@ logout(){
   this.username = "";
   this.password = "";
   this.authenticated=false;
-  this.currentUser = new User(); 
+  this.currentUser = new User();
   console.log("Logout");
   this.router.navigate(['/'])
-  
+
 }
-  
+
 }
