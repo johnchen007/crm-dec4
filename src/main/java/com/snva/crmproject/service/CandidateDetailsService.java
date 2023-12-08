@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.snva.crmproject.entity.CandidateDetails;
-import com.snva.crmproject.repository.CandidateDetailsRepository;
+import com.snva.crmproject.repository.candidate.CandidateDetailsRepository;
 
 import java.sql.Date;
 import java.util.Optional;

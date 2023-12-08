@@ -3,7 +3,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.snva.crmproject.entity.CandidateAttachments;
-import com.snva.crmproject.repository.CandidateAttachmentsRepository;
+import com.snva.crmproject.repository.candidate.CandidateAttachmentsRepository;
 
 import java.util.Optional;
 
