@@ -124,11 +124,11 @@
               <div class="row mt-2">
                 <div class="col-5">
                   <label>Date:</label>
-                  <input type="text" class="form-control">
+                  <input type="text" class="form-control" [(ngModel)]="candidate.details.interviewDate">
                 </div>
                 <div class="col-5">
                   <label>Interviewer:</label>
-                  <input type="text" class="form-control">
+                  <input type="text" class="form-control" [(ngModel)]="candidate.details.interviewerFeedback">
                 </div>
               </div>
               <div class="row mt-4 text-end">
@@ -167,9 +167,9 @@
             <div class="col-4"><h5>Interviewer:</h5></div>
           </div>
           <div class="row mt-2">
-            <div class="col-4"><h5>CandidateName</h5></div>
-            <div class="col-4"><h5>RecruiterName</h5></div>
-            <div class="col-4"><h5>Interviewer</h5></div>
+            <div class="col-4"><h5>{{candidate.firstName}}</h5></div>
+            <div class="col-4"><h5>{{candidate.recruiterName}}e</h5></div>
+            <div class="col-4"><h5>{{candidate.recruiterName}}</h5></div>
           </div>
           <hr>
           <div class="row mt-2 mb-4">
@@ -184,13 +184,13 @@
                 <div class="row m-2 text-start">
                   <div class="col-11">
                     <label>Interview Feedback:</label>
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" [(ngModel)]="candidate.details.interviewerFeedback">
                   </div>
                 </div>
                 <div class="row m-2 text-start">
                   <div class="col-11">
                     <label>Candidate Interview Status:</label>
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" [(ngModel)]="candidate.details.candidateInterviewStatus">
                   </div>
                 </div>
               </div>
@@ -201,7 +201,7 @@
                   <label>LOI Sent:</label>
                 </div>
                 <div class="col-6">
-                  <input type="text" class="form-control">
+                  <input type="text" class="form-control" [(ngModel)]="candidate.details.LOISent">
                 </div>
               </div>
               <div class="row mt-4">
@@ -209,7 +209,7 @@
                   <label>Joined Batch:</label>
                 </div>
                 <div class="col-6">
-                  <input type="text" class="form-control">
+                  <input type="text" class="form-control" [(ngModel)]="candidate.details.joinedBatch">
                 </div>
               </div>
               <div class="row mt-4">
@@ -217,7 +217,7 @@
                   <label>Batch Start Date:</label>
                 </div>
                 <div class="col-6">
-                  <input type="text" class="form-control">
+                  <input type="text" class="form-control" [(ngModel)]="candidate.details.startDate">
                 </div>
               </div>
               <div class="row mt-5 text-end">

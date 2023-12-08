@@ -18,24 +18,20 @@
     "@angular/platform-browser": "~16.2.0",
     "@angular/platform-browser-dynamic": "~16.2.0",
     "@angular/router": "~16.2.0",
-    "rxjs": "~7.8.1",
-    "tslib": "^2.6.1",
-    "zone.js": "~0.13.0",
-
     "@ng-bootstrap/ng-bootstrap": "^14.2.0",
     "@popperjs/core": "^2.11.6",
     "bootstrap": "^5.3.1",
     "bootstrap-icons": "^1.10.5",
-    "jquery": "^3.7.0",
-    "ngx-bootstrap": "^11.0.2",
-    "ngx-bootstrap-modal": "^2.0.1",
-    "popper.js": "^1.16.1",
-
     "chart.js": "^4.4.0",
-
+    "jquery": "^3.7.0",
     "ng-confetti": "^2.12.0",
     "ng-fireworks": "^2.12.0",
     "ng-particles": "^3.12.0",
+    "ngx-bootstrap": "^11.0.2",
+    "ngx-bootstrap-modal": "^1.1.0",
+    "popper.js": "^1.16.1",
+    "rxjs": "~7.8.1",
+    "tslib": "^2.6.1",
     "tsparticles": "^2.12.0",
     "tsparticles-basic": "^2.12.0",
     "tsparticles-confetti": "^2.12.0",
@@ -86,21 +82,22 @@
     "tsparticles-updater-stroke-color": "^2.12.0",
     "tsparticles-updater-tilt": "^2.12.0",
     "tsparticles-updater-twinkle": "^2.12.0",
-    "tsparticles-updater-wobble": "^2.12.0"
+    "tsparticles-updater-wobble": "^2.12.0",
+    "zone.js": "~0.13.0"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~16.2.0",
+    "@angular-devkit/build-angular": "^16.2.10",
     "@angular/cli": "~16.2.0",
     "@angular/compiler-cli": "~16.2.0",
     "@angular/localize": "^15.1.0",
     "@types/jasmine": "~4.3.5",
+    "@types/node": "^20.4.7",
     "jasmine-core": "~5.1.0",
     "karma": "~6.4.2",
     "karma-chrome-launcher": "~3.2.0",
     "karma-coverage": "~2.2.1",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
-    "typescript": "~5.1.6",
-    "@types/node": "^20.4.7"
+    "typescript": "~5.1.6"
   }
 }

@@ -13,6 +13,7 @@ export class Candidate
   ssn:string = '';*/
 
 candidate_id:string = "";
+candidateId:string = "";
 firstName:string = "";
 middleName:string = "";
 lastName:string = "";
