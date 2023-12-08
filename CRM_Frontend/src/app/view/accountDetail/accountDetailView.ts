@@ -11,29 +11,30 @@ import {ActivatedRoute} from "@angular/router";
 export class AccountDetailView implements OnInit
 {
 
-  userId:number = 1;
+  userId:any = 1;
   currentUser:User = new User();
   currentStatus:string = "accountInfo";
 
   constructor(private router:ActivatedRoute, private userService:UserService)
   {
-    // @ts-ignore
-    let user:User = JSON.parse( window.sessionStorage.getItem('SNVA_CRM_USER') );
-    user.password = 'test';
-    userService.getUserById(this.userId, user).subscribe(data=>
-      {
-        console.log("[User start]");
-        console.log(data);
-        console.log("[User end]");
-        this.currentUser = data;
-      },
-      error =>
-      {
-        console.log(error);
-      }
-    )
+    if(this.userId == 'myAccount')
+    {
+      // @ts-ignore
+      this.currentUser =  JSON.parse( window.sessionStorage.getItem('SNVA_CRM_USER') );
+    }
+    else
+    {
+      userService.getUserById(this.userId).subscribe(data=>
+        {
+          this.currentUser = data;
+        },
+        error =>
+        {
+          console.log(error);
+        }
+      )
+    }
   }
-
   changeStatus( status:string )
   {
     this.currentStatus = status;

@@ -19,10 +19,10 @@
         <div class="text-white text_font text_table text-center m-2" style="height: 400px; overflow: auto">
           <div *ngFor="let candidate of allCandidate">
             <div class="row py-0 border-bottom border-secondary" (click)="showCandidateDetail(candidate.candidateId)">
-              <div class="col-1">{{ candidate.candidateId}}</div>
+              <div class="col-1">{{candidate.candidateId}}</div>
               <div class="col-2">{{ candidate.firstName + "  "+candidate.middleName+" "+candidate.lastName|stringCutOff:12}}</div>
               <div class="col-2">{{candidate.recruiterName|stringCutOff:9}}</div>
-              <div class="col-2">{{candidate.email}}</div>
+              <div class="col-2">{{candidate.emailId}}</div>
               <div class="col-2">{{candidate.phoneNumber}}</div>
               <div class="col-2">{{candidate.workExperience}}</div>
               <div class="col-1">{{candidate.visaStatus}}</div>
