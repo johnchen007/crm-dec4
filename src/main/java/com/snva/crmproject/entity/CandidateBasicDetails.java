@@ -124,9 +124,9 @@ public class CandidateBasicDetails {
 
 	    public void setDetails(CandidateDetails details) {
 	        this.details = details;
-	        if (details != null) {
-	            details.setCandidateBasicDetails(this);
-	        }
+//	        if (details != null) {
+//	            details.setCandidateBasicDetails(this);
+//	        }
 	    }
 
 	    public List<CandidateAttachments> getAttachments() {
@@ -136,5 +136,13 @@ public class CandidateBasicDetails {
 	    public void setAttachments(List<CandidateAttachments> attachments) {
 	        this.attachments = attachments;
 	    }
+		@Override
+		public String toString() {
+			return "CandidateBasicDetails [candidateId=" + candidateId + ", firstName=" + firstName + ", middleName="
+					+ middleName + ", lastName=" + lastName + ", recruiterName=" + recruiterName + ", email=" + email
+					+ ", phoneNumber=" + phoneNumber + ", workExperience=" + workExperience + ", visaStatus="
+					+ visaStatus + ", ssn=" + ssn + ", details=" + details + ", attachments=" + attachments + "]";
+		}
+	
 	
 }

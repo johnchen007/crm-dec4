@@ -34,8 +34,8 @@ public class CandidateDetails {
 	private String interviewDate;
 	private String interviewerFeedback;
 	private String candidateInterviewStatus;
-	private boolean LOISent;
-	private boolean LOIAccepted;
+	private boolean lOISent;
+	private boolean lOIAccepted;
 	private boolean joinedBatch;
 	private Date startDate;
 	
@@ -60,8 +60,8 @@ public class CandidateDetails {
 		this.interviewDate = interviewDate;
 		this.interviewerFeedback = interviewerFeedback;
 		this.candidateInterviewStatus = candidateInterviewStatus;
-		this.LOISent = lOISent;
-		this.LOIAccepted = lOIAccepted;
+		this.lOISent = lOISent;
+		this.lOIAccepted= lOIAccepted;
 		this.joinedBatch = joinedBatch;
 		this.startDate = startDate;
 	}
@@ -153,17 +153,18 @@ public class CandidateDetails {
 	public void setCandidateInterviewStatus(String candidateInterviewStatus) {
 		this.candidateInterviewStatus = candidateInterviewStatus;
 	}
-	public boolean isLOISent() {
-		return LOISent;
+	
+	public boolean getLOISent() {
+		return lOISent;
 	}
 	public void setLOISent(boolean lOISent) {
-		LOISent = lOISent;
+		this.lOISent = lOISent;
 	}
-	public boolean isLOIAccepted() {
-		return LOIAccepted;
+	public boolean getLOIAccepted() {
+		return lOIAccepted;
 	}
 	public void setLOIAccepted(boolean lOIAccepted) {
-		LOIAccepted = lOIAccepted;
+		this.lOIAccepted = lOIAccepted;
 	}
 	public boolean isJoinedBatch() {
 		return joinedBatch;
