@@ -1,19 +1,14 @@
 package com.snva.crmproject.config;
 
 import org.springframework.context.annotation.Bean;
-
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Info;
 
 @Configuration
 
@@ -26,7 +21,7 @@ public class ApplicationConfig  {
 	    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		   http 
 		      .csrf().disable()
-		      .authorizeRequests().requestMatchers("/register**","/login")
+		      .authorizeRequests().requestMatchers("/register**","/login**")
 		      .permitAll() .anyRequest().authenticated() 
 		      .and() 
 		      .cors()
@@ -39,4 +34,10 @@ public class ApplicationConfig  {
 		      .and().httpBasic(); 
 	        return http.build();
 	    }
+	   @Bean
+	   public OpenAPI openAPI() {
+	       return new OpenAPI().info(new Info().title("SpringDoc example")
+	           .description("SpringDoc application")
+	           .version("v0.0.1"));
+	   }
 }

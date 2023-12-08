@@ -1,9 +1,6 @@
 package com.snva.crmproject.entity;
 
 
-
-
-
 import java.sql.Date;
 
 import jakarta.persistence.Entity;

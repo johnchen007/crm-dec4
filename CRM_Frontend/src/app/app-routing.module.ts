@@ -14,18 +14,18 @@ import {TestComponent} from "./view/test/test.component";
 const routes: Routes = [
 
   // For Log In, without Login
-  {path:"login"                            , component:LogInView               }, // TODO
+  {path:"login"                            , component:LogInView               },
 
   // HomePage Dashboard
   {path:":role/homepage"                   , component:HomePageView            }, // TODO
 
   // For Admin, SuperAdmin
-  {path:":role/manage/User"                , component:AccountListView         }, // TODO
-  {path:":role/check/User/Detail/:id"      , component:AccountDetailView       }, // TODO
+  {path:":role/manage/user"                , component:AccountListView         }, // TODO
+  {path:":role/check/user/detail/:id"      , component:AccountDetailView       }, // TODO
 
   // For All Account
-  {path:":role/manage/Candidate"           , component:CandidateListView       }, // TODO
-  {path:":role/check/Candidate/Detail/:id" , component:CandidateDetailView     }, // TODO
+  {path:":role/manage/candidate"           , component:CandidateListView       }, // TODO
+  {path:":role/check/candidate/detail/:id" , component:CandidateDetailView     }, // TODO
 
   // For Test
   {path:"test"                              , component:TestComponent          }, // TODO

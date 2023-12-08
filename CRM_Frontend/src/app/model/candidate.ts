@@ -1,2 +1,34 @@
 export class Candidate {
+    // For Recruiter (Add / Update) 
+    candidate_id:number = -1;
+    firstName:string = "";
+    middleName:string = "";
+    lastName:string = "";
+    recruiterName:string = "";
+    skillSet:string = "";
+    emailId:string = "";
+    phoneNumber:string = "";
+    workExperience:string = "";
+    communicationSkills:string = "";
+    addressLine1:string = "";
+    addressLine2:string = "";
+    addressCity:string = "";
+    addressState:string = "";
+    addressCountry:string = "";
+    addressZipCode:string = "";
+    visaStatus:string = "";
+    ssn:string = "";
+    source:string = "";
+    resume : File | null = null;
+    otherFile : File | null = null;
+    recruiterRemarks:string = "";
+    // For Tech
+    techInterviewDate:string = "";
+    interviewFeedback:string = "";
+    candidateInterviewStatus:string = "";
+    // For BD
+    LOIsent:string = "";
+    LOIaccepted:string = "";
+    joinedBatch:string = "";
+    batchStartDate:string = "";
 }
