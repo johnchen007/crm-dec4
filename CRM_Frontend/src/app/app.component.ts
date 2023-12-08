@@ -15,9 +15,12 @@ import { User } from './model/user'
 export class AppComponent
 {
   title = 'SNVA CRM';
-  isLogin:boolean = true;
-  userName:string = 'xxxxxxx';
-  userRole:string = 'superAdmin';
+  user:User = new User();
+  isLogin:boolean = false;
+
+  userID:number = -1;
+  userName:string = '';
+  userRole:string = '';
 
   //particlesOptions: ISourceOptions = configs.basic;
   // configs.backgroundMask // good
@@ -97,7 +100,21 @@ export class AppComponent
 
   constructor()
   {
-
+    // @ts-ignore
+    this.user = JSON.parse( window.sessionStorage.getItem('SNVA_CRM_USER') );
+    if(this.user == null)
+    {
+      this.user = new User();
+      this.isLogin = false;
+    }
+    else
+    {
+      console.log(this.user);
+      this.userName = this.user.username;
+      this.userRole = this.user.role;
+      this.userID   = this.user.userId;
+      this.isLogin = true;
+    }
   }
 
   async particlesInit(engine: Engine): Promise<void>

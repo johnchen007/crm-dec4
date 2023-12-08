@@ -1,8 +1,8 @@
-import {Injectable} from "@angular/core";
-import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
-import {observable, Observable} from "rxjs";
-import { User } from "../model/user";
-import { UserDetail } from "../model/user-detail";
+import { Injectable } from '@angular/core';
+import { User } from '../model/user';
+import { Router } from '@angular/router';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { Observable, map } from 'rxjs';
 
 
 @Injectable({
@@ -15,18 +15,20 @@ export class UserService
   constructor(private httpClient:HttpClient)
   { }
 
-  login(emailId:string, password:string):Observable<User>
+  // TODO Not Working
+  getUserById(userId:number, requestUser:User):Observable<User>
   {
-    // TODO
-    // This is an example, please change the following code.
-    const info = {
-      emailId: emailId,
-      password: password
-    }
-    const params = new HttpParams({
-      fromObject: info
-    });
-    return this.httpClient.post<User>(this.baseURL + '', params);
+    const headers = new HttpHeaders(requestUser ?
+      {
+        authorization : this.createBasicAuthToken(requestUser.username,requestUser.password)
+      } : {});
+
+    return this.httpClient.get<User>('http://localhost:8080/getUserById/'+ userId, {headers: headers})
+  }
+
+  createBasicAuthToken(username: String, password: String)
+  {
+    return 'Basic ' + window.btoa(username + ":" + password)
   }
 
 }

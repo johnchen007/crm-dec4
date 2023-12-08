@@ -42,10 +42,11 @@ registerSuccessfulLogin(user:User) {
     console.log(this.isSU);
   }
 }
+*/
 getAuthenticatedUser():string{
   return this.authenticatedUser;
 }
-*/
+
 setCurrentUser(user:User)
 {
   this.currentUser = user;
