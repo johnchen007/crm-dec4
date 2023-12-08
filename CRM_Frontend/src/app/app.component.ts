@@ -105,8 +105,7 @@ export class AppComponent
     if(this.user == null)
     {
       this.user = new User();
-      //this.isLogin = false;
-      this.user.userId = 1;
+      this.isLogin = false;
     }
     else
     {

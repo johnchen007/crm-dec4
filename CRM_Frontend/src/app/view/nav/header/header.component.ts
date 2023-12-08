@@ -15,7 +15,6 @@ export class HeaderComponent
   @Input() userName: any;
   @Input() userRole: any;
 
-  fullName:string = "User Name";
   logout()
   {
     window.sessionStorage.removeItem("SNVA_CRM_USER");
@@ -24,14 +23,25 @@ export class HeaderComponent
 
   myAccount()
   {
-    //window.location.href = this.userRole + "/check/user/detail/" + this.userID;
-    this.router.navigate(["superAdmin/check/user/detail/1"]);
+    this.router.navigate([this.userRole + "/check/user/detail/myAccount"]);
   }
   accountlist()
   {
-    this.router.navigate(["superAdmin/manage/user"]);
+    this.router.navigate([this.userRole + "/manage/user"]);
   }
-  accountCandidatelist(){
-    this.router.navigate(["superAdmin/manage/candidate"]);
+
+  candidatelist()
+  {
+    this.router.navigate([this.userRole + "/manage/candidate"]);
+  }
+
+  goDashboard()
+  {
+    this.router.navigate([this.userRole + "/homepage"]);
+  }
+
+  showAddNewUser()
+  {
+
   }
 }
