@@ -1,5 +1,6 @@
 package com.snva.crmproject.entity;
 
+
 import java.sql.Date;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;

@@ -7,6 +7,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Info;
+
 @Configuration
 
 public class ApplicationConfig  {
@@ -31,4 +34,10 @@ public class ApplicationConfig  {
 		      .and().httpBasic(); 
 	        return http.build();
 	    }
+	   @Bean
+	   public OpenAPI openAPI() {
+	       return new OpenAPI().info(new Info().title("SpringDoc example")
+	           .description("SpringDoc application")
+	           .version("v0.0.1"));
+	   }
 }
