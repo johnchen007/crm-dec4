@@ -16,11 +16,11 @@ export class AppComponent
 {
   title = 'SNVA CRM';
   user:User = new User();
-  isLogin:boolean = false;
+  isLogin:boolean = true;
 
-  userID:number = -1;
+  userID:number = 1;
   userName:string = '';
-  userRole:string = '';
+  userRole:string = 'superAdmin';
 
   //particlesOptions: ISourceOptions = configs.basic;
   // configs.backgroundMask // good
@@ -105,7 +105,8 @@ export class AppComponent
     if(this.user == null)
     {
       this.user = new User();
-      this.isLogin = false;
+      //this.isLogin = false;
+      this.user.userId = 1;
     }
     else
     {

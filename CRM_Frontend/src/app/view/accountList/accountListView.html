@@ -1,71 +1,88 @@
-<div class="container mt-4 mb-4 pt-4" style="min-height: 800px;">
+<div class="container mt-4 mb-4 pt-4" style="min-height: 800px">
   <div class="row justify-content-center">
     <div class="col-8">
-      <div class="card cardBackGround border border-success ">
-        <div class="row text-white text_font text_middle text-center m-2 border-bottom border-success">
+      <div class="card cardBackGround border border-success">
+        <div
+          class="row text-white text_font text_middle text-center m-2 border-bottom border-success"
+        >
           <div class="col-2">#ID</div>
           <div class="col-4">User Name</div>
           <div class="col-3">
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle text-white text-start" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a
+                class="nav-link dropdown-toggle text-white text-start"
+                data-bs-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
                 {{currentRole}}
               </a>
-              <div class="dropdown-menu ps-2 pe-2 bg-dark text-white border-success" style="width: 12em;" aria-labelledby="navbarDropdownMenuLink">
-                <div class="dropdown-item border-bottom border-secondary text-white" *ngFor="let s of menuData.USER_ROLE" (click)="filterSetRole(s)" (click)="filterSetRole(s)">{{s}}</div>
+              <div
+                class="dropdown-menu ps-2 pe-2 bg-dark text-white border-success"
+                style="width: 12em"
+                aria-labelledby="navbarDropdownMenuLink"
+              >
+                <div
+                  class="dropdown-item border-bottom border-secondary text-white"
+                  *ngFor="let s of menuData.USER_ROLE"
+                  (click)="filterSetRole(s)"
+                  (click)="filterSetRole(s)"
+                >
+                  {{s}}
+                </div>
               </div>
             </li>
           </div>
           <div class="col-2">
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle text-white text-start" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a
+                class="nav-link dropdown-toggle text-white text-start"
+                data-bs-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
                 {{currentStatus}}
               </a>
-              <div class="dropdown-menu ps-2 pe-2 bg-dark text-white border-success" aria-labelledby="navbarDropdownMenuLink">
-                <div class="dropdown-item border-bottom border-secondary" *ngFor="let s of menuData.USER_STATUS" (click)="filterSetStatus(s)">{{s}}</div>
+              <div
+                class="dropdown-menu ps-2 pe-2 bg-dark text-white border-success"
+                aria-labelledby="navbarDropdownMenuLink"
+              >
+                <div
+                  class="dropdown-item border-bottom border-secondary"
+                  *ngFor="let s of menuData.USER_STATUS"
+                  (click)="filterSetStatus(s)"
+                >
+                  {{s}}
+                </div>
               </div>
             </li>
           </div>
-          <div class="col-1"><i class="bi bi-person-add" (click)="showAddNewAccountView()"></i></div>
+          <div class="col-1">
+            <i class="bi bi-person-add" (click)="showAddNewAccountView()"></i>
+          </div>
         </div>
-        <div class="text-white text_font text_table text-center m-2" style="height: 550px; overflow: auto">
-          <div class="row py-0 border-bottom border-secondary">
-            <div class="col-2">SDP0001</div>
-            <div class="col-4">Cristiano Ronaldo dos Santos Aveiro</div>
-            <div class="col-3"><i class="bi bi-person-fill text-danger"></i>Super Admin</div>
-            <div class="col-2">Active</div>
-            <div class="col-1">
-              <i class="bi bi-search" (click)="showAccountDetail(1)"></i>
+        <div
+          class="text-white text_font text_table text-center m-2"
+          style="height: 550px; overflow: auto"
+        >
+          <div
+            class="row py-0 border-bottom border-secondary"
+            *ngFor="let account of accountList"
+          >
+            <div class="col-2">{{account.userId}}</div>
+            <div class="col-4">{{account.firstName + account.lastName}}</div>
+            <div class="col-3">
+              <i class="bi bi-person-fill text-danger"></i>{{account.role}}
             </div>
-          </div>
-          <div class="row py-0 border-bottom border-secondary">
-            <div class="col-2">1</div>
-            <div class="col-4">Cristiano Ronaldo</div>
-            <div class="col-3"><i class="bi bi-person-fill text-danger"></i>Super Admin</div>
             <div class="col-2">Active</div>
             <div class="col-1">
-              <i class="bi bi-search"></i>
-            </div>
-          </div>
-          <div class="row py-0 border-bottom border-secondary">
-            <div class="col-2">1</div>
-            <div class="col-4">Cristiano Ronaldo</div>
-            <div class="col-3"><i class="bi bi-person-fill text-danger"></i>Super Admin</div>
-            <div class="col-2">Active</div>
-            <div class="col-1">
-              <i class="bi bi-search"></i>
-            </div>
-          </div>
-          <div class="row py-0 border-bottom border-secondary">
-            <div class="col-2">1</div>
-            <div class="col-4">{{'Cristiano Ronaldo dos Santos Aveiro aaaaa'|stringCutOff:12}}</div>
-            <div class="col-3"><i class="bi bi-person-fill text-danger"></i>Super Admin</div>
-            <div class="col-2">Active</div>
-            <div class="col-1">
-              <i class="bi bi-search"></i>
+              <i class="bi bi-search" (click)="showAccountDetail(account.userId)"></i>
             </div>
           </div>
         </div>
-        <div class="row m-2 text-white text_font justify-content-end border-top border-success">
+        <div
+          class="row m-2 text-white text_font justify-content-end border-top border-success"
+        >
           Page:1
         </div>
       </div>

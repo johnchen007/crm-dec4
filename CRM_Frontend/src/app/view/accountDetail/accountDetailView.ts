@@ -11,7 +11,7 @@ import {ActivatedRoute} from "@angular/router";
 export class AccountDetailView implements OnInit
 {
 
-  userId:number = -1;
+  userId:number = 1;
   currentUser:User = new User();
   currentStatus:string = "accountInfo";
 
