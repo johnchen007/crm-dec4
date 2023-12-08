@@ -130,7 +130,7 @@ public class AuthenticationController {
 		}
 		return new ResponseEntity<ResponseObject>(new ResponseObject(true, "Successfully Created User"), HttpStatus.OK);
 	}
-	
+	@CrossOrigin(origins="http://localhost:4200/")
 	@RequestMapping("/loginEndpoint")
 	  public User login(Principal user) {
 //		System.out.println(user.toString());
