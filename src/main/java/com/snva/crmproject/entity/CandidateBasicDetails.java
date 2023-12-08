@@ -1,9 +1,16 @@
 package com.snva.crmproject.entity;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import jakarta.persistence.FetchType;
+
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -103,6 +110,31 @@ public class CandidateBasicDetails {
 		this.ssn = ssn;
 	}
 	
-	
+	@OneToOne(mappedBy = "candidateBasicDetails", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    
+    private CandidateDetails details;
+
+	    @OneToMany(mappedBy = "candidateId", cascade = CascadeType.ALL, orphanRemoval = true)
+	    private List<CandidateAttachments> attachments;
+	    
+	    
+	    public CandidateDetails getDetails() {
+	        return details;
+	    }
+
+	    public void setDetails(CandidateDetails details) {
+	        this.details = details;
+	        if (details != null) {
+	            details.setCandidateBasicDetails(this);
+	        }
+	    }
+
+	    public List<CandidateAttachments> getAttachments() {
+	        return attachments;
+	    }
+
+	    public void setAttachments(List<CandidateAttachments> attachments) {
+	        this.attachments = attachments;
+	    }
 	
 }

@@ -2,6 +2,7 @@ package com.snva.crmproject.controller;
 
 
 import java.sql.Date;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,18 +14,22 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.snva.crmproject.entity.CandidateBasicDetails;
 
 import com.snva.crmproject.entity.Candidate;
 import com.snva.crmproject.entity.CandidateDetails;
 import com.snva.crmproject.service.CandidateAttachmentsService;
 import com.snva.crmproject.service.CandidateBasicDetailsService;
 import com.snva.crmproject.service.CandidateDetailsService;
+
 import com.snva.crmproject.service.CandidateService;
+
 @RestController
-@RequestMapping("/candidates")
+@RequestMapping("/Candidates")
 public class CandidateController {
+
     @Autowired
     private CandidateService candidateService;
     
@@ -43,25 +48,24 @@ public class CandidateController {
     }
 
     @PostMapping("/add")
-    public String addCandidate(@RequestBody Candidate candidate) {
-        return candidateService.addNewCandidate(candidate);
+    public String addCandidate(@RequestBody CandidateBasicDetails candidateBasicDetails) {
+        System.out.println(candidateBasicDetails.getDetails().getAddressCity());
+    	return candidateService.addNewCandidate(candidateBasicDetails);
     }
 
     @GetMapping("/all")
-    public List<Candidate> getAllCandidates() {
+    public List<CandidateBasicDetails> getAllCandidates() {
         return candidateService.getAllCandidates();
     }
 
     @GetMapping("/{candidateId}")
-    public Candidate getCandidateById(@PathVariable Long candidateId) {
+    public CandidateBasicDetails getCandidateById(@PathVariable String candidateId) {
         return candidateService.getCandidateById(candidateId);
     }
 
     @PutMapping("/update")
-    public String updateCandidate(@RequestBody Candidate updatedCandidate,
-                                  @RequestParam String recruiterName,
-                                  @RequestParam String recruitAdmin) {
-        return candidateService.updateCandidate(updatedCandidate, recruiterName, recruitAdmin);
+    public String updateCandidate(@RequestBody CandidateBasicDetails updatedCandidate) {
+        return candidateService.updateCandidate(updatedCandidate);
     }
     @PutMapping("/updateTechCandidate/{candidateId}")
     public ResponseEntity<?> updateTechCandidate(@PathVariable String candidateId,

@@ -1,94 +1,124 @@
 package com.snva.crmproject.service;
 
-
-import java.util.ArrayList;
-import java.util.List;
-
+import com.snva.crmproject.entity.CandidateAttachments;
+import com.snva.crmproject.entity.CandidateBasicDetails;
+import com.snva.crmproject.entity.CandidateDetails;
+import com.snva.crmproject.repository.user.CandidateAttachmentsRepository;
+import com.snva.crmproject.repository.user.CandidateBasicDetailsRepository;
+import com.snva.crmproject.repository.user.CandidateDetailsRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import com.snva.crmproject.entity.Candidate;
+import java.util.List;
+import java.util.Optional;
 
 @Service
+@Transactional
 public class CandidateServiceImpl implements CandidateService {
-    private List<Candidate> candidateList = new ArrayList<>();
+
+    @Autowired
+    private CandidateBasicDetailsRepository basicDetailsRepository;
+
+    @Autowired
+    private CandidateAttachmentsRepository attachmentsRepository;
+
+    @Autowired
+    private CandidateDetailsRepository detailsRepository;
 
     @Override
-    public String addNewCandidate(Candidate candidate) {
-        Long candidateId = generateCandidateId();
-        candidate.setCandidateId(candidateId);
+    public String addNewCandidate(CandidateBasicDetails candidate) {
+        basicDetailsRepository.save(candidate);
 
-        candidateList.add(candidate);
-        return "Candidate added successfully. Candidate ID: " + candidateId;
-    }
-
-    @Override
-    public List<Candidate> getAllCandidates() {
-        return candidateList;
-    }
-
-    @Override
-    public Candidate getCandidateById(Long candidateId) {
-        for (Candidate candidate : candidateList) {
-            if (candidate.getCandidateId().equals(candidateId)) {
-                return candidate;
+        if (candidate.getAttachments() != null) {
+            for (CandidateAttachments attachment : candidate.getAttachments()) {
+                attachment.setCandidateId(candidate.getCandidateId());
+                attachmentsRepository.save(attachment);
             }
         }
+
+        if (candidate.getDetails() != null) {
+            candidate.getDetails().setCandidateId(candidate.getCandidateId());
+            detailsRepository.save(candidate.getDetails());
+        }
+
+        return "Candidate added successfully!";
+    }
+
+    @Override
+    public List<CandidateBasicDetails> getAllCandidates() {
+        List<CandidateBasicDetails> candidates = basicDetailsRepository.findAll();
+
+        for (CandidateBasicDetails candidate : candidates) {
+            candidate.setAttachments(attachmentsRepository.findByCandidateId(candidate.getCandidateId()));
+            candidate.setDetails(detailsRepository.findById(candidate.getCandidateId()).orElse(null));
+        }
+
+        return candidates;
+    }
+
+    @Override
+    public CandidateBasicDetails getCandidateById(String candidateId) {
+        Optional<CandidateBasicDetails> optionalBasicDetails = basicDetailsRepository.findById(candidateId);
+
+        if (optionalBasicDetails.isPresent()) {
+            CandidateBasicDetails candidate = optionalBasicDetails.get();
+            candidate.setAttachments(attachmentsRepository.findByCandidateId(candidateId));
+            candidate.setDetails(detailsRepository.findById(candidateId).orElse(null));
+            return candidate;
+        }
+
         return null;
     }
 
     @Override
-    public String updateCandidate(Candidate updatedCandidate, String recruiterName, String recruitAdmin) {
-        Long candidateId = updatedCandidate.getCandidateId();
+    public String updateCandidate(CandidateBasicDetails updatedCandidate) {
         
-
-        
-        Candidate existingCandidate = getCandidateById(candidateId);
+        basicDetailsRepository.save(updatedCandidate);
 
        
-        if (existingCandidate != null) {
-            
-            existingCandidate.setRecruiterName(updatedCandidate.getRecruiterName());
-            existingCandidate.setSkillSet(updatedCandidate.getSkillSet());
-            existingCandidate.setBatchNumber(updatedCandidate.getBatchNumber());
-            existingCandidate.setCandidateStatus(updatedCandidate.getCandidateStatus());
-            existingCandidate.setFirstName(updatedCandidate.getFirstName());
-            existingCandidate.setMiddleName(updatedCandidate.getMiddleName());
-            existingCandidate.setLastName(updatedCandidate.getLastName());
-            existingCandidate.setEmail(updatedCandidate.getEmail());
-            existingCandidate.setContactNumber(updatedCandidate.getContactNumber());
-            existingCandidate.setAlternateNumber(updatedCandidate.getAlternateNumber());
-            existingCandidate.setCollege(updatedCandidate.getCollege());
-            existingCandidate.setCountry(updatedCandidate.getCountry());
-            existingCandidate.setState(updatedCandidate.getState());
-            existingCandidate.setCity(updatedCandidate.getCity());
-            existingCandidate.setWorkExperienceMonths(updatedCandidate.getWorkExperienceMonths());
-            existingCandidate.setWorkExperienceYears(updatedCandidate.getWorkExperienceYears());
-            existingCandidate.setVisaStatus(updatedCandidate.getVisaStatus());
-            existingCandidate.setOptStartDate(updatedCandidate.getOptStartDate());
-            existingCandidate.setOptEndDate(updatedCandidate.getOptEndDate());
-            existingCandidate.setSsn(updatedCandidate.getSsn());
-            existingCandidate.setSource(updatedCandidate.getSource());
-            existingCandidate.setCommunicationSkills(updatedCandidate.getCommunicationSkills());
-            existingCandidate.setResumeAttachment(updatedCandidate.getResumeAttachment());
-            existingCandidate.setAdditionalDocumentsAttachment(updatedCandidate.getAdditionalDocumentsAttachment());
-            existingCandidate.setRecruitmentRemarks(updatedCandidate.getRecruitmentRemarks());
-            existingCandidate.setInterviewDate(updatedCandidate.getInterviewDate());
-            existingCandidate.setInterviewName(updatedCandidate.getInterviewName());
-            existingCandidate.setLoiSent(updatedCandidate.getLoiSent());
-            existingCandidate.setLoiAccepted(updatedCandidate.getLoiAccepted());
-            existingCandidate.setJoinedBatch(updatedCandidate.isJoinedBatch());
-            existingCandidate.setBatchStartDate(updatedCandidate.getBatchStartDate());
-
-            return "Candidate updated successfully.";
-        } else {
-            return "Candidate with ID " + candidateId + " not found.";
+        attachmentsRepository.deleteByCandidateId(updatedCandidate.getCandidateId());
+        if (updatedCandidate.getAttachments() != null) {
+            for (CandidateAttachments attachment : updatedCandidate.getAttachments()) {
+                attachment.setCandidateId(updatedCandidate.getCandidateId());
+                attachmentsRepository.save(attachment);
+            }
         }
-    }
 
+       
+        CandidateDetails existingDetails = detailsRepository.findById(updatedCandidate.getCandidateId()).orElse(null);
 
-    
-    private Long generateCandidateId() {
-        
-        return (long) (candidateList.size() + 1);
+        if (existingDetails != null) {
+            
+            existingDetails.setSkillSet(updatedCandidate.getDetails().getSkillSet());
+            existingDetails.setCommunicationSkill(updatedCandidate.getDetails().getCommunicationSkill());
+            existingDetails.setAddressLine1(updatedCandidate.getDetails().getAddressLine1());
+            existingDetails.setAddressLine2(updatedCandidate.getDetails().getAddressLine2());
+            existingDetails.setAddressCity(updatedCandidate.getDetails().getAddressCity());
+            existingDetails.setAddressState(updatedCandidate.getDetails().getAddressState());
+            existingDetails.setAddressCounty(updatedCandidate.getDetails().getAddressCounty());
+            existingDetails.setAddressZipCode(updatedCandidate.getDetails().getAddressZipCode());
+            existingDetails.setSource(updatedCandidate.getDetails().getSource());
+            existingDetails.setRemarks(updatedCandidate.getDetails().getRemarks());
+            existingDetails.setInterviewDate(updatedCandidate.getDetails().getInterviewDate());
+            existingDetails.setInterviewerFeedback(updatedCandidate.getDetails().getInterviewerFeedback());
+            existingDetails.setCandidateInterviewStatus(updatedCandidate.getDetails().getCandidateInterviewStatus());
+            existingDetails.setLOISent(updatedCandidate.getDetails().isLOISent());
+            existingDetails.setLOIAccepted(updatedCandidate.getDetails().isLOIAccepted());
+            existingDetails.setJoinedBatch(updatedCandidate.getDetails().isJoinedBatch());
+            existingDetails.setStartDate(updatedCandidate.getDetails().getStartDate());
+            
+           
+            detailsRepository.save(existingDetails);
+        }
+
+         else {
+           
+            CandidateDetails newDetails = updatedCandidate.getDetails();
+            newDetails.setCandidateId(updatedCandidate.getCandidateId());
+            detailsRepository.save(newDetails);
+        }
+
+        return "Candidate updated successfully!";
     }
 }
