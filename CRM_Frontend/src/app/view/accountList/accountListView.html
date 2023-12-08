@@ -70,7 +70,7 @@
             *ngFor="let account of accountList"
           >
             <div class="col-2">{{account.userId}}</div>
-            <div class="col-4">{{account.firstName + account.lastName}}</div>
+            <div class="col-4">{{account.firstName + ' ' + account.lastName | stringCutOff:12}}</div>
             <div class="col-3">
               <i class="bi bi-person-fill text-danger"></i>{{account.role}}
             </div>
