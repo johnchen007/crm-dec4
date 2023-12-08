@@ -31,4 +31,7 @@ export class HeaderComponent
   {
     this.router.navigate(["superAdmin/manage/user"]);
   }
+  accountCandidatelist(){
+    this.router.navigate(["superAdmin/manage/candidate"]);
+  }
 }

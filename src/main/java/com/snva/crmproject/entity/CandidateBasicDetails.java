@@ -114,8 +114,8 @@ public class CandidateBasicDetails {
     
     private CandidateDetails details;
 
-	    @OneToMany(mappedBy = "candidateId")
-	    private List<CandidateAttachments> attachments;
+//	    @OneToMany(mappedBy = "candidateId")
+//	    private List<CandidateAttachments> attachments;
 	    
 	    
 	    public CandidateDetails getDetails() {
@@ -129,19 +129,19 @@ public class CandidateBasicDetails {
 //	        }
 	    }
 
-	    public List<CandidateAttachments> getAttachments() {
-	        return attachments;
-	    }
-
-	    public void setAttachments(List<CandidateAttachments> attachments) {
-	        this.attachments = attachments;
-	    }
+//	    public List<CandidateAttachments> getAttachments() {
+//	        return attachments;
+//	    }
+//
+//	    public void setAttachments(List<CandidateAttachments> attachments) {
+//	        this.attachments = attachments;
+//	    }
 		@Override
 		public String toString() {
 			return "CandidateBasicDetails [candidateId=" + candidateId + ", firstName=" + firstName + ", middleName="
 					+ middleName + ", lastName=" + lastName + ", recruiterName=" + recruiterName + ", email=" + email
 					+ ", phoneNumber=" + phoneNumber + ", workExperience=" + workExperience + ", visaStatus="
-					+ visaStatus + ", ssn=" + ssn + ", details=" + details + ", attachments=" + attachments + "]";
+					+ visaStatus + ", ssn=" + ssn + ", details=" + details + ", attachments=" + "asda" + "]";
 		}
 	
 	
