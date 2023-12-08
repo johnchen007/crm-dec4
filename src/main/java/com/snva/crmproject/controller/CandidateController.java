@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.snva.crmproject.entity.CandidateBasicDetails;
 
-import com.snva.crmproject.entity.Candidate;
 import com.snva.crmproject.entity.CandidateDetails;
 import com.snva.crmproject.service.CandidateAttachmentsService;
 import com.snva.crmproject.service.CandidateBasicDetailsService;

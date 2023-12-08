@@ -3,9 +3,10 @@ package com.snva.crmproject.service;
 import com.snva.crmproject.entity.CandidateAttachments;
 import com.snva.crmproject.entity.CandidateBasicDetails;
 import com.snva.crmproject.entity.CandidateDetails;
-import com.snva.crmproject.repository.user.CandidateAttachmentsRepository;
-import com.snva.crmproject.repository.user.CandidateBasicDetailsRepository;
-import com.snva.crmproject.repository.user.CandidateDetailsRepository;
+import com.snva.crmproject.repository.candidate.CandidateAttachmentsRepository;
+import com.snva.crmproject.repository.candidate.CandidateBasicDetailsRepository;
+import com.snva.crmproject.repository.candidate.CandidateDetailsRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
