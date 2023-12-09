@@ -1,11 +1,14 @@
 <div class="container mt-4 mb-4 pt-4" style="min-height: 800px;">
   <div *ngIf="pageStatus=='recruiter'"><!-- For Recruiter -->
     <div class="row g-3 m-2">
+      <div class="col-sm-1 p-2"></div>
       <div class="col-sm-10 p-2">
         <div class="card cardBackGround border-success text-white text_font">
           <div class="row m-2 text-start">
-            <div class="col-6"><h5>Candidate Information</h5></div>
-            <div class="col-6 text-end">RecruiterName: {{candidate.recruiterName}}</div>
+            <div class="col-4"><h5>Candidate Information</h5></div>
+            <div class="col-4 text-start">Candidate Id: {{candidate.candidateId}}</div>
+            <div class="col-4 text-end">RecruiterName: {{candidate.recruiterName}}</div>
+            <hr>
             <hr>
             <div class="row">
               <div class="col-4">
@@ -24,15 +27,13 @@
             <div class="row">
               <div class="col-6">
                 <div class="row">
-                  <div class="col-10">
-                    <label for="ssn">SSN:</label>
-                    <input type="text" id="ssn" name="ssn" class="form-control" [(ngModel)]="candidate.ssn">
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-6">
+                  <div class="col-4">
                     <label for="visaStatus">Visa Status:</label>
                     <input type="text" id="visaStatus" name="visaStatus"  class="form-control" [(ngModel)]="candidate.visaStatus">
+                  </div>
+                  <div class="col-8">
+                    <label for="ssn">SSN:</label>
+                    <input type="text" id="ssn" name="ssn" class="form-control" [(ngModel)]="candidate.ssn">
                   </div>
                 </div>
                 <div class="row">
@@ -43,12 +44,12 @@
                 </div>
               </div>
               <div class="col-6">
-                <div class="row mt-5">
+                <div class="row mt-4">
                   <div class="col-4 text-end">
                     <label for="resume">Resume:</label>
                   </div>
                   <div class="col-6">
-                    <input type="file" id="resume" name="resume" (change)="onFileSelected($event, 'resume')" class="form-control-file" >
+                    <input type="file" id="resume" name="resume" (change)="onFileSelected($event, 'resume')" class="form-control-file">
                   </div>
                 </div>
                 <div class="row mt-4">
@@ -63,13 +64,11 @@
               <h5>Contact Information</h5>
               <hr>
               <div class="row mt-2">
-                <div class="col-10">
+                <div class="col-6">
                   <label for="emailId">Email ID:</label>
                   <input type="email" id="emailId" name="emailId" class="form-control" [(ngModel)]="candidate.email">
                 </div>
-              </div>
-              <div class="row mt-2">
-                <div class="col-10">
+                <div class="col-6">
                   <label for="phoneNumber">Phone Number:</label>
                   <input type="tel" id="phoneNumber" name="phoneNumber" class="form-control" [(ngModel)]="candidate.phoneNumber">
                 </div>
@@ -107,79 +106,135 @@
               <h5>Skill Set</h5>
               <hr>
               <div class="row mt-2">
-                <div class="col-10">
+                <div class="col-5">
                   <label>Skill:</label>
                   <input type="text" class="form-control" [(ngModel)]="candidate.details.skillSet">
                 </div>
-              </div>
-              <div class="rowmt-2">
-                <div class="col-10">
+                <div class="col-6">
                   <label>Work Experience:</label>
-                  <input type="text" id="emailId" name="emailId"class="form-control" [(ngModel)]="candidate.workExperience">
+                  <input type="text" class="form-control" [(ngModel)]="candidate.workExperience">
                 </div>
               </div>
               <div class="row mt-2">
                 <div class="col-10">
                   <label>Communication Skill:</label>
-                  <input type="text" id="emailId" name="emailId"class="form-control" [(ngModel)]="candidate.details.communicationSkill">
+                  <input type="text" class="form-control" [(ngModel)]="candidate.details.communicationSkill">
+                </div>
+              </div>
+              <h5 class="mt-4">Interview Schedule</h5>
+              <hr>
+              <div class="row mt-2">
+                <div class="col-5">
+                  <label>Date:</label>
+                  <input type="text" class="form-control" [(ngModel)]="candidate.details.interviewDate">
+                </div>
+                <div class="col-5">
+                  <label>Interviewer:</label>
+                  <input type="text" class="form-control" [(ngModel)]="candidate.details.interviewerFeedback">
+                </div>
+              </div>
+              <div class="row mt-4 text-end">
+                <div class="col-12">
+                  <button class="btn btn-success px-4" (click)="save(candidate)">SAVE</button>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-sm-2 p-2">
-        <button (click)="chanegStatus('tech')">Next</button>
+      <div class="col-sm-1 p-2">
+        <div class="d-flex justify-content-center align-items-center" (click)="chanegStatus('tech')">
+          <button class="btn btn-secondary btn-lg ps-2">
+            <i class="bi bi-arrow-right"></i>
+          </button>
+        </div>
       </div>
+    </div>
   </div>
-  <div *ngIf="pageStatus=='recruiter'">
+
+  <div *ngIf="pageStatus =='tech'">
     <div class="row g-3 m-2">
-      <div class="col-sm-2 p-2">
-        <button (click)="chanegStatus('recruiter')">Prev</button>
+      <div class="col-sm-1 p-2">
+        <div class="d-flex justify-content-center align-items-center" (click)="chanegStatus('recruiter')">
+          <button class="btn btn-secondary btn-lg ps-2">
+            <i class="bi bi-arrow-left"></i>
+          </button>
+        </div>
       </div>
       <div class="col-sm-10 p-2">
-
+        <div class="card cardBackGround border-success text-white text_font">
+          <div class="row mt-2">
+            <div class="col-4"><h5>CandidateName:</h5></div>
+            <div class="col-4"><h5>RecruiterName:</h5></div>
+            <div class="col-4"><h5>Interviewer:</h5></div>
+          </div>
+          <div class="row mt-2">
+            <div class="col-4"><h5>{{candidate.firstName}}</h5></div>
+            <div class="col-4"><h5>{{candidate.recruiterName}}</h5></div>
+            <div class="col-4"><h5>{{candidate.recruiterName}}</h5></div>
+          </div>
+          <hr>
+          <div class="row mt-2 mb-4">
+            <div class="col-6">
+              <div class="row">
+                <div class="col-12"><h5>Interview Feedback</h5><hr></div>
+                <div class="row m-2 text-start">
+                  <div class="col-11">
+                    <label>Tech Interview Time</label>
+                  </div>
+                </div>
+                <div class="row m-2 text-start">
+                  <div class="col-11">
+                    <label>Interview Feedback:</label>
+                    <input type="text" class="form-control" [(ngModel)]="candidate.details.interviewerFeedback">
+                  </div>
+                </div>
+                <div class="row m-2 text-start">
+                  <div class="col-11">
+                    <label>Candidate Interview Status:</label>
+                    <input type="text" class="form-control" [(ngModel)]="candidate.details.candidateInterviewStatus">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="row mt-4">
+                <div class="col-5 text-end">
+                  <label>LOI Sent:</label>
+                </div>
+                <div class="col-6">
+                  <input type="text" class="form-control" [(ngModel)]="candidate.details.LOISent">
+                </div>
+              </div>
+              <div class="row mt-4">
+                <div class="col-5 text-end">
+                  <label>Joined Batch:</label>
+                </div>
+                <div class="col-6">
+                  <input type="text" class="form-control" [(ngModel)]="candidate.details.joinedBatch">
+                </div>
+              </div>
+              <div class="row mt-4">
+                <div class="col-5 text-end">
+                  <label>Batch Start Date:</label>
+                </div>
+                <div class="col-6">
+                  <input type="text" class="form-control" [(ngModel)]="candidate.details.startDate">
+                </div>
+              </div>
+              <div class="row mt-5 text-end">
+                <div class="col-11">
+                  <button class="btn btn-success px-4" (click)="save(candidate)">SAVE</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="col-sm-2 p-2">
-        <button (click)="chanegStatus('BD')">Next</button>
+      <div class="col-sm-1 p-2">
       </div>
     </div>
   </div>
 </div>
-
-    <!--
-  <div class="row g-3 m-2">
-    <div class="col-sm-4 p-2">
-      <div class="form-group">
-        <label for="techInterviewDate">Tech Interview Date:</label>
-        <input type="text" id="techInterviewDate" name="techInterviewDate" [(ngModel)]="candidate.techInterviewDate" class="form-control">
-      </div>
-      <div class="form-group">
-        <label for="interviewFeedback">Interview Feedback:</label>
-        <textarea id="interviewFeedback" name="interviewFeedback" [(ngModel)]="candidate.interviewFeedback" class="form-control"></textarea>
-      </div>
-      <div class="form-group">
-        <label for="candidateInterviewStatus">Candidate Interview Status:</label>
-        <input type="text" id="candidateInterviewStatus" name="candidateInterviewStatus" [(ngModel)]="candidate.candidateInterviewStatus" class="form-control">
-      </div>
-    </div>
-    <div class="col-sm-4 p-2">
-      <div class="form-group">
-        <label for="LOIsent">LOI Sent:</label>
-        <input type="text" id="LOIsent" name="LOIsent" [(ngModel)]="candidate.LOIsent" class="form-control">
-      </div>
-      <div class="form-group">
-        <label for="LOIaccepted">LOI Accepted:</label>
-        <input type="text" id="LOIaccepted" name="LOIaccepted" [(ngModel)]="candidate.LOIaccepted" class="form-control">
-      </div>
-      <div class="form-group">
-        <label for="joinedBatch">Joined Batch:</label>
-        <input type="text" id="joinedBatch" name="joinedBatch" [(ngModel)]="candidate.joinedBatch" class="form-control">
-      </div>
-      <div class="form-group">
-        <label for="batchStartDate">Batch Start Date:</label>
-        <input type="text" id="batchStartDate" name="batchStartDate" [(ngModel)]="candidate.batchStartDate" class="form-control">
-      </div>
-    </div>-->
 
 
