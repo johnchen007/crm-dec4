@@ -12,13 +12,15 @@ export class Candidate
   visaStatus:string = '';
   ssn:string = '';*/
 
-candidate_id:number = -1;
+candidate_id:string = "";
+candidateId:string = "";
 firstName:string = "";
 middleName:string = "";
 lastName:string = "";
 recruiterName:string = "";
 skillSet:string = "";
 emailId:string = "";
+email:string = "";
 phoneNumber:string = "";
 workExperience:string = "";
 communicationSkills:string = "";

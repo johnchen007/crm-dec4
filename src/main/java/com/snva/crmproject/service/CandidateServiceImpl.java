@@ -28,32 +28,32 @@ public class CandidateServiceImpl implements CandidateService {
     private CandidateDetailsRepository detailsRepository;
 
     @Override
-    public String addNewCandidate(CandidateBasicDetails candidate) {
+    public CandidateBasicDetails addNewCandidate(CandidateBasicDetails candidate) {
         basicDetailsRepository.save(candidate);
 
-        if (candidate.getAttachments() != null) {
-            for (CandidateAttachments attachment : candidate.getAttachments()) {
-                attachment.setCandidateId(candidate.getCandidateId());
-                attachmentsRepository.save(attachment);
-            }
-        }
+//        if (candidate.getAttachments() != null) {
+//            for (CandidateAttachments attachment : candidate.getAttachments()) {
+//                attachment.setCandidateId(candidate.getCandidateId());
+//                attachmentsRepository.save(attachment);
+//            }
+//        }
 
         if (candidate.getDetails() != null) {
             candidate.getDetails().setCandidateId(candidate.getCandidateId());
             detailsRepository.save(candidate.getDetails());
         }
 
-        return "Candidate added successfully!";
+        return candidate;
     }
 
     @Override
     public List<CandidateBasicDetails> getAllCandidates() {
         List<CandidateBasicDetails> candidates = basicDetailsRepository.findAll();
 
-        for (CandidateBasicDetails candidate : candidates) {
-            candidate.setAttachments(attachmentsRepository.findByCandidateId(candidate.getCandidateId()));
-            candidate.setDetails(detailsRepository.findById(candidate.getCandidateId()).orElse(null));
-        }
+//        for (CandidateBasicDetails candidate : candidates) {
+////            candidate.setAttachments(attachmentsRepository.findByCandidateId(candidate.getCandidateId()));
+//            candidate.setDetails(detailsRepository.findById(candidate.getCandidateId()).orElse(null));
+//        }
 
         return candidates;
     }
@@ -64,7 +64,7 @@ public class CandidateServiceImpl implements CandidateService {
 
         if (optionalBasicDetails.isPresent()) {
             CandidateBasicDetails candidate = optionalBasicDetails.get();
-            candidate.setAttachments(attachmentsRepository.findByCandidateId(candidateId));
+//            candidate.setAttachments(attachmentsRepository.findByCandidateId(candidateId));
             candidate.setDetails(detailsRepository.findById(candidateId).orElse(null));
             return candidate;
         }
@@ -76,15 +76,13 @@ public class CandidateServiceImpl implements CandidateService {
     public String updateCandidate(CandidateBasicDetails updatedCandidate) {
         
         basicDetailsRepository.save(updatedCandidate);
-
-       
         attachmentsRepository.deleteByCandidateId(updatedCandidate.getCandidateId());
-        if (updatedCandidate.getAttachments() != null) {
-            for (CandidateAttachments attachment : updatedCandidate.getAttachments()) {
-                attachment.setCandidateId(updatedCandidate.getCandidateId());
-                attachmentsRepository.save(attachment);
-            }
-        }
+//        if (updatedCandidate.getAttachments() != null) {
+//            for (CandidateAttachments attachment : updatedCandidate.getAttachments()) {
+//                attachment.setCandidateId(updatedCandidate.getCandidateId());
+//                attachmentsRepository.save(attachment);
+//            }
+//        }
 
        
         CandidateDetails existingDetails = detailsRepository.findById(updatedCandidate.getCandidateId()).orElse(null);
@@ -122,4 +120,9 @@ public class CandidateServiceImpl implements CandidateService {
 
         return "Candidate updated successfully!";
     }
+
+	@Override
+	public Long getLatestId() {
+		return Long.parseLong(basicDetailsRepository.findTopByOrderByCandidateIdDesc().getCandidateId().substring(3, 8))+1;
+	}
 }

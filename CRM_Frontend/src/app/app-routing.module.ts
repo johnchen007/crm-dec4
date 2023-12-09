@@ -9,6 +9,7 @@ import {CandidateListView} from "./view/candidateList/candidateListView";
 import {CandidateDetailView} from "./view/candidateDetail/candidateDetailView";
 import { HomePageView } from './view/homePage/homePageView';
 import {TestComponent} from "./view/test/test.component";
+import { AddCandidateComponent } from './view/add-candidate/add-candidate.component';
 
 
 const routes: Routes = [
@@ -29,7 +30,7 @@ const routes: Routes = [
 
   // For Test
   {path:"test"                              , component:TestComponent          }, // TODO
-
+  {path:":role/add/candidate"               ,component:AddCandidateComponent}
 ];
 
 @NgModule({

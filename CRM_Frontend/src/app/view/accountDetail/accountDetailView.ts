@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {User} from "../../model/user";
-import {UserService} from "../../service/user-service";
 import {ActivatedRoute} from "@angular/router";
+import {AccountService} from "../../service/account.service";
 
 @Component({
   selector: 'app-account-detail-view',
@@ -11,29 +11,30 @@ import {ActivatedRoute} from "@angular/router";
 export class AccountDetailView implements OnInit
 {
 
-  userId:number = 1;
+  userId:any = 1;
   currentUser:User = new User();
   currentStatus:string = "accountInfo";
 
-  constructor(private router:ActivatedRoute, private userService:UserService)
+  constructor(private router:ActivatedRoute, private accountService:AccountService)
   {
-    // @ts-ignore
-    let user:User = JSON.parse( window.sessionStorage.getItem('SNVA_CRM_USER') );
-    user.password = 'test';
-    userService.getUserById(this.userId, user).subscribe(data=>
-      {
-        console.log("[User start]");
-        console.log(data);
-        console.log("[User end]");
-        this.currentUser = data;
-      },
-      error =>
-      {
-        console.log(error);
-      }
-    )
+    if(this.userId == 'myAccount')
+    {
+      // @ts-ignore
+      this.currentUser =  JSON.parse( window.sessionStorage.getItem('SNVA_CRM_USER') );
+    }
+    else
+    {
+      accountService.getUserById(this.userId).subscribe(data=>
+        {
+          this.currentUser = data;
+        },
+        error =>
+        {
+          console.log(error);
+        }
+      )
+    }
   }
-
   changeStatus( status:string )
   {
     this.currentStatus = status;
@@ -42,5 +43,21 @@ export class AccountDetailView implements OnInit
   ngOnInit(): void
   {
     this.userId = this.router.snapshot.params['id'];
+  }
+
+  updatePhone():void
+  {
+    let newPhone = (document.getElementById('newPhone') as HTMLInputElement).value;
+    this.currentUser.phone = newPhone;
+    this.accountService.updateUser(this.currentUser).subscribe(
+      data =>
+      {
+        console.log(data);
+      },
+      error =>
+      {
+        console.log(error);
+      }
+    );
   }
 }

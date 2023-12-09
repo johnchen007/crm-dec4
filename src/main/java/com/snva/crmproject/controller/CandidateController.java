@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,7 +28,10 @@ import com.snva.crmproject.service.CandidateDetailsService;
 import com.snva.crmproject.service.CandidateService;
 
 @RestController
+@CrossOrigin(origins="http://localhost:4200/")
 @RequestMapping("/Candidates")
+
+
 public class CandidateController {
 
     @Autowired
@@ -48,9 +52,9 @@ public class CandidateController {
     }
 
     @PostMapping("/add")
-    public String addCandidate(@RequestBody CandidateBasicDetails candidateBasicDetails) {
+    public CandidateBasicDetails addCandidate(@RequestBody CandidateBasicDetails candidateBasicDetails) {
         System.out.println(candidateBasicDetails.toString());
-        System.out.println(candidateBasicDetails.getAttachments().get(0).toString());
+//        System.out.println(candidateBasicDetails.getAttachments().get(0).toString());
     	return candidateService.addNewCandidate(candidateBasicDetails);
     }
 
@@ -97,5 +101,11 @@ public class CandidateController {
         } else {
             return new ResponseEntity<>("BD Candidate not found", HttpStatus.NOT_FOUND);
         }
+    }
+    @RequestMapping("/next")
+    CandidateBasicDetails getLatestId(){
+    	CandidateBasicDetails next = new CandidateBasicDetails();
+    	next.setCandidateId(String.format("SDP%1$" + 5 + "s", candidateService.getLatestId().toString()).replace(' ', '0'));
+    	return next;
     }
 }

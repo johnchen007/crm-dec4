@@ -41,7 +41,7 @@
                         <label class="text_font text-white">User Name:</label>
                       </div>
                       <div class="col-8">
-                        <label class="text_font text-white">{{this.currentUser.username}}</label>
+                        <label class="text_font text-white">{{this.currentUser.firstName + " " + this.currentUser.lastName}}</label>
                       </div>
                     </div>
                     <div class="row">
@@ -87,13 +87,13 @@
                     <label class="text_font text-white">New</label>
                   </div>
                   <div class="col-7 text-end">
-                    <input class="form-control text_bold text_font" type="text" value="">
+                    <input class="form-control text_bold text_font" type="text" value="" id="newPhone">
                   </div>
                 </div>
                 <div id="errorMessage"></div>
               </div>
               <div class="col-sm-12 text-end mt-4 pt-2">
-                <button class="btn btn-primary mb-3 btn-lg py-1 px-5 ms-4">Update</button>
+                <button class="btn btn-primary mb-3 btn-lg py-1 px-5 ms-4" (click)="updatePhone()">Update</button>
               </div>
             </div>
 
@@ -132,7 +132,7 @@
                     <label class="text_font text-white">Original</label>
                   </div>
                   <div class="col-7 text-end">
-                    <input class="form-control text_bold text_font" type="password" value="{{this.currentUser.password}}">
+                    <input class="form-control text_bold text_font" type="password" value="">
                   </div>
                 </div>
                 <div class="row m-3 mt-5">
@@ -160,7 +160,7 @@
             </div>
 
             <div class="card-body" *ngIf="currentStatus == 'mailAddress'">
-              <h3 class="card-title text-center border-bottom pb-4 text_title text_font">Mail Address</h3>
+              <h3 class="card-title text-center border-bottom pb-4 text-white text_font">Mail Address</h3>
               <div style="min-height: 260px">
                 <div class="row m-3 mt-5">
                   <div class="col-3 text-end">
