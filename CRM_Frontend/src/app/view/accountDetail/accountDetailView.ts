@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {User} from "../../model/user";
-import {UserService} from "../../service/user-service";
 import {ActivatedRoute} from "@angular/router";
+import {AccountService} from "../../service/account.service";
 
 @Component({
   selector: 'app-account-detail-view',
@@ -15,7 +15,7 @@ export class AccountDetailView implements OnInit
   currentUser:User = new User();
   currentStatus:string = "accountInfo";
 
-  constructor(private router:ActivatedRoute, private userService:UserService)
+  constructor(private router:ActivatedRoute, private accountService:AccountService)
   {
     if(this.userId == 'myAccount')
     {
@@ -24,7 +24,7 @@ export class AccountDetailView implements OnInit
     }
     else
     {
-      userService.getUserById(this.userId).subscribe(data=>
+      accountService.getUserById(this.userId).subscribe(data=>
         {
           this.currentUser = data;
         },
@@ -43,5 +43,21 @@ export class AccountDetailView implements OnInit
   ngOnInit(): void
   {
     this.userId = this.router.snapshot.params['id'];
+  }
+
+  updatePhone():void
+  {
+    let newPhone = (document.getElementById('newPhone') as HTMLInputElement).value;
+    this.currentUser.phone = newPhone;
+    this.accountService.updateUser(this.currentUser).subscribe(
+      data =>
+      {
+        console.log(data);
+      },
+      error =>
+      {
+        console.log(error);
+      }
+    );
   }
 }
