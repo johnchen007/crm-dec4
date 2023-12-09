@@ -18,9 +18,7 @@ export class LogInView
   {
     //console.log(this.user);
     this.app.authenticate(this.user).subscribe(data=>{
-        console.log("[User start]");
-        console.log(data);
-        console.log("[User end]");
+        
         window.sessionStorage.setItem("SNVA_CRM_USER", JSON.stringify(data));
         this.app.registerSuccessfulLogin(this.user);
         this.redirectUser(data.role);
