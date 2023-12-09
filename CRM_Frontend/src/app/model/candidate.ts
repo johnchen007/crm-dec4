@@ -20,6 +20,7 @@ lastName:string = "";
 recruiterName:string = "";
 skillSet:string = "";
 emailId:string = "";
+email:string = "";
 phoneNumber:string = "";
 workExperience:string = "";
 communicationSkills:string = "";

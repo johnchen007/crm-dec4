@@ -10,6 +10,7 @@ import { CandidateService } from 'src/app/service/candidate-service';
 })
 export class CandidateListView
 {
+
   userRole:string = 'admin';
   allCandidate:Candidate[] | undefined;
   constructor(private candidateService:CandidateService,private router:Router){}
@@ -24,5 +25,8 @@ export class CandidateListView
     // window.location.href = this.userRole + "/check/candidate/detail/" + candidateId;
     this.router.navigate([`${this.userRole}/check/candidate/detail/${candidateId}`])
   }
+  showAddNewAccountView() {
 
+    this.router.navigate([`${this.userRole}/add/candidate/`])
+    }
 }
