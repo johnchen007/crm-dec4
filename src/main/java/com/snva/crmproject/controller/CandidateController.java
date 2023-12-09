@@ -30,6 +30,8 @@ import com.snva.crmproject.service.CandidateService;
 @RestController
 @CrossOrigin(origins="http://localhost:4200/")
 @RequestMapping("/Candidates")
+
+
 public class CandidateController {
 
     @Autowired
@@ -50,7 +52,7 @@ public class CandidateController {
     }
 
     @PostMapping("/add")
-    public String addCandidate(@RequestBody CandidateBasicDetails candidateBasicDetails) {
+    public CandidateBasicDetails addCandidate(@RequestBody CandidateBasicDetails candidateBasicDetails) {
         System.out.println(candidateBasicDetails.toString());
 //        System.out.println(candidateBasicDetails.getAttachments().get(0).toString());
     	return candidateService.addNewCandidate(candidateBasicDetails);
@@ -99,5 +101,11 @@ public class CandidateController {
         } else {
             return new ResponseEntity<>("BD Candidate not found", HttpStatus.NOT_FOUND);
         }
+    }
+    @RequestMapping("/next")
+    CandidateBasicDetails getLatestId(){
+    	CandidateBasicDetails next = new CandidateBasicDetails();
+    	next.setCandidateId(String.format("SDP%1$" + 5 + "s", candidateService.getLatestId().toString()).replace(' ', '0'));
+    	return next;
     }
 }

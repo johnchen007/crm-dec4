@@ -1,20 +1,17 @@
 import { Component } from '@angular/core';
-import {Candidate} from "../../model/candidate";
-import { ActivatedRoute, Route, Router } from '@angular/router';
-import { CandidateService } from 'src/app/service/candidate-service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CandidateBack } from 'src/app/model/candidate-back';
-import { User } from 'src/app/model/user';
+import { NextCand } from 'src/app/model/next-cand';
+import { CandidateService } from 'src/app/service/candidate-service';
 
 @Component({
-  selector: 'app-candidate-detail-view',
-  templateUrl: './candidateDetailView.html',
-  styleUrls: ['./candidateDetailView.css']
+  selector: 'app-add-candidate',
+  templateUrl: './add-candidate.component.html',
+  styleUrls: ['./add-candidate.component.css']
 })
-export class CandidateDetailView {
-
-
+export class AddCandidateComponent {
   pageStatus:string = "recruiter";
-  candidateId:string="";
+  candidateId:NextCand=new NextCand();
    // @ts-ignore
   user:User = JSON.parse( window.sessionStorage.getItem('SNVA_CRM_USER') );
   constructor(private router:ActivatedRoute,private candidateService:CandidateService,private route:Router) {}
@@ -23,14 +20,11 @@ export class CandidateDetailView {
   // Method to handle file selection for resume and otherFile inputs
   ngOnInit(): void
   {
-    this.candidateId = this.router.snapshot.params['id'];
-    console.log(this.candidateId);
-    this.candidateService.getCandidate(this.candidateId).subscribe(data=>{
-      this.candidate=data;
-      console.log(this.candidate);
-      console.log(this.candidate.details)  
-    })
-    
+   this.candidateService.setNextCandidateId().subscribe(data=>{
+    console.log(data);
+    this.candidate.candidateId=data.candidateId;
+    this.candidate.recruiterName=this.user.firstName;
+   })
   }
 
   save(candidate:CandidateBack) {
@@ -58,6 +52,5 @@ export class CandidateDetailView {
   {
     this.pageStatus = s;
   }
-
 
 }

@@ -28,7 +28,7 @@ public class CandidateServiceImpl implements CandidateService {
     private CandidateDetailsRepository detailsRepository;
 
     @Override
-    public String addNewCandidate(CandidateBasicDetails candidate) {
+    public CandidateBasicDetails addNewCandidate(CandidateBasicDetails candidate) {
         basicDetailsRepository.save(candidate);
 
 //        if (candidate.getAttachments() != null) {
@@ -43,7 +43,7 @@ public class CandidateServiceImpl implements CandidateService {
             detailsRepository.save(candidate.getDetails());
         }
 
-        return "Candidate added successfully!";
+        return candidate;
     }
 
     @Override
@@ -76,8 +76,6 @@ public class CandidateServiceImpl implements CandidateService {
     public String updateCandidate(CandidateBasicDetails updatedCandidate) {
         
         basicDetailsRepository.save(updatedCandidate);
-
-       
         attachmentsRepository.deleteByCandidateId(updatedCandidate.getCandidateId());
 //        if (updatedCandidate.getAttachments() != null) {
 //            for (CandidateAttachments attachment : updatedCandidate.getAttachments()) {
@@ -122,4 +120,9 @@ public class CandidateServiceImpl implements CandidateService {
 
         return "Candidate updated successfully!";
     }
+
+	@Override
+	public Long getLatestId() {
+		return Long.parseLong(basicDetailsRepository.findTopByOrderByCandidateIdDesc().getCandidateId().substring(3, 8))+1;
+	}
 }

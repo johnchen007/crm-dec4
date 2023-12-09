@@ -26,6 +26,7 @@ import { FormsModule } from '@angular/forms';
 import {StringCutOffPipe} from "./tools/string-cut-off-pipe";
 import { AddNewUser } from './view/popView/addNewUser/addNewUser';
 import { HttpInterceptorService } from './service/http-interceptor.service';
+import { AddCandidateComponent } from './view/add-candidate/add-candidate.component';
 
 @NgModule({
     declarations: [
@@ -43,7 +44,8 @@ import { HttpInterceptorService } from './service/http-interceptor.service';
         ConfirmViewComponent,
         AddNewUser,
         StringCutOffPipe,
-        AddNewUser
+        AddNewUser,
+        AddCandidateComponent
     ],
   imports: [
     BrowserModule,
