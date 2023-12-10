@@ -10,7 +10,6 @@ export class HeaderComponent
 {
   constructor(private router:Router){}
   @Input() title:any;
-
   @Input() userID:any;
   @Input() userName: any;
   @Input() userRole: any;
@@ -20,7 +19,10 @@ export class HeaderComponent
     window.sessionStorage.removeItem("SNVA_CRM_USER");
     window.location.href = "login";
   }
-
+  setUserId(userId:number)
+  {
+    this.userID = userId;
+  }
   myAccount()
   {
     this.router.navigate([this.userRole + "/check/user/detail/myAccount"]);

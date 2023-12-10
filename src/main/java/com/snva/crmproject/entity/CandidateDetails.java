@@ -37,14 +37,14 @@ public class CandidateDetails {
 	private boolean lOISent;
 	private boolean lOIAccepted;
 	private boolean joinedBatch;
-	private String startDate;
+	private Date startDate;
 	
 	
 	public CandidateDetails(String candidateId, String skillSet, int communicationSkill, String addressLine1,
 			String addressLine2, String addressCity, String addressState, String addressCounty, String addressZipCode,
 			String source, String remarks, String interviewDate, String interviewerFeedback,
 			String candidateInterviewStatus, boolean lOISent, boolean lOIAccepted, boolean joinedBatch,
-			String startDate) {
+			Date startDate) {
 		super();
 		this.candidateId = candidateId;
 		this.skillSet = skillSet;
@@ -172,10 +172,10 @@ public class CandidateDetails {
 	public void setJoinedBatch(boolean joinedBatch) {
 		this.joinedBatch = joinedBatch;
 	}
-	public String getStartDate() {
+	public Date getStartDate() {
 		return startDate;
 	}
-	public void setStartDate(String startDate) {
+	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
 	
