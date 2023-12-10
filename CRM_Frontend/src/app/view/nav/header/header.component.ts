@@ -44,6 +44,6 @@ export class HeaderComponent
 
   showAddNewUser()
   {
-
+    this.router.navigate([this.userRole+ "/add/candidate"])
   }
 }

@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CandidateBack } from 'src/app/model/candidate-back';
 import { NextCand } from 'src/app/model/next-cand';
 import { CandidateService } from 'src/app/service/candidate-service';
+import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 
 @Component({
   selector: 'app-add-candidate',
@@ -11,10 +12,17 @@ import { CandidateService } from 'src/app/service/candidate-service';
 })
 export class AddCandidateComponent {
   pageStatus:string = "recruiter";
+  bsValue = new Date();
+  maxDate = new Date();
+  minDate = new Date();
+  placeholderText: string = 'Datepicker';
   candidateId:NextCand=new NextCand();
    // @ts-ignore
   user:User = JSON.parse( window.sessionStorage.getItem('SNVA_CRM_USER') );
-  constructor(private router:ActivatedRoute,private candidateService:CandidateService,private route:Router) {}
+  constructor(private router:ActivatedRoute,private candidateService:CandidateService,private route:Router) {
+    this.minDate.setDate(this.minDate.getDate() - 1);
+    this.maxDate.setDate(this.maxDate.getDate() + 7);
+  }
 
   candidate:CandidateBack = new CandidateBack();
   // Method to handle file selection for resume and otherFile inputs
@@ -46,7 +54,20 @@ export class AddCandidateComponent {
   }
   onSubmit(){
   }
-
+  updatePlaceholderText(selectedDate: Date): void {
+    if (selectedDate) {
+      // Format the selected date according to your desired format
+      const formattedDate = selectedDate.toISOString().split('T')[0];
+      console.log(formattedDate);
+      this.placeholderText = formattedDate;
+    } else {
+      console.log(selectedDate);
+      // Set the default placeholder text when no date is selected
+      this.placeholderText = 'Datepicker';
+    }
+    console.log("Hi");
+  }
+  
 
   chanegStatus(s:string)
   {

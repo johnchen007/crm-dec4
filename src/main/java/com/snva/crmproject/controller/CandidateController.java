@@ -103,7 +103,7 @@ public class CandidateController {
         }
     }
     @RequestMapping("/next")
-    CandidateBasicDetails getLatestId(){
+    public CandidateBasicDetails getLatestId(){
     	CandidateBasicDetails next = new CandidateBasicDetails();
     	next.setCandidateId(String.format("SDP%1$" + 5 + "s", candidateService.getLatestId().toString()).replace(' ', '0'));
     	return next;
