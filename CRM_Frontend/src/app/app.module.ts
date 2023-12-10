@@ -27,6 +27,9 @@ import {StringCutOffPipe} from "./tools/string-cut-off-pipe";
 import { AddNewUser } from './view/popView/addNewUser/addNewUser';
 import { HttpInterceptorService } from './service/http-interceptor.service';
 import { AddCandidateComponent } from './view/add-candidate/add-candidate.component';
+import { BsDatepickerModule, BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
     declarations: [
@@ -58,6 +61,8 @@ import { AddCandidateComponent } from './view/add-candidate/add-candidate.compon
     NgParticlesModule,
     NgConfettiModule,
     NgFireworksModule,
+    BsDatepickerModule.forRoot(),
+    BrowserAnimationsModule,
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
