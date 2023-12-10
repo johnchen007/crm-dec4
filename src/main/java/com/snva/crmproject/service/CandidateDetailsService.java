@@ -42,7 +42,7 @@ public class CandidateDetailsService {
     }
 
     public CandidateDetails updateBDCandidateFields(String candidateId, boolean loiSent, boolean loiAccepted,
-                                                    boolean joinedBatch, Date batchStartDate) {
+                                                    boolean joinedBatch, String batchStartDate) {
         Optional<CandidateDetails> optionalCandidateDetails = candidateDetailsRepository.findById(candidateId);
 
         if (optionalCandidateDetails.isPresent()) {

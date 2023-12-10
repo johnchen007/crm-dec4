@@ -123,6 +123,11 @@ public class CandidateServiceImpl implements CandidateService {
 
 	@Override
 	public Long getLatestId() {
+		 try {
 		return Long.parseLong(basicDetailsRepository.findTopByOrderByCandidateIdDesc().getCandidateId().substring(3, 8))+1;
+		 }
+		 catch(NullPointerException e) {
+			 return 1l;
+		 }
 	}
 }

@@ -92,7 +92,7 @@ public class CandidateController {
                                                      @RequestParam boolean loiSent,
                                                      @RequestParam boolean loiAccepted,
                                                      @RequestParam boolean joinedBatch,
-                                                     @RequestParam Date batchStartDate) {
+                                                     @RequestParam String batchStartDate) {
         CandidateDetails updatedBDCandidateDetails = candidateDetailsService.updateBDCandidateFields(
                 candidateId, loiSent, loiAccepted, joinedBatch, batchStartDate);
 
