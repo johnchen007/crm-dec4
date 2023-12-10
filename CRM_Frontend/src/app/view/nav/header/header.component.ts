@@ -25,12 +25,7 @@ export class HeaderComponent
   }
   myAccount()
   {
-<<<<<<< HEAD
-    //window.location.href = this.userRole + "/check/user/detail/" + this.userID;
-    this.router.navigate(["superAdmin/check/user/detail/" + this.userID]);
-=======
     this.router.navigate([this.userRole + "/check/user/detail/myAccount"]);
->>>>>>> origin/main
   }
   accountlist()
   {

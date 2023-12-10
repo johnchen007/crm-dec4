@@ -18,14 +18,10 @@ export class LogInView
   {
     //console.log(this.user);
     this.app.authenticate(this.user).subscribe(data=>{
-<<<<<<< HEAD
-        
-=======
         console.log("[User start]");
         console.log(data);
         console.log("[User end]");
         data.password = this.user.password;
->>>>>>> origin/main
         window.sessionStorage.setItem("SNVA_CRM_USER", JSON.stringify(data));
         this.app.registerSuccessfulLogin(this.user);
         this.redirectUser(data.role);

@@ -107,13 +107,7 @@ export class AppComponent
     {
 
       this.user = new User();
-<<<<<<< HEAD
-      //this.isLogin = false;
-      this.user.userId = 1;
-      console.log("new user");
-=======
       this.isLogin = false;
->>>>>>> origin/main
     }
     else
     {

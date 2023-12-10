@@ -87,7 +87,10 @@
                     </div>
                     <div class="row mt-2">
                       <div class="col-4 me-2">
-                        <input class="form-control text_bold text_font" type="text" value="" placeholder="City" [(ngModel)]="candidate.details.addressCity">
+                        <select id="selectCountry" name="city" [(ngModel)]="candidate.details.addressCity">
+                          <option value="" disabled>Select a city</option>
+
+                        </select>
                       </div>
                       <div class="col-4">
                         <input class="form-control text_bold text_font" type="text" value="" placeholder="State" [(ngModel)]="candidate.details.addressState">
