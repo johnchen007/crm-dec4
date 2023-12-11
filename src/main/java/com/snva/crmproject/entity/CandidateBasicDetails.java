@@ -27,16 +27,16 @@ public class CandidateBasicDetails {
 	private String workExperience;
 	private String visaStatus;
 	private String ssn;
-	
-	
-	
+	private String school;
+	private String degree;
+
 	public CandidateBasicDetails() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	public CandidateBasicDetails(String candidateId, String firstName, String middleName, String lastName,
 			String recruiterName, String email, String phoneNumber, String workExperience, String visaStatus,
-			String ssn) {
+			String ssn, String school, String degree) {
 		super();
 		this.candidateId = candidateId;
 		this.firstName = firstName;
@@ -48,6 +48,8 @@ public class CandidateBasicDetails {
 		this.workExperience = workExperience;
 		this.visaStatus = visaStatus;
 		this.ssn = ssn;
+		this.school = school;
+		this.degree = degree;
 	}
 	public String getCandidateId() {
 		return candidateId;
@@ -109,7 +111,19 @@ public class CandidateBasicDetails {
 	public void setSsn(String ssn) {
 		this.ssn = ssn;
 	}
-	
+	public String getSchool() {
+		return school;
+	}
+	public void setSchool(String school) {
+		this.school = school;
+	}
+	public String getDegree() {
+		return degree;
+	}
+	public void setDegree(String degree) {
+		this.degree = degree;
+	}
+
 	@OneToOne(mappedBy = "candidateBasicDetails", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     
     private CandidateDetails details;

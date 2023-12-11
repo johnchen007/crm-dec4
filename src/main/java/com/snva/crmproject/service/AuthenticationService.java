@@ -79,4 +79,15 @@ public class AuthenticationService implements UserDetailsService {
 		return listOfUsers;
 	}
 
+
+	//****************delete******************//
+	public User suspendUser(User user) {
+		User userDb = authenticationRepository.findUserByUsername(user.getUsername()).get();
+		userDb.setAccountNonLocked(user.isAccountNonLocked());
+		System.out.println("######Suspend User:");
+		System.out.println(userDb.toString());
+		System.out.println("######");
+		return authenticationRepository.save(userDb);
+	}
+
 }

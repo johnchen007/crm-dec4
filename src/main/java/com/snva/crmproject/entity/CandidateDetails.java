@@ -32,19 +32,20 @@ public class CandidateDetails {
 	private String source;
 	private String remarks;
 	private String interviewDate;
+	private String interviewer;
 	private String interviewerFeedback;
 	private String candidateInterviewStatus;
 	private boolean lOISent;
 	private boolean lOIAccepted;
 	private boolean joinedBatch;
-	private Date startDate;
+	private String startDate;
 	
 	
 	public CandidateDetails(String candidateId, String skillSet, int communicationSkill, String addressLine1,
 			String addressLine2, String addressCity, String addressState, String addressCounty, String addressZipCode,
-			String source, String remarks, String interviewDate, String interviewerFeedback,
+			String source, String remarks, String interviewDate, String interviewer, String interviewerFeedback,
 			String candidateInterviewStatus, boolean lOISent, boolean lOIAccepted, boolean joinedBatch,
-			Date startDate) {
+							String startDate) {
 		super();
 		this.candidateId = candidateId;
 		this.skillSet = skillSet;
@@ -58,6 +59,7 @@ public class CandidateDetails {
 		this.source = source;
 		this.remarks = remarks;
 		this.interviewDate = interviewDate;
+		this.interviewer = interviewer;
 		this.interviewerFeedback = interviewerFeedback;
 		this.candidateInterviewStatus = candidateInterviewStatus;
 		this.lOISent = lOISent;
@@ -138,6 +140,12 @@ public class CandidateDetails {
 	public String getInterviewDate() {
 		return interviewDate;
 	}
+	public String getInterviewer() {
+		return interviewer;
+	}
+	public void setInterviewer(String interviewer) {
+		this.interviewer = interviewer;
+	}
 	public void setInterviewDate(String interviewDate) {
 		this.interviewDate = interviewDate;
 	}
@@ -172,10 +180,10 @@ public class CandidateDetails {
 	public void setJoinedBatch(boolean joinedBatch) {
 		this.joinedBatch = joinedBatch;
 	}
-	public Date getStartDate() {
+	public String getStartDate() {
 		return startDate;
 	}
-	public void setStartDate(Date startDate) {
+	public void setStartDate(String startDate) {
 		this.startDate = startDate;
 	}
 	

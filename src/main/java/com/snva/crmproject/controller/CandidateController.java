@@ -92,7 +92,7 @@ public class CandidateController {
                                                      @RequestParam boolean loiSent,
                                                      @RequestParam boolean loiAccepted,
                                                      @RequestParam boolean joinedBatch,
-                                                     @RequestParam Date batchStartDate) {
+                                                     @RequestParam String batchStartDate) {
         CandidateDetails updatedBDCandidateDetails = candidateDetailsService.updateBDCandidateFields(
                 candidateId, loiSent, loiAccepted, joinedBatch, batchStartDate);
 
@@ -103,7 +103,7 @@ public class CandidateController {
         }
     }
     @RequestMapping("/next")
-    public CandidateBasicDetails getLatestId(){
+    CandidateBasicDetails getLatestId(){
     	CandidateBasicDetails next = new CandidateBasicDetails();
     	next.setCandidateId(String.format("SDP%1$" + 5 + "s", candidateService.getLatestId().toString()).replace(' ', '0'));
     	return next;
