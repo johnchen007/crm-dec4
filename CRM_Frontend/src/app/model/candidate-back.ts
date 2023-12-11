@@ -1,15 +1,18 @@
 import { CandidateDetail } from "./candidate-detail";
 
 export class CandidateBack {
-    candidateId:string="";
-    email:string="";
-    firstName:string="";
-    lastName:string="";
-    middleName:string="";
-    phoneNumber:string="";
-    recruiterName:string="";
-    ssn:string="";
-    visaStatus:string="";
-    workExperience:string="";
+    candidateId:string = "";
+    firstName:string = "";
+    middleName:string = "";
+    lastName:string = "";
+    recruiterName:string = "";
+    email:string = "";
+    phoneNumber:string = "";
+    workExperience:string = "";
+    visaStatus:string = "";
+    ssn:string = "";
+    school:string = "";
+    degree:string = "";
+
     details:CandidateDetail=new CandidateDetail();
 }

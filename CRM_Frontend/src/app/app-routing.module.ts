@@ -9,7 +9,6 @@ import {CandidateListView} from "./view/candidateList/candidateListView";
 import {CandidateDetailView} from "./view/candidateDetail/candidateDetailView";
 import { HomePageView } from './view/homePage/homePageView';
 import {TestComponent} from "./view/test/test.component";
-import { AddCandidateComponent } from './view/add-candidate/add-candidate.component';
 
 
 const routes: Routes = [
@@ -18,11 +17,11 @@ const routes: Routes = [
   {path:"login"                            , component:LogInView               },
 
   // HomePage Dashboard
-  {path:":role/homepage"                   , component:HomePageView            }, // TODO
+  {path:":role/homepage"                   , component:HomePageView            },
 
   // For Admin, SuperAdmin
-  {path:":role/manage/user"                , component:AccountListView         }, // TODO
-  {path:":role/check/user/detail/:id"      , component:AccountDetailView       }, // TODO
+  {path:":role/manage/user"                , component:AccountListView         },
+  {path:":role/check/user/detail/:id"      , component:AccountDetailView       },
 
   // For All Account
   {path:":role/manage/candidate"           , component:CandidateListView       }, // TODO
@@ -30,7 +29,7 @@ const routes: Routes = [
 
   // For Test
   {path:"test"                              , component:TestComponent          }, // TODO
-  {path:":role/add/candidate"               ,component:AddCandidateComponent}
+
 ];
 
 @NgModule({

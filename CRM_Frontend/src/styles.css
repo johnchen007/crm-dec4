@@ -27,6 +27,11 @@ footer{
   font-size: 50px;
 }
 
+.text_hover:hover
+{
+  background: grey;
+}
+
 .text_title
 {
   color: #FFFFFF;
@@ -45,7 +50,7 @@ footer{
 
 .text_middle
 {
-  font-size: 1.5em;
+  font-size: 1.3em;
 }
 
 .text_table

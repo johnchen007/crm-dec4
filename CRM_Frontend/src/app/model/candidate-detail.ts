@@ -2,7 +2,7 @@ export class CandidateDetail
 {
   candidateId:string = '';
   skillSet:string = '';
-  communicationSkill:number = -1;
+  communicationSkill:number = 0;
   addressLine1:string = '';
   addressLine2:string = '';
   addressCity:string = '';
@@ -12,6 +12,7 @@ export class CandidateDetail
   source:string = '';
   remarks:string = '';
   interviewDate:string = '';
+  interviewer:string = '';
   interviewerFeedback:string = '';
   candidateInterviewStatus:string = '';
    LOISent:boolean = false;

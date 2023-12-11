@@ -1,23 +1,16 @@
-import { Component } from '@angular/core';
-import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
-import {ConfirmViewComponent} from "../popView/confirm-view/confirm-view.component";
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-test',
   templateUrl: './test.component.html',
   styleUrls: ['./test.component.css']
 })
-export class TestComponent
+export class TestComponent implements OnInit
 {
-  //bsModalRef: BsModalRef;
-
-  constructor(private modalService: BsModalService)
+  constructor()
   {
   }
 
-  openPopWindow()
-  {
-    this.modalService.show(ConfirmViewComponent, {class: 'modal-lg popBox'});
-  }
-
+  ngOnInit(): void
+  { }
 }
