@@ -9,6 +9,9 @@ import CountryRegion from "countryregionjs";
 import {RoleCheck} from "../../tools/role-check";
 import {RedirectController} from "../../tools/redirect-controller";
 import {InputCheck} from "../../tools/input-check";
+import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
+import {ResponeMessage} from "../popView/responeMessage/responeMessage";
+import {AddCandidateResultView} from "../popView/addCandidateResultView/addCandidateResultView";
 
 @Component({
   selector: 'app-candidate-detail-view',
@@ -38,7 +41,7 @@ export class CandidateDetailView implements OnInit
   candidateP2Right:boolean = false;
   candidateP3Right:boolean = false;
 
-  constructor(private router:ActivatedRoute,private candidateService:CandidateService, private route:Router, private redirectController:RedirectController, private roleCheck:RoleCheck)
+  constructor(private router:ActivatedRoute,private candidateService:CandidateService, private route:Router, private redirectController:RedirectController, private roleCheck:RoleCheck, private modalService: BsModalService)
   {
   }
   ngOnInit(): void
@@ -115,15 +118,21 @@ export class CandidateDetailView implements OnInit
     if(check == 'yes')
     {
       console.log(candidate);
+      // @ts-ignore
+      let myAccount = JSON.parse( window.sessionStorage.getItem('SNVA_CRM_USER') );
       this.candidateService.saveCandidate(candidate).subscribe(data=>
       {
-        // @ts-ignore
-        let myAccount = JSON.parse( window.sessionStorage.getItem('SNVA_CRM_USER') );
-        this.redirectController.redirect("Add Candidate Successful", '', this.roleCheck.getFrontendRoleType(myAccount.role) + '/manage/candidate');
+        let bsModalRef: BsModalRef = this.modalService.show(AddCandidateResultView, {class: 'modal-md popBox'});
+        bsModalRef.content.message = "Add Candidate Successful";
+        bsModalRef.content.url = this.roleCheck.getFrontendRoleType(myAccount.role) + "/manage/candidate";
+        //this.redirectController.redirect("Add Candidate Successful", '', this.roleCheck.getFrontendRoleType(myAccount.role) + '/manage/candidate');
       },
         error =>
       {
-          this.redirectController.redirect("Add Candidate Successful", error.message, '');
+          //this.redirectController.redirect("Add Candidate Successful", error.message, '');
+        let bsModalRef: BsModalRef = this.modalService.show(AddCandidateResultView, {class: 'modal-md popBox'});
+        bsModalRef.content.message = "Add Candidate Failed";
+        bsModalRef.content.url = this.roleCheck.getFrontendRoleType(myAccount.role) + "/manage/candidate";
       })
     }
     else

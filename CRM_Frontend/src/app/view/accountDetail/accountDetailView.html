@@ -62,32 +62,32 @@
                   </div>
                   <div class="col-8 text-start">
                     <div class="row mt-2">
-                      <div class="col-4 text-end">
-                        <label class="text_font text-white">User Name:</label>
+                      <div class="col-4">
+                        <label class="text_font text-white">User Name</label>
                       </div>
                       <div class="col-8">
                         <label class="text_font text-white">{{this.currentUser.firstName + " " + this.currentUser.lastName}}</label>
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col-4 text-end">
-                        <label class="text_font text-white">Role:</label>
+                      <div class="col-4">
+                        <label class="text_font text-white">Role</label>
                       </div>
                       <div class="col-8">
                         <label class="text_font text-white">{{this.currentUserRole}}</label>
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col-4 text-end">
-                        <label class="text_font text-white">Status:</label>
+                      <div class="col-4">
+                        <label class="text_font text-white">Status</label>
                       </div>
                       <div class="col-8">
                         <label class="text_font text-white">{{this.currentUserStatus}}</label>
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col-4 text-end">
-                        <label class="text_font text-white">Phone:</label>
+                      <div class="col-4">
+                        <label class="text_font text-white">Phone</label>
                       </div>
                       <div class="col-8">
                         <label class="text_font text-white">{{this.currentUser.phone}}</label>
@@ -95,7 +95,7 @@
                     </div>
                     <div class="row">
                       <div class="col-4 text-end">
-                        <label class="text_font text-white">Email:</label>
+                        <label class="text_font text-white">Email</label>
                       </div>
                       <div class="col-8">
                         <label class="text_font text-white">{{this.currentUser.username}}</label>
@@ -103,7 +103,7 @@
                     </div>
                     <div class="row">
                       <div class="col-4 text-end">
-                        <label class="text_font text-white">Address:</label>
+                        <label class="text_font text-white">Address</label>
                       </div>
                       <div class="col-8">
                         <label class="text_font text-white">{{this.currentUser.addressLine1}}</label><br>
@@ -132,40 +132,40 @@
                   </div>
                   <div class="col-8 text-start">
                     <div class="row mt-4">
-                      <div class="col-4 text-end">
-                        <label class="text_font text-white">User Name:</label>
+                      <div class="col-3">
+                        <label class="text_font text-white">User Name</label>
                       </div>
                       <div class="col-8">
                         <label class="text_font text-white">{{this.currentUser.firstName + " " + this.currentUser.lastName}}</label>
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col-4 text-end">
-                        <label class="text_font text-white">Email:</label>
+                      <div class="col-3">
+                        <label class="text_font text-white">Email</label>
                       </div>
                       <div class="col-8">
                         <label class="text_font text-white">{{this.currentUser.username}}</label>
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col-4 text-end">
-                        <label class="text_font text-white">Phone:</label>
+                      <div class="col-3">
+                        <label class="text_font text-white">Phone</label>
                       </div>
                       <div class="col-8">
                         <label class="text_font text-white">{{this.currentUser.phone}}</label>
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col-4 text-end">
-                        <label class="text_font text-white">Role:</label>
+                      <div class="col-3">
+                        <label class="text_font text-white">Role</label>
                       </div>
                       <div class="col-8">
                         <label class="text_font text-white">{{this.currentUserRole}}</label>
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col-4 text-end">
-                        <label class="text_font text-white">Status:</label>
+                      <div class="col-3">
+                        <label class="text_font text-white">Status</label>
                       </div>
                       <div class="col-8">
                         <label class="text_font text-white">{{this.currentUserStatus}}</label>
@@ -186,18 +186,19 @@
               <h3 class="card-title text-center border-bottom pb-4 text-white text_font">Phone Number</h3>
               <div style="min-height: 260px">
                 <div class="row m-3 mt-5">
-                  <div class="col-3 text-end">
+                  <div class="col-4 text-end">
                     <label class="text_font text-white">Original</label>
                   </div>
-                  <div class="col-7 text-end">
-                    <input class="form-control text_font" type="text" value="{{this.currentUser.phone}}" readonly>
+                  <div class="col-4 text-start">
+                    <label class="text_font text-white">{{this.currentUser.phone}}</label>
+                    <!--<input class="form-control text_font" type="text" value="{{this.currentUser.phone}}" readonly>-->
                   </div>
                 </div>
                 <div class="row m-3 mt-5">
-                  <div class="col-3 text-end">
+                  <div class="col-4 text-end">
                     <label class="text_font text-white">New</label>
                   </div>
-                  <div class="col-7 text-end">
+                  <div class="col-4 text-end">
                     <input class="form-control text_font" type="text" value="" id="newPhone">
                   </div>
                 </div>
@@ -266,7 +267,7 @@
                     <label class="text_font text-white">Country</label>
                   </div>
                   <div class="col-3">
-                    <select id="addressCountry" class="form-control text_font" formControlName="country" (change)="handleCountryChange()">
+                    <select id="addressCountry" class="form-select text_font" formControlName="country" (change)="handleCountryChange()">
                       <option>{{this.addressCountry}}</option>
                       <option *ngFor="let country of countries">{{country.label}}</option>
                     </select>
@@ -275,7 +276,7 @@
                     <label class="text_font text-white">State</label>
                   </div>
                   <div class="col-3">
-                    <select  id="addressState" class="form-control text_font" formControlName="state" (change)="handleStateChange()">
+                    <select  id="addressState" class="form-select text_font" formControlName="state" (change)="handleStateChange()">
                       <option>{{this.addressState}}</option>
                       <option *ngFor="let state of states">{{ state.label}}</option>
                     </select>
@@ -286,7 +287,7 @@
                     <label class="text_font text-white">City</label>
                   </div>
                   <div class="col-3">
-                    <select  id="addressCity" class="form-control text_font" formControlName="lga">
+                    <select  id="addressCity" class="form-select text_font" formControlName="lga">
                       <option>{{this.addressCity}}</option>
                       <option *ngFor="let lga of lgas">{{ lga.label }}</option>
                     </select>
