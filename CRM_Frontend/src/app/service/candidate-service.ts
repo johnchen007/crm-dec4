@@ -18,9 +18,9 @@ export class CandidateService
   getAllCandidates(){
     return this.http.get<Candidate[]>(this.baseURL+"/all")
     }
-    getCandidate(id:string){
+  getCandidate(id:string){
       return this.http.get<CandidateBack>(`${this.baseURL}/${id}`)
-    }
+  }
   saveCandidate(candidate:CandidateBack){
     console.log(candidate);
     return this.http.post<CandidateBack>(`${this.baseURL}/add`,candidate)
@@ -28,4 +28,11 @@ export class CandidateService
   setNextCandidateId(){
     return this.http.get<NextCand>(`${this.baseURL}/next`)
   }
+
+  updateCandidate(candidate:CandidateBack)
+  {
+    // @ts-ignore
+    return this.http.put<string>(`${this.baseURL}/update`, candidate, {responseType: 'text'})
+  }
+
 }

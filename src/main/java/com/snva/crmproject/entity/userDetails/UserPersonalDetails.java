@@ -179,7 +179,6 @@ public class UserPersonalDetails {
 		this.addressState = user.getAddressState();
 		this.addressCountry = user.getAddressCountry();
 		this.addressZipCode = user.getAddressZipCode();
-		
 	}
 	
 	

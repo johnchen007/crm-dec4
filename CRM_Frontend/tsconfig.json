@@ -20,6 +20,7 @@
     "module": "ESNext",
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
+    "strictPropertyInitialization": false,
     "lib": ["ESNext", "ES2022", "ES2021", "dom"]
   },
   "angularCompilerOptions": {

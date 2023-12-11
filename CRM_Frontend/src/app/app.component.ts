@@ -102,10 +102,8 @@ export class AppComponent
   {
     // @ts-ignore
     this.user = JSON.parse( window.sessionStorage.getItem('SNVA_CRM_USER') );
-    console.log(this.user);
-    if(this.user === null)
+    if(this.user == null)
     {
-
       this.user = new User();
       this.isLogin = false;
     }

@@ -1,49 +1,64 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
+import {RoleCheck} from "../../../tools/role-check";
+import {AddNewUser} from "../../popView/addNewUser/addNewUser";
+import {BsModalService} from "ngx-bootstrap/modal";
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent
+export class HeaderComponent implements OnInit
 {
-  constructor(private router:Router){}
+  constructor(private router:Router, private modalService: BsModalService, private roleCheck:RoleCheck){}
   @Input() title:any;
   @Input() userID:any;
   @Input() userName: any;
   @Input() userRole: any;
+  canAddAccount:boolean = false;
+  addCandidate:boolean  = false;
+
+  ngOnInit(): void
+  {
+    // @ts-ignore
+    let myAccount = JSON.parse( window.sessionStorage.getItem('SNVA_CRM_USER') );
+    this.canAddAccount = this.roleCheck.addAccountCheck(myAccount.role);
+    this.addCandidate = this.roleCheck.addCandidateCheck(myAccount.role);
+  }
 
   logout()
   {
     window.sessionStorage.removeItem("SNVA_CRM_USER");
     window.location.href = "login";
   }
-  setUserId(userId:number)
-  {
-    this.userID = userId;
-  }
+
   myAccount()
   {
-    this.router.navigate([this.userRole + "/check/user/detail/myAccount"]);
+    window.location.href = this.roleCheck.getFrontendRoleType(this.userRole) + "/check/user/detail/myAccount";
   }
   accountlist()
   {
-    this.router.navigate([this.userRole + "/manage/user"]);
+    window.location.href = this.roleCheck.getFrontendRoleType(this.userRole) + "/manage/user";
   }
 
   candidatelist()
   {
-    this.router.navigate([this.userRole + "/manage/candidate"]);
+    window.location.href = this.roleCheck.getFrontendRoleType(this.userRole) + "/manage/candidate";
   }
 
   goDashboard()
   {
-    this.router.navigate([this.userRole + "/homepage"]);
+    window.location.href = this.roleCheck.getFrontendRoleType(this.userRole) + "/homepage";
   }
 
   showAddNewUser()
   {
-    this.router.navigate([this.userRole+ "/add/candidate"])
+    this.modalService.show(AddNewUser, {class: 'modal-md popBox-h'});
+  }
+
+  newCandidate()
+  {
+    window.location.href = this.roleCheck.getFrontendRoleType(this.userRole) + "/check/candidate/detail/new";
   }
 }

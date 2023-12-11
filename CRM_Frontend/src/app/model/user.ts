@@ -7,8 +7,9 @@ export class User
   accountNonLocked: boolean = false;*/
 
   userId:number = - 1;
-  account_non_lock = true;
+  accountNonLocked:boolean = true;
   password:string = "";
+  authorities?:string="";
   username:string = "";
   role:string = "";
   firstName:string = "";

@@ -18,18 +18,16 @@ import { HomePageView } from './view/homePage/homePageView';
 import { TestComponent } from './view/test/test.component';
 import { HeaderComponent } from './view/nav/header/header.component';
 import { FooterComponent } from './view/nav/footer/footer.component';
-import { MessageViewComponent } from './view/popView/message-view/message-view.component';
-import { ConfirmViewComponent } from './view/popView/confirm-view/confirm-view.component';
+import { DeleteUserConfirmView } from './view/popView/deleteUserConfirmView/deleteUserConfirmView';
+import { ResponeMessage } from './view/popView/responeMessage/responeMessage';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { RouterOutlet } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {StringCutOffPipe} from "./tools/string-cut-off-pipe";
 import { AddNewUser } from './view/popView/addNewUser/addNewUser';
 import { HttpInterceptorService } from './service/http-interceptor.service';
-import { AddCandidateComponent } from './view/add-candidate/add-candidate.component';
 import { BsDatepickerModule, BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 
 @NgModule({
     declarations: [
@@ -43,12 +41,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         TestComponent,
         HeaderComponent,
         FooterComponent,
-        MessageViewComponent,
-        ConfirmViewComponent,
+        DeleteUserConfirmView,
+        ResponeMessage,
         AddNewUser,
         StringCutOffPipe,
-        AddNewUser,
-        AddCandidateComponent
+        AddNewUser
     ],
   imports: [
     BrowserModule,
@@ -63,6 +60,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NgFireworksModule,
     BsDatepickerModule.forRoot(),
     BrowserAnimationsModule,
+    ReactiveFormsModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

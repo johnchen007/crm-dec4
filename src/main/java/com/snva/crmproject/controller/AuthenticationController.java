@@ -167,4 +167,10 @@ public class AuthenticationController {
 		return authenticationService.updateUser(user);
 	}
 
+	@PostMapping("/suspendUser")
+	User suspendUser (@RequestBody User user)
+	{
+		return authenticationService.suspendUser(user);
+	}
+
 }

@@ -1,28 +1,43 @@
 <div class="card text_font border-success bg-dark">
-  <div class="mb-4">
-    <h1 class="text_middle text-white m-2">Add New Account</h1>
+  <h1 class="text_middle text-white m-3 mt-4 border-bottom ">Add New Account</h1>
+  <div class="row m-2 ms-4">
+    <div class="col-5 text-start">
+      <label class="form-label text_font text-white">FirstName</label>
+      <input type="text" class="form-control" name="firstname" id="firstName" required>
+    </div>
+    <div class="col-5 text-start">
+      <label class="form-label text_font text-white">LastName</label>
+      <input type="text" class="form-control" name="lastname" id="lastName" required>
+    </div>
   </div>
-  <form class="m-2"> <!--need to add submit action ngSubmit and ngModel for username and password-->
-    <div class="mb-3 text-start">
-      <label for="username" class="form-label text_font text-white">Role</label>
-      <input type="text" class="form-control" name="username" id="username" required>
+  <div class="row m-2 ms-4">
+    <div class="col-11 text-start">
+      <label class="form-label text_font text-white">UserID/Email</label>
+      <input type="email" class="form-control" name="username" id="username" required>
     </div>
-    <div class="mb-3 text-start">
-      <label for="username" class="form-label text_font text-white">Email / Username</label> <input
-      type="text" class="form-control" name="username" id="username" required>
+  </div>
+  <div class="row m-2 ms-4">
+    <div class="col-11 text-start">
+      <label class="form-label text_font text-white">Phone Number</label>
+      <input type="text" class="form-control" name="phone" id="phone" required>
     </div>
-    <div class="mb-3 text-start" >
-      <label for="password" class="form-label text_font text-white">Password</label> <input
-      type="password" class="form-control" name="password" id="password" required>
+  </div>
+  <div class="row m-2 ms-4">
+    <div class="col-9 text-start">
+      <label class="form-label text_font text-white">Role</label>
+      <select id="role" class="form-control text_font">
+        <option *ngFor="let r of roleList">{{r}}</option>
+      </select>
     </div>
-    <div class="mb-3 text-start" >
-      <label for="password" class="form-label text_font text-white">Confirm</label> <input
-      type="password" class="form-control" name="password" id="password" required>
+  </div>
+  <div class="row m-2 justify-content-end">
+    <div class="col-8">
+      <div id="errorMessage"></div>
     </div>
-    <div class="container d-flex justify-content-center align-items-center">
-      <button type="submit" class="btn btn-success btn-long-bar mb-4 ">Add</button>
+    <div class="col-4">
+      <button class="btn btn-primary px-4 py-1" (click)="submit()">Submit</button>
     </div>
-  </form>
+  </div>
 </div>
 
 
