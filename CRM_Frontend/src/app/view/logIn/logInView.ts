@@ -42,7 +42,7 @@ export class LogInView
         },
         error =>
         {
-          this.redirectController.redirect("Sorry, " + this.user.username, error.message, '');
+          this.redirectController.redirect("Sorry, Login Failed", 'Please Check you ID and Password', '');
         })
     }
   }
