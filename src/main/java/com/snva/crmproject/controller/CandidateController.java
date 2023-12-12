@@ -1,8 +1,6 @@
 package com.snva.crmproject.controller;
 
 
-import java.sql.Date;
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,7 +67,7 @@ public class CandidateController {
     }
 
     @PutMapping("/update")
-    public String updateCandidate(@RequestBody CandidateBasicDetails updatedCandidate) {
+    public String updateCandidate(@RequestBody CandidateBasicDetails updatedCandidate) throws CloneNotSupportedException {
         return candidateService.updateCandidate(updatedCandidate);
     }
     @PutMapping("/updateTechCandidate/{candidateId}")

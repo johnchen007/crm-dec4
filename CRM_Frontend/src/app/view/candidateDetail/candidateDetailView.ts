@@ -117,7 +117,7 @@ export class CandidateDetailView implements OnInit
   add(candidate:CandidateBack)
   {
     (document.getElementById('errorMessage') as HTMLInputElement).innerHTML = '';
-    candidate.workExperience = this.workExpYear + ' year(s) ' + this.workExpMouth + ' mouth(s)';
+    candidate.workExperience = this.workExpYear + ' year(s) ' + this.workExpMouth + ' month(s)';
     candidate.details.interviewDate = (document.getElementById('interviewDate') as HTMLInputElement).value;
     candidate.details.addressCounty = (document.getElementById('addressCountry') as HTMLInputElement).value;
     candidate.details.addressState  = (document.getElementById('addressState') as HTMLInputElement).value;

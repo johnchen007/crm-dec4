@@ -144,13 +144,14 @@ public class CandidateBasicDetails {
 //	        }
 	    }
 
+	    public List<CandidateAttachments> getAttachments() {
+	        return attachments;
+	    }
 
-		public List<CandidateAttachments> getAttachments() {
-			return attachments;
-		}
-		public void setAttachments(List<CandidateAttachments> attachments) {
-			this.attachments = attachments;
-		}
+	    public void setAttachments(List<CandidateAttachments> attachments) {
+	        System.out.println(attachments.get(0));
+	    	this.attachments = attachments;
+	    }
 		@Override
 		public String toString() {
 			return "CandidateBasicDetails [candidateId=" + candidateId + ", firstName=" + firstName + ", middleName="

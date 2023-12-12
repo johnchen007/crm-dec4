@@ -74,7 +74,6 @@ public class CandidateServiceImpl implements CandidateService {
 
     @Override
     public String updateCandidate(CandidateBasicDetails updatedCandidate) {
-        
         basicDetailsRepository.save(updatedCandidate);
         attachmentsRepository.deleteByCandidateId(updatedCandidate.getCandidateId());
         if (updatedCandidate.getAttachments() != null) {
@@ -118,9 +117,12 @@ public class CandidateServiceImpl implements CandidateService {
             detailsRepository.save(newDetails);
         }
 
+     
         return "Candidate updated successfully!";
     }
 
+    
+    
 	@Override
 
 	public Long getLatestId() {
