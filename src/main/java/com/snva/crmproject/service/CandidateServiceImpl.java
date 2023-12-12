@@ -122,13 +122,13 @@ public class CandidateServiceImpl implements CandidateService {
     }
 
 	@Override
-	public Long getLatestId()
-    {
-        CandidateBasicDetails candidateBasicDetails = basicDetailsRepository.findTopByOrderByCandidateIdDesc();
-        if(candidateBasicDetails == null) // if there is no data in the table.
-        {
-            return 1l;
-        }
-		return Long.parseLong(candidateBasicDetails.getCandidateId().substring(3, 8))+1;
+
+	public Long getLatestId() {
+		 try {
+		return Long.parseLong(basicDetailsRepository.findTopByOrderByCandidateIdDesc().getCandidateId().substring(3, 8))+1;
+		 }
+		 catch(NullPointerException e) {
+			 return 1l;
+		 }
 	}
 }
