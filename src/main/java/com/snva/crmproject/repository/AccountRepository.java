@@ -13,7 +13,8 @@ public interface AccountRepository extends JpaRepository<User, Long> {
 
     static Optional<User> findByUsername(String username) {
 		// TODO Auto-generated method stub
-		return null;
-		
+		return null;	
 	}
+    
+    
 }
