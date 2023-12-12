@@ -19,6 +19,7 @@ import com.snva.crmproject.entity.userDetails.UserPersonalDetails;
 import com.snva.crmproject.repository.user.AuthenticationRepository;
 import com.snva.crmproject.repository.user.UserPersonalDetailsRepository;
 import com.snva.crmproject.service.AuthenticationService;
+import com.snva.crmproject.service.AuthenticationServiceImpl;
 
 @ExtendWith(MockitoExtension.class)
 public class AddUserServiceTest {
@@ -29,7 +30,7 @@ public class AddUserServiceTest {
 	static UserPersonalDetails userPersonalDetailsTest;
 	
 	@InjectMocks
-	private AuthenticationService authenticationService;
+	private AuthenticationServiceImpl authenticationService;
 	
 	@Mock
 	private AuthenticationRepository authenticationRepository;
