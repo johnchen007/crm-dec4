@@ -12,6 +12,9 @@ import {InputCheck} from "../../tools/input-check";
 import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
 import {ResponeMessage} from "../popView/responeMessage/responeMessage";
 import {AddCandidateResultView} from "../popView/addCandidateResultView/addCandidateResultView";
+import { saveAs } from 'file-saver';
+import { HttpEventType } from '@angular/common/http';
+import { CandidateAttachments } from 'src/app/model/candidate-attachments';
 
 @Component({
   selector: 'app-candidate-detail-view',
@@ -20,13 +23,15 @@ import {AddCandidateResultView} from "../popView/addCandidateResultView/addCandi
 })
 export class CandidateDetailView implements OnInit
 {
+
+
   bsConfig: Partial<BsDatepickerConfig>;
   menuData:MenuData = new MenuData();
   inputCheck:InputCheck = new InputCheck();
   pageStatus:string = "recruiter";
   candidateId:string="";
   currentCandidate:CandidateBack = new CandidateBack();
-
+  file:File;
   workExpYear:number = 0;
   workExpMouth:number = 0;
   addressCity:string = '';
@@ -41,6 +46,9 @@ export class CandidateDetailView implements OnInit
   candidateP2Right:boolean = false;
   candidateP3Right:boolean = false;
 
+  isPdfResume:Boolean = true
+  isPdfFile:Boolean = true
+  attachments:CandidateAttachments[];
   constructor(private router:ActivatedRoute,private candidateService:CandidateService, private route:Router, private redirectController:RedirectController, private roleCheck:RoleCheck, private modalService: BsModalService)
   {
   }
@@ -392,5 +400,59 @@ export class CandidateDetailView implements OnInit
     this.getLGAs();
   }
 
+  onResumeUpload(event:any) {
+    const formData = new FormData();
+    
+    this.file= event.target.files[0];
+    console.log(this.file.name);
+    if(this.file.name.substring(this.file.name.lastIndexOf('.') + 1).toLowerCase()==='pdf'){
+      console.log("pdf");
+      this.isPdfResume=true;
+    }  
+    else{
+      this.isPdfResume=false;
+    }
+    this.attachments= this.attachments=this.currentCandidate.attachments || [];
+    this.attachments.push(new CandidateAttachments(this.currentCandidate.candidateId,true,this.currentCandidate.candidateId+"_Resume.pdf"));
+     this.currentCandidate.attachments=this.attachments;
+     console.log(this.currentCandidate);
+    formData.append('files', this.file, this.file.name);
+    this.candidateService.upload(formData,this.currentCandidate.candidateId).subscribe(data=>{
+      console.log(data);
+    })
+    }
 
+    onFileUpload(event:any) {
+      const formData = new FormData();
+      
+      this.file= event.target.files[0];
+      console.log(this.file.name);
+      if(this.file.name.substring(this.file.name.lastIndexOf('.') + 1).toLowerCase()==='pdf'){
+        console.log("File pdf");
+        this.isPdfFile=true;
+      }  
+      else{
+        this.isPdfFile=false;
+      }
+      this.attachments=this.currentCandidate.attachments || [];
+      this.attachments.push(new CandidateAttachments(this.currentCandidate.candidateId,true,this.currentCandidate.candidateId+"_File.pdf"));
+       this.currentCandidate.attachments=this.attachments;
+       console.log(this.currentCandidate);
+      formData.append('files', this.file, this.file.name);
+      this.candidateService.uploadFile(formData,this.currentCandidate.candidateId).subscribe(data=>{
+        console.log(data);
+      })
+      }
+
+    download(filename:string) {
+      this.candidateService.download(filename).subscribe(
+        event => {
+          if(event.type==HttpEventType.Response)
+          {
+            saveAs(new File([event.body!], event.headers.get('File-Name')!, 
+                  {type: `${event.headers.get('Content-Type')};charset=utf-8`}));
+          }
+        });
+
+      }
 }

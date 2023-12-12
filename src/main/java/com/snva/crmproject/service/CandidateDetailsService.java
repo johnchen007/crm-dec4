@@ -48,8 +48,8 @@ public class CandidateDetailsService {
         if (optionalCandidateDetails.isPresent()) {
             CandidateDetails candidateDetails = optionalCandidateDetails.get();
 
-            candidateDetails.setLOISent(loiSent);
-            candidateDetails.setLOIAccepted(loiAccepted);
+            candidateDetails.setLoiSent(loiSent);
+            candidateDetails.setLoiAccepted(loiAccepted);
             candidateDetails.setJoinedBatch(joinedBatch);
             candidateDetails.setStartDate(batchStartDate);
 

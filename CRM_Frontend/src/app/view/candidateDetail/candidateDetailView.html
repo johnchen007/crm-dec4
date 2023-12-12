@@ -64,13 +64,23 @@
                     <label for="resume">Resume:</label>
                   </div>
                   <div class="col-6">
-                    <input type="file" id="resume" name="resume" (change)="onFileSelected($event, 'resume')" class="form-control-file">
+                    <input type="file" id="resume" name="resume" (change)="onResumeUpload($event)" class="form-control-file">
+                  <p *ngIf="!isPdfResume">Files must be PDF</p>
                   </div>
                 </div>
                 <div class="row mt-4">
                   <div class="col-4 text-end"><label for="otherFile">Other Files:</label></div>
-                  <div class="col-6"><input type="file" id="otherFile" name="otherFile" (change)="onFileSelected($event, 'otherFile')" class="form-control-file"></div>
+                  <div class="col-6"><input type="file" id="otherFile" name="otherFile" (change)="onFileUpload($event)" class="form-control-file"></div>
+                  <p *ngIf="!isPdfFile">Files must be PDF</p>
                 </div>
+                 <div *ngIf="currentCandidate.attachments.length!=0" class="row mt-4">
+                  <div  class="col-4 text-end"><label for="otherFile">Uploaded Files:</label></div>
+                  <div class="col-6 text-end" >
+                    <a class="link-opacity-100" *ngFor="let attachment of currentCandidate.attachments" (click)="download(attachment.attachment)">{{attachment.attachment}} <br/></a>
+                  </div>
+                  
+                </div>
+                
               </div>
             </div>
           </div>
@@ -330,7 +340,7 @@
                     <label> Feedback: </label>
                   </div>
                   <div class="col-7">
-                    <textarea class="form-control" [value]="currentCandidate.details.interviewerFeedback"></textarea>
+                    <textarea class="form-control" [value]="currentCandidate.details.interviewerFeedback" [(ngModel)]="currentCandidate.details.interviewerFeedback"></textarea>
                     <!--<input type="text" list="interviewFeedback" class="form-control" [(ngModel)]="currentCandidate.details.interviewerFeedback">-->
                     <!--<datalist id = 'interviewFeedback'>
                       <option *ngFor="let i of menuData.INTERVIEW_FEEDBACK">{{i}}</option>
