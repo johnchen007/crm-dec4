@@ -30,13 +30,13 @@ public class CandidateServiceImpl implements CandidateService {
     @Override
     public CandidateBasicDetails addNewCandidate(CandidateBasicDetails candidate) {
         basicDetailsRepository.save(candidate);
-
-//        if (candidate.getAttachments() != null) {
-//            for (CandidateAttachments attachment : candidate.getAttachments()) {
-//                attachment.setCandidateId(candidate.getCandidateId());
-//                attachmentsRepository.save(attachment);
-//            }
-//        }
+        System.out.println(candidate.getAttachments());
+        if (candidate.getAttachments() != null) {
+            for (CandidateAttachments attachment : candidate.getAttachments()) {
+                attachment.setCandidateId(candidate.getCandidateId());
+                attachmentsRepository.save(attachment);
+            }
+        }
 
         if (candidate.getDetails() != null) {
             candidate.getDetails().setCandidateId(candidate.getCandidateId());
@@ -50,10 +50,10 @@ public class CandidateServiceImpl implements CandidateService {
     public List<CandidateBasicDetails> getAllCandidates() {
         List<CandidateBasicDetails> candidates = basicDetailsRepository.findAll();
 
-//        for (CandidateBasicDetails candidate : candidates) {
-////            candidate.setAttachments(attachmentsRepository.findByCandidateId(candidate.getCandidateId()));
-//            candidate.setDetails(detailsRepository.findById(candidate.getCandidateId()).orElse(null));
-//        }
+        for (CandidateBasicDetails candidate : candidates) {
+            candidate.setAttachments(attachmentsRepository.findByCandidateId(candidate.getCandidateId()));
+            candidate.setDetails(detailsRepository.findById(candidate.getCandidateId()).orElse(null));
+        }
 
         return candidates;
     }
@@ -64,7 +64,7 @@ public class CandidateServiceImpl implements CandidateService {
 
         if (optionalBasicDetails.isPresent()) {
             CandidateBasicDetails candidate = optionalBasicDetails.get();
-//            candidate.setAttachments(attachmentsRepository.findByCandidateId(candidateId));
+            candidate.setAttachments(attachmentsRepository.findByCandidateId(candidateId));
             candidate.setDetails(detailsRepository.findById(candidateId).orElse(null));
             return candidate;
         }
@@ -77,12 +77,12 @@ public class CandidateServiceImpl implements CandidateService {
         
         basicDetailsRepository.save(updatedCandidate);
         attachmentsRepository.deleteByCandidateId(updatedCandidate.getCandidateId());
-//        if (updatedCandidate.getAttachments() != null) {
-//            for (CandidateAttachments attachment : updatedCandidate.getAttachments()) {
-//                attachment.setCandidateId(updatedCandidate.getCandidateId());
-//                attachmentsRepository.save(attachment);
-//            }
-//        }
+        if (updatedCandidate.getAttachments() != null) {
+            for (CandidateAttachments attachment : updatedCandidate.getAttachments()) {
+                attachment.setCandidateId(updatedCandidate.getCandidateId());
+                attachmentsRepository.save(attachment);
+            }
+        }
 
        
         CandidateDetails existingDetails = detailsRepository.findById(updatedCandidate.getCandidateId()).orElse(null);
@@ -102,8 +102,8 @@ public class CandidateServiceImpl implements CandidateService {
             existingDetails.setInterviewDate(updatedCandidate.getDetails().getInterviewDate());
             existingDetails.setInterviewerFeedback(updatedCandidate.getDetails().getInterviewerFeedback());
             existingDetails.setCandidateInterviewStatus(updatedCandidate.getDetails().getCandidateInterviewStatus());
-            existingDetails.setLOISent(updatedCandidate.getDetails().getLOISent());
-            existingDetails.setLOIAccepted(updatedCandidate.getDetails().getLOIAccepted());
+            existingDetails.setLoiSent(updatedCandidate.getDetails().isLoiSent());
+            existingDetails.setLoiAccepted(updatedCandidate.getDetails().isLoiAccepted());
             existingDetails.setJoinedBatch(updatedCandidate.getDetails().isJoinedBatch());
             existingDetails.setStartDate(updatedCandidate.getDetails().getStartDate());
             
