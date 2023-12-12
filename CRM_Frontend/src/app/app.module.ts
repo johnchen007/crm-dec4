@@ -28,6 +28,7 @@ import { AddNewUser } from './view/popView/addNewUser/addNewUser';
 import { HttpInterceptorService } from './service/http-interceptor.service';
 import { BsDatepickerModule, BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AddCandidateResultView } from './view/popView/addCandidateResultView/addCandidateResultView';
 
 @NgModule({
     declarations: [
@@ -45,7 +46,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         ResponeMessage,
         AddNewUser,
         StringCutOffPipe,
-        AddNewUser
+        AddNewUser,
+        AddCandidateResultView
     ],
   imports: [
     BrowserModule,
