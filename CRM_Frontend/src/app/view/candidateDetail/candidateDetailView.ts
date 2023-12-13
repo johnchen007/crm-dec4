@@ -11,10 +11,11 @@ import {RedirectController} from "../../tools/redirect-controller";
 import {InputCheck} from "../../tools/input-check";
 import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
 import {ResponeMessage} from "../popView/responeMessage/responeMessage";
-import {AddCandidateResultView} from "../popView/addCandidateResultView/addCandidateResultView";
+import {GotoCandidateListConfirmView} from "../popView/gotoCandidateListConfirmView/gotoCandidateListConfirmView";
 import { saveAs } from 'file-saver';
 import { HttpEventType } from '@angular/common/http';
 import { CandidateAttachments } from 'src/app/model/candidate-attachments';
+import {CandidateDetail} from "../../model/candidate-detail";
 
 @Component({
   selector: 'app-candidate-detail-view',
@@ -37,6 +38,7 @@ export class CandidateDetailView implements OnInit
   addressCity:string = '';
   addressState:string = '';
   addressCountry:string = ''
+  myRole:string = '';
 
   loiSent     = 'No'
   loiAccepted = 'No'
@@ -49,7 +51,10 @@ export class CandidateDetailView implements OnInit
   isPdfResume:Boolean = true
   isPdfFile:Boolean = true
   attachments:CandidateAttachments[];
-  constructor(private router:ActivatedRoute,private candidateService:CandidateService, private route:Router, private redirectController:RedirectController, private roleCheck:RoleCheck, private modalService: BsModalService)
+
+  tmpCandidate:CandidateBack = new CandidateBack();
+
+  constructor(private router:ActivatedRoute,private candidateService:CandidateService, private route:Router, private redirectController:RedirectController, private roleCheck:RoleCheck)
   {
   }
   ngOnInit(): void
@@ -58,6 +63,7 @@ export class CandidateDetailView implements OnInit
     this.bsConfig = Object.assign({}, {dateInputFormat: 'YYYY-MM-DD', showWeekNumbers: false});
     // @ts-ignore
     let myAccount = JSON.parse( window.sessionStorage.getItem('SNVA_CRM_USER') );
+    this.myRole = this.roleCheck.getFrontendRoleType(myAccount.role);
     if(this.candidateId == 'new')
     {
       this.candidateService.setNextCandidateId().subscribe(
@@ -75,6 +81,7 @@ export class CandidateDetailView implements OnInit
         data=>
         {
         this.currentCandidate=data;
+        this.tmpCandidate = this.deepCopyCandidate(data);
         this.candidateP1Right = this.roleCheck.updateCandidateP1Check(myAccount.role);
         this.candidateP2Right = this.roleCheck.updateCandidateP2Check(myAccount.role);
         this.candidateP3Right = this.roleCheck.updateCandidateP3Check(myAccount.role);
@@ -130,17 +137,11 @@ export class CandidateDetailView implements OnInit
       let myAccount = JSON.parse( window.sessionStorage.getItem('SNVA_CRM_USER') );
       this.candidateService.saveCandidate(candidate).subscribe(data=>
       {
-        let bsModalRef: BsModalRef = this.modalService.show(AddCandidateResultView, {class: 'modal-md popBox'});
-        bsModalRef.content.message = "Add Candidate Successful";
-        bsModalRef.content.url = this.roleCheck.getFrontendRoleType(myAccount.role) + "/manage/candidate";
-        //this.redirectController.redirect("Add Candidate Successful", '', this.roleCheck.getFrontendRoleType(myAccount.role) + '/manage/candidate');
+        this.redirectController.redirect("Add Candidate Successful", '', this.myRole + '/manage/candidate', 'gotoCandidateList');
       },
         error =>
       {
-          //this.redirectController.redirect("Add Candidate Successful", error.message, '');
-        let bsModalRef: BsModalRef = this.modalService.show(AddCandidateResultView, {class: 'modal-md popBox'});
-        bsModalRef.content.message = "Add Candidate Failed";
-        bsModalRef.content.url = this.roleCheck.getFrontendRoleType(myAccount.role) + "/manage/candidate";
+        this.redirectController.redirect("Add Candidate Failed", '', this.myRole + '/manage/candidate', 'gotoCandidateList');
       })
     }
     else
@@ -225,20 +226,21 @@ export class CandidateDetailView implements OnInit
       }
     }
 
-    if(check == 'yes')
+    let msg = this.updateMessage();
+
+    if(check == 'yes' && msg != '')
     {
-      console.log(candidate);
       this.candidateService.updateCandidate(candidate).subscribe(
         data=>
         {
-          this.redirectController.redirect(data.toString(), '', '');
+          this.redirectController.redirect('Candidate updated successfully!', msg, this.myRole + '/manage/candidate', 'gotoCandidateList');
         },
         error =>
         {
-          this.redirectController.redirect("Update Candidate Failed",error.message, '');
+          this.redirectController.redirect("Candidate update Failed", msg, this.myRole + '/manage/candidate', 'gotoCandidateList');
         })
     }
-    else
+    else if(check != 'yes')
     {
       (document.getElementById('errorMessage') as HTMLInputElement).innerHTML =
         '<div class="card cardBackGround border-danger text-danger text-center">' + check + '</div>'
@@ -308,6 +310,210 @@ export class CandidateDetailView implements OnInit
     }
 
     return check;
+  }
+
+
+  deepCopyCandidate(tmp:CandidateBack)
+  {
+    let candidate:CandidateBack = new CandidateBack();
+    candidate.candidateId    = tmp.candidateId
+    candidate.firstName      = tmp.firstName
+    candidate.middleName     = tmp.middleName
+    candidate.lastName       = tmp.lastName
+    candidate.recruiterName  = tmp.recruiterName
+    candidate.email          = tmp.email
+    candidate.phoneNumber    = tmp.phoneNumber
+    candidate.workExperience = tmp.workExperience
+    candidate.visaStatus     = tmp.visaStatus
+    candidate.ssn            = tmp.ssn
+    candidate.school         = tmp.school
+    candidate.degree         = tmp.degree
+
+    candidate.details = new CandidateDetail();
+    candidate.details.skillSet                 = tmp.details.skillSet
+    candidate.details.communicationSkill       = tmp.details.communicationSkill
+    candidate.details.addressLine1             = tmp.details.addressLine1
+    candidate.details.addressLine2             = tmp.details.addressLine2
+    candidate.details.addressCity              = tmp.details.addressCity
+    candidate.details.addressState             = tmp.details.addressState
+    candidate.details.addressCounty            = tmp.details.addressCounty
+    candidate.details.addressZipCode           = tmp.details.addressZipCode
+    candidate.details.source                   = tmp.details.source
+    candidate.details.remarks                  = tmp.details.remarks
+    candidate.details.interviewDate            = tmp.details.interviewDate
+    candidate.details.interviewer              = tmp.details.interviewer
+    candidate.details.interviewerFeedback      = tmp.details.interviewerFeedback
+    candidate.details.candidateInterviewStatus = tmp.details.candidateInterviewStatus
+    candidate.details.LOISent                  = tmp.details.LOISent
+    candidate.details.LOIAccepted              = tmp.details.LOIAccepted
+    candidate.details.joinedBatch              = tmp.details.joinedBatch
+    candidate.details.startDate                = tmp.details.startDate
+
+    return candidate;
+  }
+
+  updateMessage():string
+  {
+    let message="<div class='row justify-content-center'>";
+
+    if(this.tmpCandidate.firstName != this.currentCandidate.firstName || this.tmpCandidate.middleName != this.currentCandidate.middleName || this.tmpCandidate.lastName != this.currentCandidate.lastName)
+    {
+      message  = message +
+          "<div class='col-5 text-end'>Candidate's Name: </div>" +
+          "<div class='col-3 text-start'>"+ this.tmpCandidate.firstName + ' ' + this.tmpCandidate.middleName + ' ' + this.tmpCandidate.lastName + "</div><div class='col-1 text-center'>-></div><div class='col-3 text-start'>"
+          + this.currentCandidate.firstName + ' ' + this.currentCandidate.middleName + ' ' + this.currentCandidate.lastName + "</div><br>"
+    }
+    if(this.tmpCandidate.ssn != this.currentCandidate.ssn)
+    {
+      message  = message +
+          "<div class='col-5 text-end'>Social Security number: </div>" +
+          "<div class='col-3 text-start'>"+ this.tmpCandidate.ssn + "</div><div class='col-1 text-center'>-></div><div class='col-3 text-start'>" + this.currentCandidate.ssn + "</div><br>"
+    }
+    if(this.tmpCandidate.school != this.currentCandidate.school)
+    {
+      message  = message +
+          "<div class='col-5 text-end'>School : </div>" +
+          "<div class='col-3 text-start'>"+ this.tmpCandidate.school + "</div><div class='col-1 text-center'>-></div><div class='col-3 text-start'>" + this.currentCandidate.school + "</div><br>"
+    }
+    if(this.tmpCandidate.degree != this.currentCandidate.degree)
+    {
+      message  = message +
+          "<div class='col-5 text-end'>Degree : </div>" +
+          "<div class='col-3 text-start'>"+ this.tmpCandidate.degree + "</div><div class='col-1 text-center'>-></div><div class='col-3 text-start'>" + this.currentCandidate.degree + "</div><br>"
+    }
+    if(this.tmpCandidate.visaStatus != this.currentCandidate.visaStatus)
+    {
+      message  = message +
+          "<div class='col-5 text-end'>Visa Status : </div>" +
+          "<div class='col-3 text-start'>"+ this.tmpCandidate.visaStatus + "</div><div class='col-1 text-center'>-></div><div class='col-3 text-start'>" + this.currentCandidate.visaStatus + "</div><br>"
+    }
+    if(this.tmpCandidate.email != this.currentCandidate.email)
+    {
+      message  = message +
+          "<div class='col-5 text-end'>Email : </div>" +
+          "<div class='col-3 text-start'>"+ this.tmpCandidate.email + "</div><div class='col-1 text-center'>-></div><div class='col-3 text-start'>" + this.currentCandidate.email + "</div><br>"
+    }
+    if(this.tmpCandidate.phoneNumber != this.currentCandidate.phoneNumber)
+    {
+      message  = message +
+          "<div class='col-5 text-end'>Phone : </div>" +
+          "<div class='col-3 text-start'>"+ this.tmpCandidate.phoneNumber + "</div><div class='col-1 text-center'>-></div><div class='col-3 text-start'>" + this.currentCandidate.phoneNumber + "</div><br>"
+    }
+
+    if( (this.tmpCandidate.details.addressLine1   != this.currentCandidate.details.addressLine1  ) ||
+        (this.tmpCandidate.details.addressLine2   != this.currentCandidate.details.addressLine2  ) ||
+        (this.tmpCandidate.details.addressState   != this.currentCandidate.details.addressState  ) ||
+        (this.tmpCandidate.details.addressCity    != this.currentCandidate.details.addressCity   )   ||
+        (this.tmpCandidate.details.addressCounty  != this.currentCandidate.details.addressCounty )||
+        (this.tmpCandidate.details.addressZipCode != this.currentCandidate.details.addressZipCode))
+    {
+      message  = message +
+          "<div class='col-5 text-end'>Batch Start Date : </div>" +
+          "<div class='col-3 text-start'>"
+          + this.tmpCandidate.details.addressLine1 + '<br>'+ this.tmpCandidate.details.addressLine2
+          + "<br>" + this.tmpCandidate.details.addressState + ", " + this.tmpCandidate.details.addressCity
+          + "<br>" + this.tmpCandidate.details.addressZipCode + "<br>" + this.tmpCandidate.details.addressCounty
+          + "</div><div class='col-1 text-center'>-></div><div class='col-3 text-start'>"
+          + this.currentCandidate.details.addressLine1 + '<br>'+ this.currentCandidate.details.addressLine2
+          + "<br>" + this.currentCandidate.details.addressState + ", " + this.currentCandidate.details.addressCity
+          + "<br>" + this.currentCandidate.details.addressZipCode + "<br>" + this.currentCandidate.details.addressCounty
+          + "</div><br>"
+    }
+    if(this.tmpCandidate.details.interviewDate != this.currentCandidate.details.interviewDate)
+    {
+      message  = message +
+          "<div class='col-5 text-end'>Interview Date : </div>" +
+          "<div class='col-3 text-start'>"+ this.tmpCandidate.details.interviewDate + "</div><div class='col-1 text-center'>-></div><div class='col-3 text-start'>" + this.currentCandidate.details.interviewDate + "</div><br>"
+    }
+    if(this.tmpCandidate.details.interviewer != this.currentCandidate.details.interviewer)
+    {
+      message  = message +
+          "<div class='col-5 text-end'>Interviewer : </div>" +
+          "<div class='col-3 text-start'>"+ this.tmpCandidate.details.interviewer + "</div><div class='col-1 text-center'>-></div><div class='col-3 text-start'>" + this.currentCandidate.details.interviewer + "</div><br>"
+    }
+    if(this.tmpCandidate.details.skillSet != this.currentCandidate.details.skillSet)
+    {
+      message  = message +
+          "<div class='col-5 text-end'>Skill Set : </div>" +
+          "<div class='col-3 text-start'>"+ this.tmpCandidate.details.skillSet + "</div><div class='col-1 text-center'>-></div><div class='col-3 text-start'>" + this.currentCandidate.details.skillSet + "</div><br>"
+    }
+    if(this.tmpCandidate.workExperience != this.currentCandidate.workExperience)
+    {
+      message  = message +
+          "<div class='col-5 text-end'>Work Experience : </div>" +
+          "<div class='col-3 text-start'>"+ this.tmpCandidate.workExperience + "</div><div class='col-1 text-center'>-></div><div class='col-3 text-start'>" + this.currentCandidate.workExperience + "</div><br>"
+    }
+    if(this.tmpCandidate.details.communicationSkill != this.currentCandidate.details.communicationSkill )
+    {
+      message  = message +
+          "<div class='col-5 text-end'>Communication Skill : </div>" +
+          "<div class='col-3 text-start'>"+ this.tmpCandidate.details.communicationSkill  + "</div><div class='col-1 text-center'>-></div><div class='col-3 text-start'>" + this.currentCandidate.details.communicationSkill + "</div><br>"
+    }
+    if(this.tmpCandidate.details.source != this.currentCandidate.details.source)
+    {
+      message  = message +
+          "<div class='col-5 text-end'>Source : </div>" +
+          "<div class='col-3 text-start'>"+ this.tmpCandidate.details.source + "</div><div class='col-1 text-center'>-></div><div class='col-3 text-start'>" + this.currentCandidate.details.source + "</div><br>"
+    }
+    if(this.tmpCandidate.details.candidateInterviewStatus != this.currentCandidate.details.candidateInterviewStatus)
+    {
+      message  = message +
+          "<div class='col-5 text-end'>Interview Status : </div>" +
+          "<div class='col-3 text-start'>"+ this.tmpCandidate.details.candidateInterviewStatus + "</div><div class='col-1 text-center'>-></div><div class='col-3 text-start'>" + this.currentCandidate.details.candidateInterviewStatus + "</div><br>"
+    }
+    if(this.tmpCandidate.details.LOISent != this.currentCandidate.details.LOISent)
+    {
+      let loiSent1 = 'No';
+      let loiSent2 = 'Yes';
+      if(this.tmpCandidate.details.LOISent)
+      {
+        loiSent1 = 'Yes';
+        loiSent2 = 'No;'
+      }
+      message  = message +
+          "<div class='col-5 text-end'>LOI Sent : </div>" +
+          "<div class='col-3 text-start'>"+ loiSent1 + "</div><div class='col-1 text-center'>-></div><div class='col-3 text-start'>" + loiSent2 + "</div><br>"
+    }
+    if(this.tmpCandidate.details.LOIAccepted != this.currentCandidate.details.LOIAccepted)
+    {
+      let LOIAccepted1 = 'No';
+      let LOIAccepted2 = 'Yes';
+      if(this.tmpCandidate.details.LOIAccepted)
+      {
+        LOIAccepted1 = 'Yes';
+        LOIAccepted2 = 'No;'
+      }
+      message  = message +
+          "<div class='col-5 text-end'>LOI Accept : </div>" +
+          "<div class='col-3 text-start'>"+ LOIAccepted1 + "</div><div class='col-1 text-center'>-></div><div class='col-3 text-start'>" + LOIAccepted2 + "</div><br>"
+    }
+    if(this.tmpCandidate.details.joinedBatch != this.currentCandidate.details.joinedBatch)
+    {
+      let joinedBatch1 = 'No';
+      let joinedBatch2 = 'Yes';
+      if(this.tmpCandidate.details.LOIAccepted)
+      {
+        joinedBatch1 = 'Yes';
+        joinedBatch2 = 'No;'
+      }
+      message  = message +
+          "<div class='col-5 text-end'>Joined Batch : </div>" +
+          "<div class='col-3 text-start'>"+ joinedBatch1 + "</div><div class='col-1 text-center'>-></div><div class='col-3 text-start'>" + joinedBatch2 + "</div><br>"
+    }
+    if(this.tmpCandidate.details.startDate != this.currentCandidate.details.startDate)
+    {
+      message  = message +
+          "<div class='col-5 text-end'>Batch Start Date : </div>" +
+          "<div class='col-3 text-start'>"+ this.tmpCandidate.details.startDate + "</div><div class='col-1 text-center'>-></div><div class='col-3 text-start'>" + this.currentCandidate.details.startDate + "</div><br>"
+    }
+
+    if(this.tmpCandidate.details.interviewerFeedback != this.currentCandidate.details.interviewerFeedback )
+    {
+      message  = message +
+          "<div class='col-5 text-end'>Interviewer Feedback : </div>" +
+          "<div class='col-3 text-start'>"+ this.tmpCandidate.details.interviewerFeedback + "</div><div class='col-1 text-center'>-></div><div class='col-3 text-start'>" + this.currentCandidate.details.interviewerFeedback + "</div><br>"
+    }
+    return message + "</div>";
   }
 
 

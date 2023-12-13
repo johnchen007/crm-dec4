@@ -135,12 +135,12 @@ export class AccountDetailView implements OnInit
         {
           window.sessionStorage.setItem("SNVA_CRM_USER", JSON.stringify(this.currentUser));
         }
-        this.redirectController.redirect("Update Phone Number Successful", '', '');
+        this.redirectController.redirect("Update Phone Number Successful", '', '', 'auto');
         this.saveStatus();
       },
       error =>
       {
-        this.redirectController.redirect("Update Phone Number Failed", error.message, '');
+        this.redirectController.redirect("Update Phone Number Failed", error.message, '', 'auto');
         this.saveStatus();
       });
     }
@@ -176,12 +176,12 @@ export class AccountDetailView implements OnInit
           {
             window.sessionStorage.setItem("SNVA_CRM_USER", JSON.stringify(this.currentUser));
           }
-          this.redirectController.redirect("Update Address Successful", '', '');
+          this.redirectController.redirect("Update Address Successful", '', '', 'auto');
           this.saveStatus();
         },
         error =>
         {
-          this.redirectController.redirect("Update Address Failed", error.message, '');
+          this.redirectController.redirect("Update Address Failed", error.message, '', 'auto');
           this.saveStatus();
         });
     }
@@ -241,12 +241,12 @@ export class AccountDetailView implements OnInit
           {
             window.sessionStorage.setItem("SNVA_CRM_USER", JSON.stringify(this.currentUser));
           }
-          this.redirectController.redirect("Reset Password Successful", '', '');
+          this.redirectController.redirect("Reset Password Successful", '', '', 'auto');
           this.saveStatus();
         },
         error =>
         {
-          this.redirectController.redirect("Reset Password Failed", error.message, '');
+          this.redirectController.redirect("Reset Password Failed", error.message, '', 'auto');
           this.saveStatus();
         });
     }
