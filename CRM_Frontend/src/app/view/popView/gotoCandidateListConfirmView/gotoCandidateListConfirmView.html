@@ -1,6 +1,7 @@
-<div class="card text_font border-success bg-dark">
-    <label class="text_middle text-white m-2">{{message}}</label>
-    <label class="text_middle text-white m-2">Do You want to go to Candidate List?</label>
+<div class="card text_font border-success bg-dark text-white">
+    <label class="text_middle mt-3 pb-2 border-bottom">{{message}}</label>
+    <div class="text-danger" [innerHtml]="subMsg"></div>
+    <label class="text_middle mt-2">Do You Want To Go To Candidate List or Stay In Here?</label>
     <div class="row m-3">
         <div class="col-6">
             <button class="btn btn-success" id="noButton" style="width: 10em" (click)="bsModalRef.hide()">No</button>

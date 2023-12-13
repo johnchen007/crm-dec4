@@ -28,7 +28,7 @@ import { AddNewUser } from './view/popView/addNewUser/addNewUser';
 import { HttpInterceptorService } from './service/http-interceptor.service';
 import { BsDatepickerModule, BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AddCandidateResultView } from './view/popView/addCandidateResultView/addCandidateResultView';
+import { GotoCandidateListConfirmView } from './view/popView/gotoCandidateListConfirmView/gotoCandidateListConfirmView';
 
 @NgModule({
     declarations: [
@@ -47,7 +47,7 @@ import { AddCandidateResultView } from './view/popView/addCandidateResultView/ad
         AddNewUser,
         StringCutOffPipe,
         AddNewUser,
-        AddCandidateResultView
+        GotoCandidateListConfirmView
     ],
   imports: [
     BrowserModule,

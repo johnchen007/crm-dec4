@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddCandidateResultView } from './addCandidateResultView';
+import { GotoCandidateListConfirmView } from './gotoCandidateListConfirmView';
 
 describe('AddCandidateResultViewComponent', () => {
-  let component: AddCandidateResultView;
-  let fixture: ComponentFixture<AddCandidateResultView>;
+  let component: GotoCandidateListConfirmView;
+  let fixture: ComponentFixture<GotoCandidateListConfirmView>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [AddCandidateResultView]
+      declarations: [GotoCandidateListConfirmView]
     });
-    fixture = TestBed.createComponent(AddCandidateResultView);
+    fixture = TestBed.createComponent(GotoCandidateListConfirmView);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

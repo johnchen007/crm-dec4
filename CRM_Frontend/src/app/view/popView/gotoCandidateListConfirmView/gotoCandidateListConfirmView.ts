@@ -5,21 +5,19 @@ import {RoleCheck} from "../../../tools/role-check";
 
 @Component({
   selector: 'app-add-candidate-result-view',
-  templateUrl: './addCandidateResultView.html',
-  styleUrls: ['./addCandidateResultView.css']
+  templateUrl: './gotoCandidateListConfirmView.html',
+  styleUrls: ['./gotoCandidateListConfirmView.css']
 })
-export class AddCandidateResultView
+export class GotoCandidateListConfirmView
 {
     message:string = "";
+    subMsg:string = "";
     url:string = '';
-
     constructor(public bsModalRef: BsModalRef, private roleCheck:RoleCheck)
     {
     }
-
-  gotoCandidateList()
-  {
-      window.location.href = this.url;
-  }
-
+    gotoCandidateList()
+    {
+        window.location.href = this.url;
+    }
 }
