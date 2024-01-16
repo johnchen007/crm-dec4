@@ -18,77 +18,43 @@ public class CandidateAttachments {
 	private String candidateId;
 	private boolean isResume;
 	private String attachment;
-	
 
 	public Long getAttachmentId() {
 		return attachmentId;
 	}
 
-
 	public void setAttachmentId(Long attachmentId) {
 		this.attachmentId = attachmentId;
 	}
-
-
-
-
 
 	public String getCandidateId() {
 		return candidateId;
 	}
 
-
-
-
-
 	public void setCandidateId(String candidateId) {
 		this.candidateId = candidateId;
 	}
-
-
-
-
 
 	public boolean isResume() {
 		return isResume;
 	}
 
-
-
-
-
 	public void setResume(boolean isResume) {
 		this.isResume = isResume;
 	}
-
-
-
-
 
 	public String getAttachment() {
 		return attachment;
 	}
 
-
-
-
-
 	public void setAttachment(String attachment) {
 		this.attachment = attachment;
 	}
-
-
-
-
 
 	public CandidateAttachments() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
-
-
-
 
 	public CandidateAttachments(Long attachmentId, String candidateId, boolean isResume, String attachment) {
 		super();
@@ -98,17 +64,10 @@ public class CandidateAttachments {
 		this.attachment = attachment;
 	}
 
-
-
-
-
 	@Override
 	public String toString() {
 		return "CandidateAttachments [attachmentId=" + attachmentId + ", candidateId=" + candidateId + ", isResume="
 				+ isResume + ", attachement=" + attachment + ", candidateBasicDetails=" + " " + "]";
 	}
-	
-	
-
 
 }
