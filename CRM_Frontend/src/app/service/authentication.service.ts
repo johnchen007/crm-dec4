@@ -23,7 +23,8 @@ export class AuthenticationService {
       authorization : this.createBasicAuthToken(user.username,user.password)
   } : {});
 
-  return this.http.get<User>('http://localhost:8080/loginEndpoints', {headers: headers})
+  return this.http.get<User>('http://localhost:8080/api/v1/authentication', {headers: headers});
+  // return this.http.get<User>('http://localhost:8080/loginEndpoints', {headers: headers});
 }
 
 createBasicAuthToken(username: String, password: String) {

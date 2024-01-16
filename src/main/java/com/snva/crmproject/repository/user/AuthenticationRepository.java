@@ -9,6 +9,7 @@ import com.snva.crmproject.entity.userDetails.User;
 
 @Repository
 public interface AuthenticationRepository extends JpaRepository<User, Long> {
-	Optional<User> findUserByUsername(String username); 
-	 Optional<User> findUserByUserId(long userId); 
+    Optional<User> findUserByUsername(String username);
+
+    Optional<User> findUserByUserId(long userId);
 }

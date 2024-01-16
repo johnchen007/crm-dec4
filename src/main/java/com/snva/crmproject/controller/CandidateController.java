@@ -28,7 +28,7 @@ import com.snva.crmproject.service.CandidateDetailsService;
 import com.snva.crmproject.service.CandidateService;
 
 @RestController
-@CrossOrigin(origins="http://localhost:4200/")
+@CrossOrigin(origins = "${fontEnd.origins}")
 @RequestMapping("/Candidates")
 
 
